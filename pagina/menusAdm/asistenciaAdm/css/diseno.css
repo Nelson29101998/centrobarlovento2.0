@@ -1,0 +1,46 @@
+h1,
+h5 {
+    font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
+}
+
+body {
+    background-color: #2689F9;
+    color: white;
+}
+
+table {
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+td,
+th {
+    text-align: left;
+    padding: 8px;
+}
+
+.despues tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#ajustarTexto {
+    width: 35%;
+}
+
+@media (max-width: 600px) {
+    #ajustarTexto {
+        width: 100%;
+    }
+}
+
+.form-group label {
+    float: left;
+    text-align: left;
+}
+
+.form-group select {
+    display: inline-block;
+    width: auto;
+    vertical-align: middle;
+}

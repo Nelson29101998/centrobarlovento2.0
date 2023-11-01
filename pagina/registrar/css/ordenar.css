@@ -1,0 +1,25 @@
+#disenoLetra {
+  font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
+}
+
+body {
+  background-color: #2689f9;
+}
+
+label {
+  display: block;
+  text-align: right;
+}
+
+#formColor {
+  background-color: #f71806;
+  border-radius: 20px;
+}
+
+/*
+@media (max-width: 600px) {
+    #formColor {
+        background-color: #F71806;
+        border-radius: 20px;
+    }
+}*/
