@@ -63,11 +63,11 @@ $encontrar = mysqli_fetch_array($revisarBd, MYSQLI_ASSOC);
                 //*Rut
                 $_SESSION['rut'] = $encontrar['rut'];
 
-                if ((!empty($_COOKIE['verVentana'])) && ($_COOKIE['verVentana'] == "Aceptar")) {
+                //if ((!empty($_COOKIE['verVentana'])) && ($_COOKIE['verVentana'] == "Aceptar")) {
                     setcookie("nameCookieAdm", $encontrar['nombre'], strtotime('+30 days'), "/", false, false);
                     setcookie("userCookieAdm", $encontrar['usuario'], strtotime('+30 days'), "/", false, false);
                     setcookie("rutCookieAdm", $encontrar['rut'], strtotime('+30 days'), "/", false, false);
-                }
+                //}
 
                 header("Location: ../menusAdm/menu.php");
             } else {
