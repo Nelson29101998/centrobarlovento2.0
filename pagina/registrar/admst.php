@@ -127,7 +127,7 @@ if (count($_COOKIE) > 0 && (!empty($_COOKIE['nameCookieAdm'])
 
         <div class="fixed-bottom">
             <?php
-            include_once "../../espacioHTML/footers.php";
+            //include_once "../../espacioHTML/footers.php";
             ?>
         </div>
 
