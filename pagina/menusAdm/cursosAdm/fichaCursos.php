@@ -100,7 +100,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         <br>
 
         <div class="animate__animated animate__backInLeft">
-            <form id="formCurso" name="formCurso" onsubmit="return crearCurso()" method="post" action="subirSql/sqlCurso.php?cualquier=anadir">
+            <form id="formCurso" name="formCurso" onsubmit="return crearCurso()" method="post" action="subirSQL/sqlCurso.php?cualquier=anadir">
                 <table>
                     <thead>
                         <tr>
