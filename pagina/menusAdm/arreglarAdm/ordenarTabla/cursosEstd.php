@@ -95,6 +95,23 @@
             </th>
         </tr>
         <tr>
+            <th class="form-group">
+                <label for="sacarCurso6" class="text-white">
+                    <i class="fa-solid fa-chalkboard-user"></i> Curso 6:
+                </label>
+                <label class="col-auto">
+                    <select name="sacarCurso6" id="sacarCurso6" class="form-select">
+                        <?php
+                        include_once "selecciones/sacarCursosSelect6.php";
+                        ?>
+                    </select>
+                </label>
+            </th>
+            <th class="form-group">
+                (<i class="fa-solid fa-asterisk fa-2xs"></i><i class="fa-solid fa-asterisk fa-2xs"></i>)
+            </th>
+        </tr>
+        <tr>
             <th>
                 <label for="elegirMes" class="text-white">
                     <i class="fa-regular fa-calendar"></i> Elige un mes:
