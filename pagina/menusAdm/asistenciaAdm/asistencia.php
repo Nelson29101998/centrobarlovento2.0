@@ -69,7 +69,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     ?>
                                 </select>
                             </th>
-                            <th>
+                           <!-- <th>
                                 <label for="verMes" class="text-white">
                                     <h5>
                                         <i class="fa-regular fa-calendar"></i> Mes:
@@ -77,7 +77,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 </label>
                                 <select name="verMes" id="verMes" class="form-select">
                                     <?php
-                                    include_once "selecciones/elegirMes2.php";
+                                    //include_once "selecciones/elegirMes2.php";
                                     ?>
                                 </select>
                             </th>
@@ -89,10 +89,10 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 </label>
                                 <select name="verAno" id="verAno" class="form-select">
                                     <?php
-                                    include_once "selecciones/elegirAno2.php";
+                                    //include_once "selecciones/elegirAno2.php";
                                     ?>
                                 </select>
-                            </th>
+                            </th> -->
                         </tr>
                         <tr>
                             <th class="text-center">
