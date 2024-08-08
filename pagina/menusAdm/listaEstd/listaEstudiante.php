@@ -149,7 +149,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             echo "<tr>
                             <th class='text-center'>" . $sum . "</th>
                         <th>
-                        <a href='verDatos.php?verRut=" . $row['rutPartc'] . "'>
+                        <a href='verDatos.php?verEstudiante=" . $row['nombrePartc'] . "'>
                             <button type='button' class='btn btn-primary'>
                             <i class='fa-solid fa-file-lines'></i>
                             </button>
@@ -160,7 +160,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         <th>" . $row['celularPartc'] . "</th>
                         <th>" . $row['mailPartc'] . "</th>
                         <th>
-                        <a href='subirSQL/borrarEstd.php?borrarRut=" . $row['rutPartc'] . "'>
+                        <a href='subirSQL/borrarEstd.php?borrarEstudiante=" . $row['nombrePartc'] . "'>
                             <button type='button'";
                             if (!($detect->isMobile() && !$detect->isTablet())) {
                                 echo "id='borrar'";
