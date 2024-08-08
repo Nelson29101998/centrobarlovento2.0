@@ -217,7 +217,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             function tablaParticipante() {
                 var nombreParticipante =
                     document.forms["formInscr"]["nombreParticipante"].value;
-                var rutPartc = document.forms["formInscr"]["rutPartc"].value;
+                //var rutPartc = document.forms["formInscr"]["rutPartc"].value;
                 var telPartc = document.forms["formInscr"]["telefonoPartc"].value;
                 var mailPartc = document.forms["formInscr"]["correoPartc"].value;
                 var dirPartc = document.forms["formInscr"]["direccionPartc"].value;
