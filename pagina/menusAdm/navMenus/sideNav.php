@@ -153,19 +153,6 @@
             </a>
         <?php
         }
-        if ($_SERVER["REQUEST_URI"] !== $sacar . "pagina/menusAdm/profesorAdm/profesor.php") {
-            if ($_SERVER["REQUEST_URI"] == $sacar . "pagina/menusAdm/menu.php") {
-                echo '<a href="profesorAdm/profesor.php">';
-            } else if ($_SERVER["REQUEST_URI"] !== $sacar . "pagina/menusAdm/menu.php") {
-                echo '<a href="../profesorAdm/profesor.php">';
-            }
-        ?>
-            <button type="button" class="btn btn-primary">
-                <i class="fas fa-users fa-xl"></i> Ficha del Profesor
-            </button>
-            </a>
-        <?php
-        }
 
         if ($_SERVER["REQUEST_URI"] !== $sacar . "pagina/menusAdm/cursosAdm/fichaCursos.php") {
             if ($_SERVER["REQUEST_URI"] == $sacar . "pagina/menusAdm/menu.php") {
