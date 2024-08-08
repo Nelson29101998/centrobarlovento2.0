@@ -10,8 +10,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $_SESSION["rut"] = $rut;
 
     if (!empty($_GET["verEstudiante"])) {
-        $cargaAsist = $_GET["verEstudiante"];
-       // echo "hola" + $cargaAsist;
+        $cargaAsist = str_replace("%20", " ", $_GET["verEstudiante"];
+        echo "hola", $cargaAsist;
     } else {
         $cargaAsist = 0;
     }
