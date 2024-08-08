@@ -218,11 +218,11 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 var nombreParticipante =
                     document.forms["formInscr"]["nombreParticipante"].value;
                 //var rutPartc = document.forms["formInscr"]["rutPartc"].value;
-                var telPartc = document.forms["formInscr"]["telefonoPartc"].value;
-                var mailPartc = document.forms["formInscr"]["correoPartc"].value;
-                var dirPartc = document.forms["formInscr"]["direccionPartc"].value;
+                //var telPartc = document.forms["formInscr"]["telefonoPartc"].value;
+                //var mailPartc = document.forms["formInscr"]["correoPartc"].value;
+                //var dirPartc = document.forms["formInscr"]["direccionPartc"].value;
 
-                if (nombreParticipante == "" || nombreParticipante == null) {
+               /* if (nombreParticipante == "" || nombreParticipante == null) {
                     $(document).ready(function() {
                         $(".errorNomPartc").toast("show");
                     });
@@ -255,7 +255,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         $(".errorDirPartc").toast("show");
                     });
                     return false;
-                }
+                } */
 
                 return true;
             }
