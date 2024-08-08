@@ -11,11 +11,11 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     include_once "../../../../conectarSQL/conectar_SQL.php";
 
-    $borrarRut = $_GET['borrarRut'];
+    $borrarAsist = $_GET['borrarEstudiante'];
 
-    $sqlAsistencia = "DELETE FROM asistencias WHERE rut = '" . $borrarRut . "'";
+    $sqlAsistencia = "DELETE FROM asistencias WHERE estudiante = '" . $borrarAsist . "'";
 
-    $sqlInscripcion = "DELETE FROM inscripcion WHERE rutPartc = '" . $borrarRut . "'";
+    $sqlInscripcion = "DELETE FROM inscripcion WHERE nombrePartc = '" . $borrarAsist . "'";
 ?>
 
     <!DOCTYPE html>
