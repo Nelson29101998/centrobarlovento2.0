@@ -69,7 +69,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     ?>
                                 </select>
                             </th>
-                           <!-- <th>
+                           <th>
                                 <label for="verMes" class="text-white">
                                     <h5>
                                         <i class="fa-regular fa-calendar"></i> Mes:
@@ -92,7 +92,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     //include_once "selecciones/elegirAno2.php";
                                     ?>
                                 </select>
-                            </th> -->
+                            </th>
                         </tr>
                         <tr>
                             <th class="text-center">
