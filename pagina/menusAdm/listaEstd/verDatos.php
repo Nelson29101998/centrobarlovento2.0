@@ -11,7 +11,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     if (!empty($_GET["verRut"])) {
         $cargaAsist = urldecode($_GET["verEstudiante"]);
-        echo $cargaAsist;
+        echo "hola" + $cargaAsist;
     } else {
         $cargaAsist = 0;
     }
