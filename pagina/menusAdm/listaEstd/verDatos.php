@@ -10,13 +10,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $_SESSION["rut"] = $rut;
 
     if (!empty($_GET["verRut"])) {
-        $cargaRut = $_GET["verRut"];
+        $cargaAsist = $_GET["verEstudiante"];
     } else {
-        $cargaRut = 0;
+        $cargaAsist = 0;
     }
 
     include_once "../../../conectarSQL/conectar_SQL.php";
-    $datosSQL = "SELECT * FROM inscripcion WHERE rutPartc='" . $cargaRut . "'";
+    $datosSQL = "SELECT * FROM inscripcion WHERE nombrePartc='" . $cargaAsist . "'";
 ?>
 
     <!DOCTYPE html>
@@ -159,7 +159,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                         " . $row['rutPartc'] . "
                                     </th>";
                         echo "<th>
-                                <a href='editar/editarPartc.php?idRut=" . $row['rutPartc'] . "'>
+                                <a href='editar/editarPartc.php?idAsist=" . $row['nombrePartc'] . "'>
                                     <button type='button' id='editarPartc' class='btn btn-primary'>
                                         <i class='fa-solid fa-file-pen fa-xl'></i>
                                     </button>
@@ -240,7 +240,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         }
                         echo "</th>";
                         echo "<th>
-                                <a href='editar/editarMedico.php?idRut=" . $row['rutPartc'] . "'>
+                                <a href='editar/editarMedico.php?idAsist=" . $row['nombrePartc'] . "'>
                                     <button type='button' id='editarPartc' class='btn btn-primary'>
                                         <i class='fa-solid fa-file-pen fa-xl'></i>
                                     </button>
@@ -309,7 +309,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         }
                         echo "</th>";
                         echo "<th>
-                        <a href='editar/editarSalud.php?idRut=" . $row['rutPartc'] . "'>
+                        <a href='editar/editarSalud.php?idAsist=" . $row['nombrePartc'] . "'>
                             <button type='button' id='editarPartc' class='btn btn-primary'>
                                 <i class='fa-solid fa-file-pen fa-xl'></i>
                             </button>
@@ -363,7 +363,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             </th>
                             <?php
                             echo "<th>
-                                    <a href='editar/editarConct.php?idRut=" . $row['rutPartc'] . "'>
+                                    <a href='editar/editarConct.php?idAsist=" . $row['nombrePartc'] . "'>
                                         <button type='button' id='editarPartc' class='btn btn-primary'>
                                             <i class='fa-solid fa-file-pen fa-xl'></i>
                                         </button>
