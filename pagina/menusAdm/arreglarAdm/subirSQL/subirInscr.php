@@ -94,6 +94,15 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     } else {
         $sqlCurso5 = "";
     }
+    
+    //! Curso 6
+    if ($_POST['sacarCurso6'] != "vacio") {
+        $sacarCurso6 = $_POST['sacarCurso6'];
+        $sqlCurso6 = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso6 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+    } else {
+        $sqlCurso6 = "";
+    }
 
     $sql = "INSERT INTO inscripcion(nombrePartc, edad, nacePartc, rutPartc, celularPartc, mailPartc,
     direccionPartc, vivePartc, diagnostico, medicoTratantes, medicaHora, otroMedico,  alergias, preferencia,
@@ -187,6 +196,15 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso5 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
                                 if ($conexion->query($sqlCurso5Tiempo) === TRUE) {
                                     $anotar = $anotar . ", Curso 5 esta ok";
+                                }
+                            }
+                        }
+                        if (!empty($sqlCurso6)) {
+                            if ($conexion->query($sqlCurso6) === TRUE) {
+                                $sqlCurso6Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso6 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                                if ($conexion->query($sqlCurso6Tiempo) === TRUE) {
+                                    $anotar = $anotar . ", Curso 6 esta ok";
                                 }
                             }
                         }
