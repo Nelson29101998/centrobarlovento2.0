@@ -30,7 +30,7 @@
             </th>
             <th class="form-group">
                 <label for="rutPartc" class="text-white">
-                    <i class="fas fa-id-card"></i> Rut (<i class="fa-solid fa-asterisk fa-2xs"></i>):
+                    <i class="fas fa-id-card"></i> Rut:
                 </label>
                 <input type="text" class="form-control" name="rutPartc" id="rutPartc" maxlength="9" placeholder="Ingresa su Rut">
             </th>
@@ -38,13 +38,13 @@
         <tr>
             <th class="form-group">
                 <label for="telefonoPartc" class="text-white">
-                    <i class="fas fa-phone"></i> Teléfono (<i class="fa-solid fa-asterisk fa-2xs"></i>):
+                    <i class="fas fa-phone"></i> Teléfono:
                 </label>
                 <input type="text" class="form-control" name="telefonoPartc" id="telefonoPartc" maxlength="12" placeholder="Ingresa su teléfono">
             </th>
             <th class="form-group">
                 <label for="correoPartc" class="text-white">
-                    <i class="fas fa-at"></i> Mail (<i class="fa-solid fa-asterisk fa-2xs"></i>):
+                    <i class="fas fa-at"></i> Mail:
                 </label>
                 <input type="email" class="form-control" name="correoPartc" id="correoPartc" maxlength="50" placeholder="Ingresa su correo">
             </th>
@@ -52,7 +52,7 @@
         <tr>
             <th class="form-group">
                 <label for="direccionPartc" class="text-white">
-                    <i class="fas fa-map"></i> Direccion (<i class="fa-solid fa-asterisk fa-2xs"></i>):
+                    <i class="fas fa-map"></i> Direccion:
                 </label>
                 <input type="text" class="form-control" name="direccionPartc" id="direccionPartc" maxlength="100" placeholder="Ingresa su dirección">
             </th>
