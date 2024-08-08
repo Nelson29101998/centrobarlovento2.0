@@ -241,17 +241,17 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
             function fechaTalleres() {
                 var faltaSelectTaller = document.forms["formFecha"]["verCurso"].value;
-                var faltaSelectMes = document.forms["formFecha"]["verMes"].value;
-                var faltaSelectAno = document.forms["formFecha"]["verAno"].value;
+               /* var faltaSelectMes = document.forms["formFecha"]["verMes"].value;
+                var faltaSelectAno = document.forms["formFecha"]["verAno"].value; */
                 if (faltaSelectTaller == "vacio") {
                     return false;
                 }
-                if (faltaSelectMes == "vacio") {
+              /*  if (faltaSelectMes == "vacio") {
                     return false;
                 }
                 if (faltaSelectAno == "vacio") {
                     return false;
-                }
+                }*/
                 return true;
             }
 
