@@ -113,7 +113,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     //$revisarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias";
                     $revisarSQL = "SELECT DISTINCT rutPartc, nombrePartc, celularPartc, mailPartc FROM inscripcion";
                 } else {
-                    $revisarSQL = "SELECT DISTINCT rutPartc, nombrePartc, celularPartc, mailPartc FROM inscripcion WHERE cursos='" . $_POST['verCurso'] . "'";
+                    $revisarSQLAsist = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias WHERE cursos='" . $_POST['verCurso'] . "'";
 
                     echo "
                         <div class='text-center'>
@@ -141,26 +141,41 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 </thead>
                 <tbody>
                     <?php
-                    $resultados = mysqli_query($conexion, $revisarSQL);
+                    if(!empty($_POST['verCurso'])) {
+                        $resultados = mysqli_query($conexion, $revisarSQLAsist);
+                    }else{
+                        $resultados = mysqli_query($conexion, $revisarSQL);
+                    }
+                    
                     $sum = 0;
                     if (mysqli_num_rows($resultados) > 0) {
                         while ($row = mysqli_fetch_array($resultados)) {
                             $sum = $sum + 1;
+                            if(!empty($_POST['verCurso'])){
+                                $sacarNom = $row['estudiante'];
+                                $sacarRut = $row['rut'];
+                                $sacarTel = $row['telefono'];
+                            } else {
+                                 $sacarNom = $row['nombrePartc'];
+                                 $sacarRut = $row['rutPartc'];
+                                 $sacarTel = $row['celularPartc'];
+                                 $sacarMail = $row['mailPartc'];
+                            }
                             echo "<tr>
                             <th class='text-center'>" . $sum . "</th>
                         <th>
-                        <a href='verDatos.php?verEstudiante=" . $row['nombrePartc'] . "'>
+                        <a href='verDatos.php?verEstudiante=" . $sacarNom . "'>
                             <button type='button' class='btn btn-primary'>
                             <i class='fa-solid fa-file-lines'></i>
                             </button>
                         </a>
                         </th>
-                        <th>" . $row['rutPartc'] . "</th>
-                        <th>" . $row['nombrePartc'] . "</th>
-                        <th>" . $row['celularPartc'] . "</th>
-                        <th>" . $row['mailPartc'] . "</th>
+                        <th>" . $sacarRut . "</th>
+                        <th>" . $sacarNom . "</th>
+                        <th>" . $sacarTel . "</th>
+                        <th>" . $sacarMail . "</th>
                         <th>
-                        <a href='subirSQL/borrarEstd.php?borrarEstudiante=" . $row['nombrePartc'] . "'>
+                        <a href='subirSQL/borrarEstd.php?borrarEstudiante=" . $sacarNom . "'>
                             <button type='button'";
                             if (!($detect->isMobile() && !$detect->isTablet())) {
                                 echo "id='borrar'";
