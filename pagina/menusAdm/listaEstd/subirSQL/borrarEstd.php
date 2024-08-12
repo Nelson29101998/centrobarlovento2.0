@@ -16,6 +16,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $sqlAsistencia = "DELETE FROM asistencias WHERE estudiante = '" . $borrarAsist . "'";
 
     $sqlInscripcion = "DELETE FROM inscripcion WHERE nombrePartc = '" . $borrarAsist . "'";
+
+    $sqlHorario = "DELETE FROM tallertiempo WHERE estudiante = '" . $borrarAsist . "'";
 ?>
 
     <!DOCTYPE html>
@@ -61,7 +63,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         <?php
         if ($conexion->query($sqlAsistencia) === TRUE) {
             if ($conexion->query($sqlInscripcion) === TRUE) {
-                header("Location: ../listaEstudiante.php");
+                if ($conexion->query($sqlHorario) === TRUE) {
+                    header("Location: ../listaEstudiante.php");
+                }
             }
         } else {
             echo "<br>

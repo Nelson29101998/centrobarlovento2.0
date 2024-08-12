@@ -44,8 +44,57 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $contDosPhone = $_POST["contDosPhone"];
 
     $tiempoRut = $date->format('H:i:s') . $rutPartc;
-    $sacarMes = $_POST['elegirMes'];
-    $sacarAno = $_POST['elegirAno'];
+
+    if ($_POST["elegirMes"] == "vacio") {
+        $month = date("n"); //Reemplazable por número del 1 a 12
+        $year = date("Y"); //Reemplazable por un año valido
+        switch (date('n', mktime(0, 0, 0, $month, 1, $year))) {
+            case 1:
+                $sacarMes = 'Enero';
+                break;
+            case 2:
+                $sacarMes = 'Febrero';
+                break;
+            case 3:
+                $sacarMes = 'Marzo';
+                break;
+            case 4:
+                $sacarMes = 'Abril';
+                break;
+            case 5:
+                $sacarMes = 'Mayo';
+                break;
+            case 6:
+                $sacarMes = 'Junio';
+                break;
+            case 7:
+                $sacarMes = 'Julio';
+                break;
+            case 8:
+                $sacarMes = 'Agosto';
+                break;
+            case 9:
+                $sacarMes = 'Septiembre';
+                break;
+            case 10:
+                $sacarMes = 'Octubre';
+                break;
+            case 11:
+                $sacarMes = 'Noviembre';
+                break;
+            case 12:
+                $sacarMes = 'Diciembre';
+                break;
+        };
+    } else {
+        $sacarMes = $_POST['elegirMes'];
+    }
+
+    if ($_POST["elegirAno"] == "vacio") {
+        $sacarAno = date("Y");
+    } else {
+        $sacarAno = $_POST['elegirAno'];
+    }
 
     //* Tabla de los cursos
     //! Curso 1
@@ -94,7 +143,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     } else {
         $sqlCurso5 = "";
     }
-    
+
     //! Curso 6
     if ($_POST['sacarCurso6'] != "vacio") {
         $sacarCurso6 = $_POST['sacarCurso6'];

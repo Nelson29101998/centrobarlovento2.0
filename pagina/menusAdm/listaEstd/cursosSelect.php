@@ -1,5 +1,5 @@
 <option value="vacio" selected>Selección del curso</option>
-<option value="todas" >Todos</option>
+<option value="todas" >Todas</option>
 <?php
 include_once "../../../conectarSQL/conectar_SQL.php";
 

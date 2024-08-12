@@ -124,7 +124,7 @@
             </th>
             <th>
                 <label for="elegirAno" class="text-white">
-                    <i class="fa-regular fa-calendar"></i> Elige un Ano:
+                    <i class="fa-regular fa-calendar"></i> Elige un Año:
                 </label>
                 <select name="elegirAno" id="elegirAno" class="form-select">
                     <?php

@@ -109,12 +109,11 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             <?php
             if (!empty($_POST['verCurso'])) {
                 $urlCursos = $_POST['verCurso'];
-                if ($_POST['verCurso'] == "todas") {
+                if ($_POST['verCurso'] === "todas") {
                     //$revisarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias";
-                    $revisarSQL = "SELECT DISTINCT rutPartc, nombrePartc, celularPartc, mailPartc FROM inscripcion";
+                    $revisarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias";
                 } else {
-                    $revisarSQLAsist = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias WHERE cursos='" . $_POST['verCurso'] . "'";
-
+                    $revisarSQLAsist = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias WHERE cursos='" . $_POST['verCurso'] . "'";
                     echo "
                         <div class='text-center'>
                             <h4>Curso es: " . $_POST['verCurso'] . "</h4>
@@ -137,29 +136,49 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         <th>Nombre de Participante</th>
                         <th>Contacto</th>
                         <th>Mail</th>
+                        <?php
+                        if (!empty($_POST['verCurso']) && $_POST['verCurso'] == "todas") {
+                            echo "<th>Taller</th>
+                            <th>Mes</th>
+                        <th>Año</th>";
+                        }
+                        if (!empty($_POST['verCurso']) && $_POST['verCurso'] !== "todas") {
+                            echo "<th>Mes</th>
+                        <th>Año</th>";
+                        }
+                        ?>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    if(!empty($_POST['verCurso'])) {
+                    if (!empty($_POST['verCurso']) && $_POST['verCurso'] !== "todas") {
                         $resultados = mysqli_query($conexion, $revisarSQLAsist);
-                    }else{
+                    } else {
                         $resultados = mysqli_query($conexion, $revisarSQL);
                     }
-                    
+
                     $sum = 0;
                     if (mysqli_num_rows($resultados) > 0) {
                         while ($row = mysqli_fetch_array($resultados)) {
                             $sum = $sum + 1;
-                            if(!empty($_POST['verCurso'])){
+                            if (!empty($_POST['verCurso']) && $_POST['verCurso'] !== "todas") {
                                 $sacarNom = $row['estudiante'];
                                 $sacarRut = $row['rut'];
                                 $sacarTel = $row['telefono'];
+                                $sacarMes = $row['mes'];
+                                $sacarAno = $row['ano'];
+                            } else if (!empty($_POST['verCurso']) && $_POST['verCurso'] == "todas") {
+                                $sacarNom = $row['estudiante'];
+                                $sacarRut = $row['rut'];
+                                $sacarTel = $row['telefono'];
+                                $sacarMes = $row['mes'];
+                                $sacarAno = $row['ano'];
+                                $sacarTaller = $row['cursos'];
                             } else {
-                                 $sacarNom = $row['nombrePartc'];
-                                 $sacarRut = $row['rutPartc'];
-                                 $sacarTel = $row['celularPartc'];
-                                 $sacarMail = $row['mailPartc'];
+                                $sacarNom = $row['nombrePartc'];
+                                $sacarRut = $row['rutPartc'];
+                                $sacarTel = $row['celularPartc'];
+                                $sacarMail = $row['mailPartc'];
                             }
                             echo "<tr>
                             <th class='text-center'>" . $sum . "</th>
@@ -169,12 +188,51 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             <i class='fa-solid fa-file-lines'></i>
                             </button>
                         </a>
-                        </th>
-                        <th>" . $sacarRut . "</th>
-                        <th>" . $sacarNom . "</th>
-                        <th>" . $sacarTel . "</th>
-                        <th>" . $sacarMail . "</th>
-                        <th>
+                        </th>";
+
+                            if (!empty($sacarRut)) {
+                                echo "<th>" . $sacarRut . "</th>";
+                            } else {
+                                echo "<th>Vacio</th>";
+                            }
+
+                            if (!empty($sacarNom)) {
+                                echo "<th>" . $sacarNom . "</th>";
+                            } else {
+                                echo "<th>Vacio</th>";
+                            }
+
+                            if (!empty($sacarTel)) {
+                                echo "<th>" . $sacarTel . "</th>";
+                            } else {
+                                echo "<th>Vacio</th>";
+                            }
+
+                            if (!empty($sacarMail)) {
+                                echo "<th>" . $sacarMail . "</th>";
+                            } else {
+                                echo "<th>Vacio</th>";
+                            }
+
+                            if (!empty($sacarTaller) && $_POST['verCurso'] == "todas" || !empty($_POST['verCurso']) && $_POST['verCurso'] !== "todas") {
+                                if (!empty($sacarTaller) && $_POST['verCurso'] == "todas") {
+                                    echo "<th>" . $sacarTaller . "</th>";
+                                }
+
+                                if (!empty($sacarMes)) {
+                                    echo "<th>" . $sacarMes . "</th>";
+                                } else {
+                                    echo "<th>Vacio</th>";
+                                }
+
+                                if (!empty($sacarAno)) {
+                                    echo "<th>" . $sacarAno . "</th>";
+                                } else {
+                                    echo "<th>Vacio</th>";
+                                }
+                            }
+
+                            echo "<th>
                         <a href='subirSQL/borrarEstd.php?borrarEstudiante=" . $sacarNom . "'>
                             <button type='button'";
                             if (!($detect->isMobile() && !$detect->isTablet())) {
@@ -184,8 +242,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 <i class='fas fa-trash-can'></i>
                             </button>
                         </a>
-                        </th>
-                        </tr>";
+                        </th>";
+
+                        echo "</tr>";
                         }
                     }
                     mysqli_free_result($resultados);

@@ -111,8 +111,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 <br>
                 <?php
                 if (!empty($_GET['verMes']) && !empty($_GET['verAno']) && !empty($_GET['verCurso'])) {
-                    $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "'";
-                    //$revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "'";
+                    //$revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "'";
+                    $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "'";
                 } else if (!empty($_GET['buscarPartc'])) {
                     $revisarSQL = "SELECT * FROM asistencias WHERE estudiante= '" . $_GET['buscarPartc'] . "'
                     ORDER BY FIELD(DATE_FORMAT(`mes`, '%M'),
@@ -283,7 +283,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         type: 'base64'
                     }) :
                     XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
-            }
+            }      
         </script>
     </body>
 

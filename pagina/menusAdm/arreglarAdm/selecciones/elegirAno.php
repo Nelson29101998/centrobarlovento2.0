@@ -1,4 +1,4 @@
-<option value="vacio" selected>Selección del ano</option>
+<option value="vacio" selected>Selección del año</option>
 
 <?php
 $anoEmpiezoBarlovento = 2018;

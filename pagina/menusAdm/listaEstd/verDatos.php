@@ -135,7 +135,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                         </label>
                                         <br>";
                         $fechaNace = date("d-m-Y", strtotime($row['nacePartc']));
-                        if ($row['nacePartc'] != "00-00-0000") {
+                        if ($fechaNace != "01-01-1970") {
                             echo $fechaNace;
                         } else {
                             echo "No hay dato de (Fecha de Nacimiento)";
@@ -146,7 +146,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                             Edad:
                                         </label>
                                         <br>";
-                        if ($row['edad'] != "") {
+                        if ($row['edad'] != "" && $row['edad'] != 0) {
                             echo  $row['edad'];
                         } else {
                             echo "No hay dato de (Edad)";
@@ -156,9 +156,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                         <label class='text-white'>
                                             Rut:
                                         </label>
-                                        <br>
-                                        " . $row['rutPartc'] . "
-                                    </th>";
+                                        <br>";
+                        if ($row['rutPartc'] != "") {
+                            echo $row['rutPartc'];
+                        } else {
+                            echo "No hay dato de (Rut)";
+                        }
+                        echo "</th>";
                         echo "<th>
                                 <a href='editar/editarPartc.php?idAsist=" . $row['nombrePartc'] . "'>
                                     <button type='button' id='editarPartc' class='btn btn-primary'>
@@ -172,23 +176,35 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                         <label class='text-white'>
                                             Contacto:
                                         </label>
-                                        <br>
-                                        " . $row['celularPartc'] . "
-                                    </th>
+                                        <br>";
+                        if ($row['celularPartc'] != "") {
+                            echo $row['celularPartc'];
+                        } else {
+                            echo "No hay dato de (Contacto)";
+                        }
+                        echo "</th>
                                     <th>
                                         <label class='text-white'>
                                             Mail:
                                         </label>
-                                        <br>
-                                        " . $row['mailPartc'] . " 
-                                    </th>
+                                        <br>";
+                        if ($row['mailPartc'] != "") {
+                            echo $row['mailPartc'];
+                        } else {
+                            echo "No hay dato de (Mail)";
+                        }
+                        echo "</th>
                                     <th colspan='2'>
                                         <label class='text-white'>
                                             Dirección:
                                         </label>
-                                        <br>
-                                        " . $row['direccionPartc'] . " 
-                                    </th>
+                                        <br>";
+                        if ($row['direccionPartc'] != "") {
+                            echo $row['direccionPartc'];
+                        } else {
+                            echo "No hay dato de (Dirección)";
+                        }
+                        echo "</th>
                                 </tr>
                                 <tr class='form-group'>
                                     <th>

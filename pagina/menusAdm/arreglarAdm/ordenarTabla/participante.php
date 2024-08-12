@@ -26,7 +26,7 @@
                 <label for="nacePartc" class="text-white">
                     <i class="fas fa-calendar"></i> Fecha de Nacimiento:
                 </label>
-                <input type="date" class="form-control" id="nacePartc" name="nacePartc" value="" min="1950-01-01">
+                <input type="date" class="form-control" id="nacePartc" name="nacePartc" value="" min="1970-01-01">
             </th>
             <th class="form-group">
                 <label for="rutPartc" class="text-white">
