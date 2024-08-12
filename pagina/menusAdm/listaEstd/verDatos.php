@@ -20,7 +20,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $datosSQL = "SELECT * FROM inscripcion WHERE nombrePartc='" . $cargaAsist . "'";
     $datosSQL2 = "SELECT * FROM inscripcion WHERE nombrePartc='" . $cargaAsist . "'";
 
-    $revisarSQL = "SELECT rut, estudiante, cursos, mes, ano FROM asistencias WHERE estudiante='" . $cargaAsist . "'";
+    $revisarSQL = "SELECT * FROM asistencias WHERE estudiante='" . $cargaAsist . "'";
     $resultados = mysqli_query($conexion, $revisarSQL);
 ?>
 
@@ -125,13 +125,14 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     </thead>
                     <tbody>
                         <?php
+                        $sacarNom = $row['nombrePartc'];
                         echo "<tr class='form-group'>
                                     <th>
                                         <label class='text-white'>
                                             Paritcipante:
                                         </label>
                                         <br>
-                                        " . $row['nombrePartc'] . "
+                                        " . $sacarNom . "
                                     </th>
                                     <th>
                                         <label class='text-white'>
@@ -232,24 +233,24 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="3">
+                            <th colspan="4">
                                 <h5>Datos los Talleres</h5>
                             </th>
                         </tr>
                         <tr>
                             <th>
                                 <h5>
-                                    Cursos
+                                    Cursos:
                                 </h5>
                             </th>
                             <th>
                                 <h5>
-                                    Mes
+                                    Mes:
                                 </h5>
                             </th>
                             <th>
                                 <h5>
-                                    Año
+                                    Año:
                                 </h5>
                             </th>
                         </tr>
@@ -257,31 +258,179 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     <tbody>
                         <?php
                         while ($row = mysqli_fetch_array($resultados)) {
+                            $sacarTaller = $row['cursos'];
+                            $sacarTiempo = $row['idTallerTiempo'];
+                            $sacarId = $row['id'];
                             echo "<tr class='form-group'>
                             <th>
-                                " . $row['cursos'] . "
+                                " . $sacarTaller . "
                             </th>
                             <th>
                                 " . $row['mes'] . "
                             </th>
                             <th>
                                 " . $row['ano'] . "
-                            </th>
+                            </th>";
+                            echo "<th>
+                        <a href='subirSQL/borrarEstdTaller.php?borrarTaller=" . $sacarTaller . "&borrarNom=" . $sacarNom . "&borrarId=" . $sacarId . "&borrarTiempoId=" . $sacarTiempo . "'>
+                            <button type='button'";
+                            echo "class='btn btn-danger'>
+                                <i class='fas fa-trash-can'></i>
+                            </button>
+                        </a>
+                        </th>
                         </tr>";
                         }
                         mysqli_free_result($resultados);
                         ?>
                     </tbody>
                 </table>
-            <?php
+        <?php
             }
         }
+        ?>
 
+        <br>
+
+        <form id="formInscrNewTaller" name="formInscrNewTaller" onsubmit="return crearInscripcion()" method="post" action="subirSQL/subirNewTaller.php?newTallerNom=<?php echo $sacarNom; ?>">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <h5>Crear nuevo Taller</h5>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="form-group" colspan="2">
+                            <label for="sacarCurso1" class="text-white">
+                                <i class="fa-solid fa-chalkboard-user"></i> Curso 1:
+                            </label>
+                            <label class="col-auto">
+                                <select name="sacarCurso1" id="sacarCurso1" class="form-select">
+                                    <?php
+                                    include_once "selecciones/sacarCursosSelect.php";
+                                    ?>
+                                </select>
+                            </label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="form-group" colspan="2">
+                            <label for="sacarCurso2" class="text-white">
+                                <i class="fa-solid fa-chalkboard-user"></i> Curso 2:
+                            </label>
+                            <label class="col-auto">
+                                <select name="sacarCurso2" id="sacarCurso2" class="form-select">
+                                    <?php
+                                    include_once "selecciones/sacarCursosSelect2.php";
+                                    ?>
+                                </select>
+                            </label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="form-group" colspan="2">
+                            <label for="sacarCurso3" class="text-white">
+                                <i class="fa-solid fa-chalkboard-user"></i> Curso 3:
+                            </label>
+                            <label class="col-auto">
+                                <select name="sacarCurso3" id="sacarCurso3" class="form-select">
+                                    <?php
+                                    include_once "selecciones/sacarCursosSelect3.php";
+                                    ?>
+                                </select>
+                            </label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="form-group" colspan="2">
+                            <label for="sacarCurso4" class="text-white">
+                                <i class="fa-solid fa-chalkboard-user"></i> Curso 4:
+                            </label>
+                            <label class="col-auto">
+                                <select name="sacarCurso4" id="sacarCurso4" class="form-select">
+                                    <?php
+                                    include_once "selecciones/sacarCursosSelect4.php";
+                                    ?>
+                                </select>
+                            </label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="form-group" colspan="2">
+                            <label for="sacarCurso5" class="text-white">
+                                <i class="fa-solid fa-chalkboard-user"></i> Curso 5:
+                            </label>
+                            <label class="col-auto">
+                                <select name="sacarCurso5" id="sacarCurso5" class="form-select">
+                                    <?php
+                                    include_once "selecciones/sacarCursosSelect5.php";
+                                    ?>
+                                </select>
+                            </label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="form-group" colspan="2">
+                            <label for="sacarCurso6" class="text-white">
+                                <i class="fa-solid fa-chalkboard-user"></i> Curso 6:
+                            </label>
+                            <label class="col-auto">
+                                <select name="sacarCurso6" id="sacarCurso6" class="form-select">
+                                    <?php
+                                    include_once "selecciones/sacarCursosSelect6.php";
+                                    ?>
+                                </select>
+                            </label>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <label for="elegirMes" class="text-white">
+                                <i class="fa-regular fa-calendar"></i> Elige un mes:
+                            </label>
+                            <select name="elegirMes" id="elegirMes" class="form-select">
+                                <?php
+                                include_once "selecciones/elegirMes.php";
+                                ?>
+                            </select>
+                        </th>
+                        <th>
+                            <label for="elegirAno" class="text-white">
+                                <i class="fa-regular fa-calendar"></i> Elige un Año:
+                            </label>
+                            <select name="elegirAno" id="elegirAno" class="form-select">
+                                <?php
+                                include_once "selecciones/elegirAno.php";
+                                ?>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa-solid fa-floppy-disk"></i> Guardar y Nuevo Talleres
+                                </button>
+
+                                <button type="reset" class="btn btn-success">
+                                    <i class="fas fa-recycle"></i> Limpiar
+                                </button>
+                            </div>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+
+        <?php
         mysqli_free_result($carga);
         $carga = mysqli_query($conexion, $datosSQL2);
         if (mysqli_num_rows($carga) == 1) {
             while ($row = mysqli_fetch_array($carga)) {
-            ?>
+        ?>
                 <br>
 
                 <table>
@@ -508,7 +657,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         ?>
         <br>
         <div class="text-center">
-            <a href='javascript:history.back()'>
+            <a href='listaEstudiante.php'>
                 <button type='button' class='btn btn-primary'>
                     <i class="fas fa-xmark"></i> Volver
                 </button>
