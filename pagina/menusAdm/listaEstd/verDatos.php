@@ -18,6 +18,10 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     include_once "../../../conectarSQL/conectar_SQL.php";
     $datosSQL = "SELECT * FROM inscripcion WHERE nombrePartc='" . $cargaAsist . "'";
+    $datosSQL2 = "SELECT * FROM inscripcion WHERE nombrePartc='" . $cargaAsist . "'";
+
+    $revisarSQL = "SELECT rut, estudiante, cursos, mes, ano FROM asistencias WHERE estudiante='" . $cargaAsist . "'";
+    $resultados = mysqli_query($conexion, $revisarSQL);
 ?>
 
     <!DOCTYPE html>
@@ -222,7 +226,64 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         ?>
                     </tbody>
                 </table>
+
                 <br>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="3">
+                                <h5>Datos los Talleres</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                <h5>
+                                    Cursos
+                                </h5>
+                            </th>
+                            <th>
+                                <h5>
+                                    Mes
+                                </h5>
+                            </th>
+                            <th>
+                                <h5>
+                                    Año
+                                </h5>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        while ($row = mysqli_fetch_array($resultados)) {
+                            echo "<tr class='form-group'>
+                            <th>
+                                " . $row['cursos'] . "
+                            </th>
+                            <th>
+                                " . $row['mes'] . "
+                            </th>
+                            <th>
+                                " . $row['ano'] . "
+                            </th>
+                        </tr>";
+                        }
+                        mysqli_free_result($resultados);
+                        ?>
+                    </tbody>
+                </table>
+            <?php
+            }
+        }
+
+        mysqli_free_result($carga);
+        $carga = mysqli_query($conexion, $datosSQL2);
+        if (mysqli_num_rows($carga) == 1) {
+            while ($row = mysqli_fetch_array($carga)) {
+            ?>
+                <br>
+
                 <table>
                     <thead>
                         <tr>
@@ -291,7 +352,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         ?>
                     </tbody>
                 </table>
+
                 <br>
+
                 <table>
                     <thead>
                         <tr>
@@ -336,7 +399,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         ?>
                     </tbody>
                 </table>
+
                 <br>
+
                 <table>
                     <thead>
                         <tr>

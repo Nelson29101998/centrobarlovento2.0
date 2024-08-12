@@ -11,20 +11,20 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     include_once "../../../../conectarSQL/conectar_SQL.php";
 
-    $editarRut = $_GET['cambiarRut'];
+    $editarId = $_GET['cambiarId'];
     $cambiarRut = $_POST['editRut'];
     $cambiarEstd = $_POST['editEstd'];
     $cambiarTel = $_POST['editTel'];
     $cambiarMail = $_POST['editMail'];
 
     $sqlAsistencia = "UPDATE asistencias SET rut='".$cambiarRut."',estudiante='".$cambiarEstd."',
-    telefono='".$cambiarTel."',mail='".$cambiarMail."' WHERE rut='".$editarRut."'";
+    telefono='".$cambiarTel."',mail='".$cambiarMail."' WHERE estudiante='".$editarId."'";
 
     $sqlEstudiante = "UPDATE estudiante SET rut='".$cambiarRut."',nombre='".$cambiarEstd."',
-    telefono='".$cambiarTel."',mail='".$cambiarMail."' WHERE rut='".$editarRut."'";
+    telefono='".$cambiarTel."',mail='".$cambiarMail."' WHERE nombre='".$editarId."'";
 
     $sqlInscripcion = "UPDATE inscripcion SET nombrePartc='".$cambiarEstd."',rutPartc='".$cambiarRut."',
-    celularPartc='".$cambiarTel."',mailPartc='".$cambiarMail."' WHERE rutPartc='".$editarRut."'";
+    celularPartc='".$cambiarTel."',mailPartc='".$cambiarMail."' WHERE nombrePartc='".$editarId."'";
 ?>
 
     <!DOCTYPE html>

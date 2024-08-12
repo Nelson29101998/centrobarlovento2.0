@@ -11,14 +11,14 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $rut = $_SESSION["rut"];
     $_SESSION["rut"] = $rut;
 
-    if (!empty($_GET["idRut"])) {
-        $cargaRut = $_GET["idRut"];
+    if (!empty($_GET["idAsist"])) {
+        $cargaId = $_GET["idAsist"];
     } else {
         $cargaRut = 0;
     }
 
     include_once "../../../../conectarSQL/conectar_SQL.php";
-    $editarSQL = "SELECT * FROM inscripcion WHERE rutPartc='" . $cargaRut . "'";
+    $editarSQL = "SELECT * FROM inscripcion WHERE nombrePartc='" . $cargaId . "'";
 ?>
     <!DOCTYPE html>
     <html lang="es">
@@ -100,7 +100,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
         <br>
         <?php
-        echo "<form id='formInscr' name='formInscr' onsubmit='return crearInscripcion()' method='post' action='../subirSQL/actrEstdPart.php?buscarRut=" . $cargaRut . "'>";
+        echo "<form id='formInscr' name='formInscr' onsubmit='return crearInscripcion()' method='post' action='../subirSQL/actrEstdPart.php?buscarId=" . $cargaId . "'>";
         ?>
         <table>
             <thead>

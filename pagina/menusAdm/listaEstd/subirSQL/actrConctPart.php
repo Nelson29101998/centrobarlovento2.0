@@ -11,7 +11,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     include_once "../../../../conectarSQL/conectar_SQL.php";
 
-    $rutPartc = $_GET["buscarRut"];
+    $idPartc = $_GET["buscarId"];
 
     $sacarNom1 = $_POST["cambiarNom1"];
     $sacarNom2 = $_POST["cambiarNom2"];
@@ -22,7 +22,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     $sqlAsistencia = "UPDATE inscripcion SET nomCont1='" . $sacarNom1 . "', nomCont2='" . $sacarNom2 . "',
     parentCont1='" . $sacarParent1 . "', parentCont2='" . $sacarParent2 . "', celCont1='" . $sacarCel1 . "',
-    celCont2='" . $sacarCel2 . "' WHERE rutPartc='" . $rutPartc . "'";
+    celCont2='" . $sacarCel2 . "' WHERE nombrePartc='" . $idPartc . "'";
 ?>
 
     <!DOCTYPE html>

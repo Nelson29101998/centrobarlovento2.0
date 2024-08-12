@@ -11,13 +11,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     include_once "../../../../conectarSQL/conectar_SQL.php";
 
-    $rutPartc = $_GET["buscarRut"];
+    $idPartc = $_GET["buscarId"];
 
     $sacarAlergia = $_POST['cambiarAlergias'];
     $sacarPref = $_POST['cambiarPreferencia'];    
 
     $sqlAsistencia = "UPDATE inscripcion SET alergias='" . $sacarAlergia . "', preferencia='" . $sacarPref . "'
-    WHERE rutPartc='" . $rutPartc . "'";
+    WHERE nombrePartc='" . $idPartc . "'";
 ?>
 
     <!DOCTYPE html>

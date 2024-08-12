@@ -9,14 +9,14 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $rut = $_SESSION["rut"];
     $_SESSION["rut"] = $rut;
 
-    if (!empty($_GET["verRut"])) {
-        $cargaRut = $_GET["verRut"];
+    if (!empty($_GET["idAsist"])) {
+        $cargaId = $_GET["idAsist"];
     } else {
-        $cargaRut = 0;
+        $cargaId = 0;
     }
 
     include_once "../../../conectarSQL/conectar_SQL.php";
-    $editarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias WHERE rut='" . $cargaRut . "'";
+    $editarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias WHERE estudiante='" . $cargaId . "'";
 ?>
 
     <!DOCTYPE html>
@@ -103,7 +103,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             </div>
         </div>
         <br>
-        <form id="formEditar" name="formEditar" onsubmit="return editarEstd()" method="post" action="subirSQL/cambiarEstd.php?cambiarRut=<?php echo $cargaRut; ?>">
+        <form id="formEditar" name="formEditar" onsubmit="return editarEstd()" method="post" action="subirSQL/cambiarEstd.php?cambiarId=<?php echo $cargaId; ?>">
             <table>
                 <thead>
                     <tr>
