@@ -2,30 +2,24 @@
 include '../../../ajuste/TCPDF/tcpdf.php';
 include_once "../../../conectarSQL/conectar_SQL.php";
 
-$titulo = "Certificado de Asistencia";
+$titulo = "Certificado de Asistencia de los Talleres";
 
-$nomEst = $_GET['nomEst'];
+$taller = $_GET['verTaller'];
 
-$rut = $_GET["rut"];
+$sacarMes = $_GET['verMes'];
 
-$taller = $_GET['taller'];
+$sacarAno = $_GET['verAno'];
 
-$numAst = $_GET['numAst'];
+$buscarTaller = "SELECT * FROM tallertiempo 
+                    WHERE taller='" . $taller . "' AND mes='" . $sacarMes . "' AND ano='" . $sacarAno . "'";
 
-$numIna = $_GET['numIna'];
-
-$total = $numAst + $numIna;
-
-$guardaMes = $_GET['revMes'];
-
-$guardaAno = $_GET['revAno'];
+$resultadosTaller = mysqli_query($conexion, $buscarTaller);
 
 $html = <<<EOD
 <style>
   table {
     margin-left: auto;
     margin-right: auto;
-    
   }
  
   .tamanoNombre{
@@ -36,47 +30,31 @@ $html = <<<EOD
     <thead>
         <tr>
             <th align="center">
-                <strong>Certificado de Asistencia</strong> 
+                <strong>Taller de $taller</strong>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                Nombre:
             </th>
         </tr>
     </thead>
     <tbody>
+EOD;
+
+if (mysqli_num_rows($resultadosTaller) > 0) {
+    while ($row = mysqli_fetch_array($resultadosTaller)) {
+        $html .= <<<EOD
         <tr>
             <th>
-                <p>
-                    Certifico que el (la) participante <strong>$nomEst</strong>, RUT: <strong>$rut</strong>
-                </p>
-                <p>
-                    Tuvo la siguiente cantidad de presencialidad al taller: <strong>$taller</strong>
-                </p>
-                <p>
-                    Mes: <strong>$guardaMes</strong> y Año: <strong>$guardaAno</strong>
-                </p>
+                t
             </th>
         </tr>
-        <tr>
-            <th>
-                <p>               
-                    <ul>
-                        <li>
-                            <strong>Asistencia:</strong>  $numAst días.
-                        </li>
-                    </ul>
+EOD;
+    }
+}
 
-                    <ul>
-                        <li>
-                            <strong>Inasistencia:</strong>  $numIna días.
-                        </li>
-                    </ul>
-
-                    <ul>
-                        <li>
-                            <strong>Total de clases:</strong>  $total días.
-                        </li>
-                    </ul>
-                </p>
-            </th>
-        </tr>
+$html .= <<<EOD
         <tr>
             <th>
                 Se extiende el presente documento para los fines que estime pertinente.
@@ -180,4 +158,4 @@ $pdf->setFontSubsetting(true);
 $pdf->SetFont('helvetica', 'I', 14);
 $pdf->AddPage();
 $pdf->writeHTML($html, true, 0, true, true);
-$pdf->Output("Certificado_de_Asistencia_de_" . $nomEst . '.pdf', 'I');
+$pdf->Output("Certificado_de_Asistencia_de_" . $taller . '.pdf', 'I');

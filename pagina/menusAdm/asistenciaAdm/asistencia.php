@@ -176,7 +176,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         </button>
 
                         <?php
-                        echo "<a href='pdfTaller.php?taller=" . $sacarCurso . "&mes=" . $sacarMes . "&ano=" . $sacarAno . "' target='_blank'>
+                        echo "<a href='pdfTaller.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
                                 <button type='button' id='pdfExp' class='btn btn-info'>
                                     <i class='fa-solid fa-file-pdf fa-2xl'></i>
                                 </button>
