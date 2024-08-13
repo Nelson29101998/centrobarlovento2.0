@@ -175,6 +175,23 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             </th>
                         </tr>
                         <tr>
+                            <th class="form-group">
+                                Mail:
+                            </th>
+                            <th class="form-group">
+                                <?php
+                                echo "<input type='text' class='form-control' name='cambiarMail1' id='cambiarMail1'
+                                value='" . $row['mailCont1'] . "' maxlength='50' placeholder='Ingresa su diagnóstico'>";
+                                ?>
+                            </th>
+                            <th class="form-group">
+                                <?php
+                                echo "<input type='text' class='form-control' name='cambiarMail2' id='cambiarMail2'
+                                value='" . $row['mailCont2'] . "' maxlength='50' placeholder='Ingresa su diagnóstico'>";
+                                ?>
+                            </th>
+                        </tr>
+                        <tr>
                             <th colspan="3" class="form-group text-center">
                                 <a href='javascript:history.back()'>
                                     <button type='button' class='btn btn-primary'>

@@ -19,10 +19,12 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $sacarParent2 = $_POST["cambiarParent2"];
     $sacarCel1 = $_POST["cambiarCel1"];
     $sacarCel2 = $_POST["cambiarCel2"];
+    $sacarMail1 = $_POST["cambiarMail1"];
+    $sacarMail2 = $_POST["cambiarMail2"];
 
     $sqlAsistencia = "UPDATE inscripcion SET nomCont1='" . $sacarNom1 . "', nomCont2='" . $sacarNom2 . "',
     parentCont1='" . $sacarParent1 . "', parentCont2='" . $sacarParent2 . "', celCont1='" . $sacarCel1 . "',
-    celCont2='" . $sacarCel2 . "' WHERE nombrePartc='" . $idPartc . "'";
+    celCont2='" . $sacarCel2 . "', mailCont1='" . $sacarMail1 . "', mailCont2='" . $sacarMail2 . "' WHERE nombrePartc='" . $idPartc . "'";
 ?>
 
     <!DOCTYPE html>
