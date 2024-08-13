@@ -69,7 +69,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     ?>
                                 </select>
                             </th>
-                           <th>
+                            <th>
                                 <label for="verMes" class="text-white">
                                     <h5>
                                         <i class="fa-regular fa-calendar"></i> Mes:
@@ -111,6 +111,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 <br>
                 <?php
                 if (!empty($_GET['verMes']) && !empty($_GET['verAno']) && !empty($_GET['verCurso'])) {
+                    $sacarCurso = $_GET['verCurso'];
+                    $sacarMes = $_GET['verMes'];
+                    $sacarAno = $_GET['verAno'];
                     //$revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "'";
                     $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "'";
                 } else if (!empty($_GET['buscarPartc'])) {
@@ -171,6 +174,14 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         <button type="button" class="btn btn-success" id="exelExp" onclick="ExportToExcel('xlsx')">
                             <i class="fa-solid fa-file-csv fa-2xl"></i></i>
                         </button>
+
+                        <?php
+                        echo "<a href='pdfTaller.php?taller=" . $sacarCurso . "&mes=" . $sacarMes . "&ano=" . $sacarAno . "' target='_blank'>
+                                <button type='button' id='pdfExp' class='btn btn-info'>
+                                    <i class='fa-solid fa-file-pdf fa-2xl'></i>
+                                </button>
+                            </a>";
+                        ?>
                     </div>
                 <?php
                 } else {
@@ -241,17 +252,17 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
             function fechaTalleres() {
                 var faltaSelectTaller = document.forms["formFecha"]["verCurso"].value;
-               /* var faltaSelectMes = document.forms["formFecha"]["verMes"].value;
-                var faltaSelectAno = document.forms["formFecha"]["verAno"].value; */
+                /* var faltaSelectMes = document.forms["formFecha"]["verMes"].value;
+                 var faltaSelectAno = document.forms["formFecha"]["verAno"].value; */
                 if (faltaSelectTaller == "vacio") {
                     return false;
                 }
-              /*  if (faltaSelectMes == "vacio") {
-                    return false;
-                }
-                if (faltaSelectAno == "vacio") {
-                    return false;
-                }*/
+                /*  if (faltaSelectMes == "vacio") {
+                      return false;
+                  }
+                  if (faltaSelectAno == "vacio") {
+                      return false;
+                  }*/
                 return true;
             }
 
@@ -283,7 +294,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         type: 'base64'
                     }) :
                     XLSX.writeFile(wb, fn || ('MySheetName.' + (type || 'xlsx')));
-            }      
+            }
         </script>
     </body>
 

@@ -42,6 +42,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $contDosParent = $_POST["contDosParent"];
     $contUnoPhone = $_POST["contUnoPhone"];
     $contDosPhone = $_POST["contDosPhone"];
+    $mailUnoPhone = $_POST["mailUnoPhone"];
+    $mailDosPhone = $_POST["mailDosPhone"];
 
     $tiempoRut = $date->format('H:i:s') . $rutPartc;
 
@@ -155,13 +157,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     $sql = "INSERT INTO inscripcion(nombrePartc, edad, nacePartc, rutPartc, celularPartc, mailPartc,
     direccionPartc, vivePartc, diagnostico, medicoTratantes, medicaHora, otroMedico,  alergias, preferencia,
-    nomCont1, nomCont2, parentCont1, parentCont2, celCont1, celCont2) VALUES
+    nomCont1, nomCont2, parentCont1, parentCont2, celCont1, celCont2, mailCont1, mailCont2) VALUES
     ('" . $nomPartc . "', '" . $edadPartc . "', '" . $nacePartc . "', '" . $rutPartc . "', '" . $telPartc . "',
     '" . $correoPartc . "', '" . $dirPartc . "', '" . $vivePartc . "',
     '" . $diagnostico . "', '" . $medico . "', '" . $medicaHora . "', '" . $otroMedico . "',
     '" . $alergia . "','" . $hospital . "',
     '" . $contUnoNom . "', '" . $contDosNom . "', '" . $contUnoParent . "', '" . $contDosParent . "',
-    '" . $contUnoPhone . "','" . $contDosPhone . "')";
+    '" . $contUnoPhone . "','" . $contDosPhone . " ', '" . $mailUnoPhone . "', '" . $mailDosPhone . "')";
 
 ?>
     <!DOCTYPE html>

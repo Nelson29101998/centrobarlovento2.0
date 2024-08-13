@@ -32,7 +32,7 @@
                 <label for="rutPartc" class="text-white">
                     <i class="fas fa-id-card"></i> Rut:
                 </label>
-                <input type="text" class="form-control" name="rutPartc" id="rutPartc" maxlength="9" placeholder="Ingresa su Rut">
+                <input type="text" class="form-control" name="rutPartc" id="rutPartc" maxlength="12" placeholder="Ingresa su Rut">
             </th>
         </tr>
         <tr>

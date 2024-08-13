@@ -169,7 +169,7 @@
                                 <th>
                                     <p>
                                         <a href='pdfAsist.php?nomEst=" . $sacarEstudiante . "&rut=" . $sacarRut . "&taller=" . $sacarCurso . "&numAst=" . $numAsistencia . "&numIna=" . $numInasistencia . "&revMes=" . $cajaMes . "&revAno=" . $cajaAno . "' target='_blank'>
-                                            <button type='button' id='pdfId' class='btn btn-info '>
+                                            <button type='button' id='pdfId' class='btn btn-info'>
                                                 <i class='fa-solid fa-file-pdf fa-2xl'></i>
                                             </button>
                                         </a>

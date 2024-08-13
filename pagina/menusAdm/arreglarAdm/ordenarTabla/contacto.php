@@ -39,5 +39,14 @@
                 <input type="text" class="form-control" name="contDosPhone" id="contDosPhone" maxlength="50" placeholder="Ingresa su teléfono contacto 2">
             </th>
         </tr>
+        <tr>
+            <th>Mail de contacto:</th>
+            <th>
+                <input type="email" class="form-control" name="mailUnoPhone" id="mailUnoPhone" maxlength="50" placeholder="Ingresa su mail contacto 1">
+            </th>
+            <th>
+                <input type="email" class="form-control" name="mailDosPhone" id="mailDosPhone" maxlength="50" placeholder="Ingresa su mail contacto 2">
+            </th>
+        </tr>
     </tbody>
 </table>

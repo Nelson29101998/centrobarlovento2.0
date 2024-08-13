@@ -224,9 +224,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     <th>
                                     <th>
                                         <a href='subirSQL/borrarEstdTaller.php?borrarTaller=" . $verNombreTaller . "&borrarNom=" . $sacarNom . "&borrarId=" . $sacarId . "&borrarTiempoId=" . $sacarTiempo . "'>
-                                            <button type='button'";
-                                echo "class='btn btn-danger'>
-                                            <i class='fas fa-trash-can'></i>
+                                            <button type='button' class='btn btn-danger'>
+                                                <i class='fas fa-trash-can'></i>
                                             </button>
                                         </a>
                                     </th>
@@ -234,7 +233,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             }
                         } else {
                             echo "<tr>
-                                <th>
+                                <th colspan=3>
                                     No hay Participantes
                                 </th>
                             </tr>";

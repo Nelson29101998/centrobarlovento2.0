@@ -284,13 +284,12 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 " . $row['ano'] . "
                             </th>";
                             echo "<th>
-                        <a href='subirSQL/borrarEstdTaller.php?borrarTaller=" . $sacarTaller . "&borrarNom=" . $sacarNom . "&borrarId=" . $sacarId . "&borrarTiempoId=" . $sacarTiempo . "'>
-                            <button type='button'";
-                            echo "class='btn btn-danger'>
-                                <i class='fas fa-trash-can'></i>
-                            </button>
-                        </a>
-                        </th>
+                                    <a href='subirSQL/borrarEstdTaller.php?borrarTaller=" . $sacarTaller . "&borrarNom=" . $sacarNom . "&borrarId=" . $sacarId . "&borrarTiempoId=" . $sacarTiempo . "'>
+                                        <button type='button' class='btn btn-danger'>
+                                            <i class='fas fa-trash-can'></i>
+                                        </button>
+                                    </a>
+                            </th>
                         </tr>";
                         }
                         mysqli_free_result($resultados);
@@ -654,6 +653,29 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 <?php
                                 if ($row['celCont2'] != "") {
                                     echo $row['celCont2'];
+                                } else {
+                                    echo "No hay dato de (Teléfono de Contacto 2)";
+                                }
+                                ?>
+                            </th>
+                        </tr>
+                        <tr class='form-group'>
+                            <th>
+                                Mail:
+                            </th>
+                            <th>
+                                <?php
+                                if ($row['mailCont1'] != "") {
+                                    echo $row['mailCont1'];
+                                } else {
+                                    echo "No hay dato de (Teléfono de Contacto 1)";
+                                }
+                                ?>
+                            </th>
+                            <th>
+                                <?php
+                                if ($row['mailCont2'] != "") {
+                                    echo $row['mailCont1'];
                                 } else {
                                     echo "No hay dato de (Teléfono de Contacto 2)";
                                 }
