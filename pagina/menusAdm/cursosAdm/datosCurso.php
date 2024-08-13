@@ -116,7 +116,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if (mysqli_num_rows($resultados) > 0) {
                             while ($row = mysqli_fetch_array($resultados)) {
                                 $buscarId = $row['id'];
-                                $verNombre = $row['nombreCurso'];
+                                $verNombreTaller = $row['nombreCurso'];
                                 $verCode = $row['codigo'];
                                 $verFecha = date("Y-m-d", strtotime($row['fecha']));
                                 $verHoraDesde = date("H:i", strtotime($row['horarioDesde']));
@@ -201,26 +201,43 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         </tr>
                     </thead>
                     <?php
-                    $revisarCursoNom = "SELECT * FROM asistencias WHERE cursos='" . $verNombre . "'";
+                    $revisarCursoNom = "SELECT * FROM asistencias WHERE cursos='" . $verNombreTaller . "'";
                     $resultadosNombres = mysqli_query($conexion, $revisarCursoNom);
                     ?>
                     <tbody>
                         <?php
                         if (mysqli_num_rows($resultadosNombres) > 0) {
                             while ($row = mysqli_fetch_array($resultadosNombres)) {
-
+                                $sacarNom = $row['estudiante'];
+                                $sacarId = $row['id'];
+                                $sacarTiempo = $row['idTallerTiempo'];
                                 echo "<tr>
                                     <th>
-                                        p
+                                        " . $sacarNom . "
                                     </th>
                                     <th>
-                                        p
+                                        " . $row['mes'] . "
                                     </th>
                                     <th>
-                                        p
+                                        " . $row['ano'] . "
+                                    </th>
+                                    <th>
+                                    <th>
+                                        <a href='subirSQL/borrarEstdTaller.php?borrarTaller=" . $verNombreTaller . "&borrarNom=" . $sacarNom . "&borrarId=" . $sacarId . "&borrarTiempoId=" . $sacarTiempo . "'>
+                                            <button type='button'";
+                                echo "class='btn btn-danger'>
+                                            <i class='fas fa-trash-can'></i>
+                                            </button>
+                                        </a>
                                     </th>
                                 </tr>";
                             }
+                        } else {
+                            echo "<tr>
+                                <th>
+                                    No hay Participantes
+                                </th>
+                            </tr>";
                         }
                         mysqli_free_result($resultadosNombres);
                         ?>
