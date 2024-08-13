@@ -20,11 +20,11 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $correoPartc = $_POST["correoPartc"];
     $dirPartc = $_POST["direccionPartc"];
     $vivePartc = $_POST["vivePartc"];
+    $rut = $_POST["rutPartc"];
 
     $sqlAsistencia = "UPDATE inscripcion SET nombrePartc='" . $nomPartc . "', nacePartc='" . $nacePartc . "', edad='" . $edadPartc . "',
-    celularPartc='" . $telPartc . "', mailPartc='" . $correoPartc . "', direccionPartc='" . $dirPartc . "', vivePartc='" . $vivePartc . "'
-    WHERE nombrePartc='" . $idPartc . "'";
-
+    celularPartc='" . $telPartc . "', mailPartc='" . $correoPartc . "', direccionPartc='" . $dirPartc . "', vivePartc='" . $vivePartc . "',
+    rutPartc='" . $rut . "' WHERE nombrePartc='" . $idPartc . "'";
 ?>
 
     <!DOCTYPE html>

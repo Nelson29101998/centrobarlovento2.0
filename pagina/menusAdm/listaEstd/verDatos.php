@@ -155,7 +155,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($fechaNace != "01-01-1970") {
                             echo $fechaNace;
                         } else {
-                            echo "No hay dato de (Fecha de Nacimiento)";
+                            echo "";
                         }
                         echo "</th>
                                     <th>
@@ -166,7 +166,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['edad'] != "" && $row['edad'] != 0) {
                             echo  $row['edad'];
                         } else {
-                            echo "No hay dato de (Edad)";
+                            echo "";
                         }
                         echo " </th>
                                     <th>
@@ -177,7 +177,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['rutPartc'] != "") {
                             echo $row['rutPartc'];
                         } else {
-                            echo "No hay dato de (Rut)";
+                            echo "";
                         }
                         echo "</th>";
                         echo "<th>
@@ -197,7 +197,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['celularPartc'] != "") {
                             echo $row['celularPartc'];
                         } else {
-                            echo "No hay dato de (Contacto)";
+                            echo "";
                         }
                         echo "</th>
                                     <th>
@@ -208,7 +208,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['mailPartc'] != "") {
                             echo $row['mailPartc'];
                         } else {
-                            echo "No hay dato de (Mail)";
+                            echo "";
                         }
                         echo "</th>
                                     <th colspan='2'>
@@ -219,7 +219,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['direccionPartc'] != "") {
                             echo $row['direccionPartc'];
                         } else {
-                            echo "No hay dato de (Dirección)";
+                            echo "";
                         }
                         echo "</th>
                                 </tr>
@@ -232,7 +232,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['vivePartc'] != "") {
                             echo  $row['vivePartc'];
                         } else {
-                            echo "No hay dato de (Con quién vive)";
+                            echo "";
                         }
                         echo "</th>
                                 </tr>";
@@ -463,7 +463,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['diagnostico'] != "") {
                             echo $row['diagnostico'];
                         } else {
-                            echo "No hay dato de (Diagnóstico)";
+                            echo "";
                         }
                         echo "</th>";
                         echo "<th>
@@ -474,7 +474,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['medicoTratantes'] != "") {
                             echo $row['medicoTratantes'];
                         } else {
-                            echo "No hay dato de (Médicos tratantes)";
+                            echo "";
                         }
                         echo "</th>";
                         echo "<th>
@@ -494,7 +494,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['medicaHora'] != "") {
                             echo $row['medicaHora'];
                         } else {
-                            echo "No hay dato de (Medicamentos y horarios en que los toma)";
+                            echo "";
                         }
                         echo "</th>";
                         echo "<th>
@@ -505,7 +505,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['otroMedico'] != "") {
                             echo $row['otroMedico'];
                         } else {
-                            echo "No hay dato de (Otros antecedentes importantes)";
+                            echo "";
                         }
                         echo "</th>";
                         echo "</tr>";
@@ -534,7 +534,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['preferencia'] != "") {
                             echo $row['preferencia'];
                         } else {
-                            echo "No hay dato de (Clínica u hospital de preferencia)";
+                            echo "";
                         }
                         echo "</th>";
                         echo "<th>
@@ -545,7 +545,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if ($row['alergias'] != "") {
                             echo $row['alergias'];
                         } else {
-                            echo "No hay dato de (Alergia)";
+                            echo "";
                         }
                         echo "</th>";
                         echo "<th>
@@ -590,7 +590,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 if ($row['nomCont1'] != "") {
                                     echo $row['nomCont1'];
                                 } else {
-                                    echo "No hay dato de (Nombre de Contacto 1)";
+                                    echo "";
                                 }
                                 ?>
                             </th>
@@ -599,7 +599,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 if ($row['nomCont2'] != "") {
                                     echo $row['nomCont2'];
                                 } else {
-                                    echo "No hay dato de (Nombre de Contacto 2)";
+                                    echo "";
                                 }
                                 ?>
                             </th>
@@ -622,7 +622,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 if ($row['parentCont1'] != "") {
                                     echo $row['parentCont1'];
                                 } else {
-                                    echo "No hay dato de (Parentesco de Contacto 1)";
+                                    echo "";
                                 }
                                 ?>
                             </th>
@@ -631,7 +631,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 if ($row['parentCont2'] != "") {
                                     echo $row['parentCont2'];
                                 } else {
-                                    echo "No hay dato de (Parentesco de Contacto 2)";
+                                    echo "";
                                 }
                                 ?>
                             </th>
@@ -645,7 +645,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 if ($row['celCont1'] != "") {
                                     echo $row['celCont1'];
                                 } else {
-                                    echo "No hay dato de (Teléfono de Contacto 1)";
+                                    echo "";
                                 }
                                 ?>
                             </th>
@@ -654,7 +654,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 if ($row['celCont2'] != "") {
                                     echo $row['celCont2'];
                                 } else {
-                                    echo "No hay dato de (Teléfono de Contacto 2)";
+                                    echo "";
                                 }
                                 ?>
                             </th>
@@ -668,16 +668,16 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 if ($row['mailCont1'] != "") {
                                     echo $row['mailCont1'];
                                 } else {
-                                    echo "No hay dato de (Teléfono de Contacto 1)";
+                                    echo "";
                                 }
                                 ?>
                             </th>
                             <th>
                                 <?php
                                 if ($row['mailCont2'] != "") {
-                                    echo $row['mailCont1'];
+                                    echo $row['mailCont2'];
                                 } else {
-                                    echo "No hay dato de (Teléfono de Contacto 2)";
+                                    echo "";
                                 }
                                 ?>
                             </th>

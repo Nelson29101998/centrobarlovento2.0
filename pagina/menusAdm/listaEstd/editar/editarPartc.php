@@ -132,8 +132,12 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 </label>
                                 <?php
                                 $fechaNace = date("Y-m-d", strtotime($row['nacePartc']));
-                                echo "<input type='date' class='form-control' name='nacePartc' id='nacePartc'
+                                if ($fechaNace != "1970-01-01") {
+                                    echo "<input type='date' class='form-control' name='nacePartc' id='nacePartc'
                                 value='" . $fechaNace . "'>";
+                                }
+                                echo "<input type='date' class='form-control' name='nacePartc' id='nacePartc'
+                                value=''>";
                                 ?>
                             </th>
                             <th class="form-group">
@@ -183,6 +187,15 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 <?php
                                 echo "<input type='text' class='form-control' name='vivePartc' id='vivePartc'
                                 value='" . $row['vivePartc'] . "'>";
+                                ?>
+                            </th>
+                            <th class="form-group">
+                                <label for="nacePartc" class="text-white">
+                                    RUT:
+                                </label>
+                                <?php
+                                echo "<input type='text' class='form-control' name='rutPartc' id='rutPartc' maxlength='13'
+                                value='" . $row['rutPartc'] . "'>";
                                 ?>
                             </th>
                         </tr>
