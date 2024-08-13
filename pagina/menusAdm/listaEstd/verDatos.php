@@ -100,8 +100,20 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         </style>
     </head>
 
-    <body>
+    <body class="container">
+
         <br>
+
+        <div>
+            <a href='listaEstudiante.php'>
+                <button type='button' class='btn btn-primary'>
+                    <i class="fas fa-xmark"></i> Volver
+                </button>
+            </a>
+        </div>
+
+        <br>
+
         <div class="container">
             <div class="animate__animated animate__flipInX animate__delay-1s">
                 <div class="text-center">

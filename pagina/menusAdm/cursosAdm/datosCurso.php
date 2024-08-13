@@ -115,7 +115,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         $resultados = mysqli_query($conexion, $revisarCurso);
                         if (mysqli_num_rows($resultados) > 0) {
                             while ($row = mysqli_fetch_array($resultados)) {
-                                $buscarId= $row['id'];
+                                $buscarId = $row['id'];
                                 $verNombre = $row['nombreCurso'];
                                 $verCode = $row['codigo'];
                                 $verFecha = date("Y-m-d", strtotime($row['fecha']));
@@ -135,9 +135,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                         <laber>
                                             Código:
                                         </laber>
-                                        <p>
-                                            " . $row['codigo'] . "
-                                        </p>
+                                        <p>";
+                                if (!empty($row['codigo'])) {
+                                    echo $row['codigo'];
+                                } else {
+                                    echo "Sin Código";
+                                }
+                                echo "</p>
                                     </th>
                                     <th>
                                         <laber>
@@ -170,6 +174,55 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 ";
                             }
                         }
+                        mysqli_free_result($resultados);
+                        ?>
+                    </tbody>
+                </table>
+
+                <br>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan=3>
+                                <h5>Ver de los Participante</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>
+                                Nombre:
+                            </th>
+                            <th>
+                                Mes:
+                            </th>
+                            <th>
+                                Año:
+                            </th>
+                        </tr>
+                    </thead>
+                    <?php
+                    $revisarCursoNom = "SELECT * FROM asistencias WHERE cursos='" . $verNombre . "'";
+                    $resultadosNombres = mysqli_query($conexion, $revisarCursoNom);
+                    ?>
+                    <tbody>
+                        <?php
+                        if (mysqli_num_rows($resultadosNombres) > 0) {
+                            while ($row = mysqli_fetch_array($resultadosNombres)) {
+
+                                echo "<tr>
+                                    <th>
+                                        p
+                                    </th>
+                                    <th>
+                                        p
+                                    </th>
+                                    <th>
+                                        p
+                                    </th>
+                                </tr>";
+                            }
+                        }
+                        mysqli_free_result($resultadosNombres);
                         ?>
                     </tbody>
                 </table>
