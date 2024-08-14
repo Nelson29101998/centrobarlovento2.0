@@ -1,5 +1,6 @@
 <?php
 include '../../../ajuste/TCPDF/tcpdf.php';
+
 include_once "../../../conectarSQL/conectar_SQL.php";
 
 $titulo = "Certificado de Asistencia de los Talleres";
@@ -21,21 +22,76 @@ $html = <<<EOD
     margin-left: auto;
     margin-right: auto;
   }
+
+  th, td {
+   border: 1px solid black;
+   border-radius: 10px;
+  }
  
   .tamanoNombre{
-    width: 12px
+    font-size: 12px;
   }
+
+  .containerTitulo {
+    height: 50px;
+   }
+
+   .containerFilas {
+    height: 65px;
+   }
+
+   span {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    left: 50%;
+    top: 50%;
+   }
+
+   .inner:before {
+    bottom: 0;
+    border-left: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+   }
+
+   .inner:after {
+    bottom: 0;
+    right: 0;
+    border-right: 3px solid #fff;
+    border-bottom: 3px solid #fff;
+   }
+
 </style>
 <table>
     <thead>
         <tr>
-            <th align="center">
-                <strong>Taller de $taller</strong>
+            <th align="center" class="containerTitulo" colspan="4">
+                <div class="inner">
+                    <span>
+                        <strong>Taller de $taller de $sacarMes de $sacarAno</strong>
+                    </span> 
+                </div>
             </th>
         </tr>
         <tr>
-            <th>
-                Nombre:
+            <th class="containerTitulo">
+                <div class="inner">
+                    <strong>Nombre:</strong>
+                </div>
+            </th>
+            <th class="containerTitulo">
+                <div class="inner" align="center">
+                    <strong>Taller:</strong>
+                </div>
+            </th>
+            <th class="containerTitulo">
+                <div class="inner">
+                    <strong>Asistencia:</strong>
+                </div>
+            </th>
+            <th class="containerTitulo">
+                <div class="inner">
+                    <strong>Inasistencia:</strong>
+                </div>
             </th>
         </tr>
     </thead>
@@ -44,10 +100,46 @@ EOD;
 
 if (mysqli_num_rows($resultadosTaller) > 0) {
     while ($row = mysqli_fetch_array($resultadosTaller)) {
+        $totalAsist = 0;
+        $totalInast = 0;
+        $totalAmbos = 0;
+        $sumAsist = 1;
+        $sumInast = 1;
+        for ($i = 1; $i <= 31; $i++) {
+            if($row[$i] == 1){
+                $totalAsist += $sumAsist;
+            }else if($row[$i] == 0 && $row[$i] != null){
+                $totalInast += $sumInast;
+            }
+        }
+
+        $totalAmbos = $totalAsist + $totalInast;
+
         $html .= <<<EOD
         <tr>
+            <th  class="containerFilas" align="center">
+                <div class="inner">
+                    <div class="tamanoNombre">
+                        $row[estudiante]
+                    </div>
+                </div>
+            </th>
+            <th class="containerFilas" align="center">
+                <div class="inner">
+                    <div class="tamanoNombre">
+                        $row[taller]
+                    </div>
+                </div>
+            </th>
             <th>
-                t
+                <div class="inner">
+                    $totalAsist
+                </div>
+            </th>
+            <th>
+                <div class="inner">
+                    $totalInast
+                </div>
             </th>
         </tr>
 EOD;
@@ -56,9 +148,8 @@ EOD;
 
 $html .= <<<EOD
         <tr>
-            <th>
+            <th class="container" colspan="4">
                 Se extiende el presente documento para los fines que estime pertinente.
-                <br>
                 <br>
                 Saluda atentamente.
             </th>
