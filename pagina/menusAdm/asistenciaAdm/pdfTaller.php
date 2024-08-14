@@ -74,7 +74,7 @@ $html = <<<EOD
         </tr>
         <tr>
             <th class="containerTitulo">
-                <div class="inner">
+                <div class="inner" align="center">
                     <strong>Nombre:</strong>
                 </div>
             </th>
@@ -84,12 +84,12 @@ $html = <<<EOD
                 </div>
             </th>
             <th class="containerTitulo">
-                <div class="inner">
+                <div class="inner" align="center">
                     <strong>Asistencia:</strong>
                 </div>
             </th>
             <th class="containerTitulo">
-                <div class="inner">
+                <div class="inner" align="center">
                     <strong>Inasistencia:</strong>
                 </div>
             </th>
@@ -132,13 +132,17 @@ if (mysqli_num_rows($resultadosTaller) > 0) {
                 </div>
             </th>
             <th>
-                <div class="inner">
-                    $totalAsist
+                <div class="inner" align="center">
+                    <div class="tamanoNombre">
+                        $totalAsist
+                    </div>
                 </div>
             </th>
             <th>
-                <div class="inner">
-                    $totalInast
+                <div class="inner" align="center">
+                    <div class="tamanoNombre">
+                        $totalInast
+                    </div>
                 </div>
             </th>
         </tr>
@@ -149,9 +153,13 @@ EOD;
 $html .= <<<EOD
         <tr>
             <th class="container" colspan="4">
-                Se extiende el presente documento para los fines que estime pertinente.
-                <br>
-                Saluda atentamente.
+                <div class="inner">
+                    <div class="tamanoNombre">
+                        Se extiende el presente documento para los fines que estime pertinente.
+                        <br>
+                        Saluda atentamente.
+                    </div>
+                </div>
             </th>
         </tr>
     </tbody>
