@@ -257,4 +257,4 @@ $pdf->setFontSubsetting(true);
 $pdf->SetFont('helvetica', 'I', 14);
 $pdf->AddPage();
 $pdf->writeHTML($html, true, 0, true, true);
-$pdf->Output("Certificado_de_Asistencia_de_" . $taller . '.pdf', 'I');
+$pdf->Output("Certificado_de_Asistencia_de_" . $taller .'_de_'. $sacarMes . '_de_' . $sacarAno . '.pdf', 'I');
