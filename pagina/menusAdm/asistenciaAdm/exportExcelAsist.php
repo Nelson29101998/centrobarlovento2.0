@@ -79,11 +79,16 @@ $resultado = mysqli_query($conexion, $buscarTaller) or die(mysqli_error($conexio
                     <th>" . $row['estudiante'] . "</th>
                     <th>" . $row['mes'] . "</th>
                     <th>" . $row['ano'] . "</th>
-                    <th>" . $row['1'] . "</th>
                 ";
-
+                
                     for ($i = 1; $i <= 31; $i++) {
-                        echo "<th>" . $row[$i] . "</th>";
+                        if($row[$i] == 1){
+                            echo "<th>Asistencia</th>";
+                        }else if($row[$i] == 0 && $row[$i] != null){
+                            echo "<th>Inasistencia</th>";
+                        }elseif($row[$i] == null){
+                            echo "<th>-</th>";
+                        }
                     }
 
                     echo "</tr>";
