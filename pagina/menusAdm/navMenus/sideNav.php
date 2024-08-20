@@ -227,7 +227,7 @@
 
 <div class="container-fluid">
     <div class="title">
-        <span style="font-size:30px;cursor:pointer;" class="izquierda" onclick="openNav()">&#9776; Volver</span>
+        <span style="font-size:30px;cursor:pointer;" class="izquierda" onclick="openNav()">&#9776; Menú</span>
 
         <span style="font-size:20px;cursor:pointer;" class="badge badge-primary derecha" id="verReloj"></span>
     </div>
