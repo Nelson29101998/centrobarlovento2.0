@@ -14,7 +14,7 @@
                         <i class="fa-solid fa-file-pen"></i> Nombre Del Curso (<i class="fa-solid fa-asterisk fa-2xs"></i>):
                     </label>
                     <input type="text" class="form-control" name="nomCurso" id="nomCurso" maxlength="50" placeholder="Ingresa su nombre de curso" <?php
-                                                                                                                                                    echo "value='" . $verNombre . "'";
+                                                                                                                                                    echo "value='" . $verNombreTaller . "'";
                                                                                                                                                     ?> required>
                 </th>
                 <th>
@@ -32,8 +32,13 @@
                         <i class="fa-solid fa-calendar-days"></i> Fecha:
                     </label>
                     <?php
-                    echo "<input type='date' class='form-control' id='fechaCurso' name='fechaCurso' min='" . date("Y-m-d") . "'
-                    value='" . $verFecha . "'>"
+                    if ($verFecha != "01-01-1970") {
+                        echo "<input type='date' class='form-control' id='fechaCurso' name='fechaCurso'
+                    value=''>";
+                    } else {
+                        echo "<input type='date' class='form-control' id='fechaCurso' name='fechaCurso'
+                        value='" . $verFecha . "'>";
+                    }
                     ?>
                 </th>
                 <th rowspan="2">
@@ -42,15 +47,15 @@
                     </label>
                     <p>
                         Desde:
-                        <input type="time" class="form-control" name="horaDesde" id="horaDesde" min="07:00" max="21:00" <?php
-                                                                                                                        echo "value='" . $verHoraDesde . "'";
-                                                                                                                        ?>>
+                        <input type="time" class="form-control" name="horaDesde" id="horaDesde" <?php
+                                                                                                echo "value='" . $verHoraDesde . "'";
+                                                                                                ?>>
                     </p>
                     <p>
                         Hasta:
-                        <input type="time" class="form-control" name="horaHasta" id="horaHasta" min="07:00" max="21:00" <?php
-                                                                                                                        echo "value='" . $verHoraHasta . "'";
-                                                                                                                        ?>>
+                        <input type="time" class="form-control" name="horaHasta" id="horaHasta" <?php
+                                                                                                echo "value='" . $verHoraHasta . "'";
+                                                                                                ?>>
                     </p>
                 </th>
             </tr>

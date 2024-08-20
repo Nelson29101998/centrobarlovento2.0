@@ -73,7 +73,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 <h1 class='display-4'>
                     Has actualizar su exito. Muchas gracias por preferirnos.
                 </h1>
-                <a href='javascript:history.back()'>
+                <a href='../datosCurso.php?verId=".$buscarIdent."'>
                     <button type='button' class='btn btn-primary'>
                         <i class='fa-solid fa-reply'></i> Volver
                     </button>

@@ -227,7 +227,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     <div class='text-center'>
                                         <a href='subirSQL/cambiarHabitar.php?cambiarHabt=" . $row['id'] . "&habitar=" . $row['habilitar'] . "'>
                                             <button type='button' class='btn btn-danger'>
-                                                <i class='fa-solid fa-eye-slash'></i>
+                                                <i class='fa-solid fa-trash-can'></i>
                                             </button>
                                         </a>
                                     </div>
@@ -252,6 +252,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         <i class="fa-solid fa-eye-low-vision"></i> Ver inhabitar de los Talleres
                     </button>
                 </a>
+
+                <br>
+                ---
             </div>
         </div>
 

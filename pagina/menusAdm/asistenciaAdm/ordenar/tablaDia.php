@@ -75,7 +75,9 @@
                 $sacarRut = $row['rut'];
                 $sacarCurso =  $row['cursos'];
                 echo "<tr style='background-color: #F71806; border: 3px solid black;' class='despues'>
-                                    <th>" . $sacarEstudiante . "</th>";
+                                    <th>
+                                    " . $sacarEstudiante . "
+                                    </th>";
                 $buscarTiempoTaller = "SELECT * FROM tallertiempo 
                     WHERE idTallerTiempo='" . $idTiempo . "' AND estudiante='" . $sacarEstudiante . "' AND taller='" . $sacarCurso . "'";
                 $resultadosTiempo = mysqli_query($conexion, $buscarTiempoTaller);
@@ -92,8 +94,8 @@
                         }
 
                         echo "<th class='text-center'>
-                        <p id='asTop'>Anota:</p> 
-                        <p id='asTop'><i class='fa-solid fa-check'></i> (*)</p> 
+                        <p id='asTop'>Anota:</p>
+                        <p id='asTop'><i class='fa-solid fa-check'></i> (*)</p>
                         <p id='inasTop'><i class='fa-solid fa-xmark'></i></p>
                         <!-- <p id='nadaTop'><i class='fa-solid fa-genderless'></i></p> -->
                         </th>
@@ -114,17 +116,17 @@
                             echo "</p>
                             <p>";
                             if ($rowTiempo[$numString] == 0 || $rowTiempo[$numString] == null) {
-                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' class='form-check-input' type='radio'  name='dias" . $i . "' id='dias" . $i.$nomComp . "' value='1'>";
+                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp . "' value='1'>";
                             } else if ($rowTiempo[$numString] == 1) {
-                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' class='form-check-input' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp . "' value='1' checked>";
+                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp . "' value='1' checked>";
                                 $numAsistencia = $numAsistencia + 1;
                             }
                             echo "</p>
                             <p>";
                             if ($rowTiempo[$numString] == 1 || $rowTiempo[$numString] == null) {
-                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' class='form-check-input' type='radio'  name='dias" . $i . "' id='dias" . $i.$nomComp. "' value='0'>";
+                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp. "' value='0'>";
                             } else if ($rowTiempo[$numString] == 0) {
-                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' class='form-check-input' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp. "' value='0' checked>";
+                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp. "' value='0' checked>";
                                 $numInasistencia = $numInasistencia + 1;
                             }
 

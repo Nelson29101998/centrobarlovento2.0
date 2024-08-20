@@ -168,6 +168,20 @@
         <?php
         }
 
+        if ($_SERVER["REQUEST_URI"] !== $sacar . "pagina/menusAdm/cursosAdm/inhabitar.php") {
+            if ($_SERVER["REQUEST_URI"] == $sacar . "pagina/menusAdm/menu.php") {
+                echo '<a href="cursosAdm/inhabitar.php">';
+            } else if ($_SERVER["REQUEST_URI"] !== $sacar . "pagina/menusAdm/cursosAdm/inhabitar.php") {
+                echo '<a href="../cursosAdm/inhabitar.php">';
+            }
+        ?>
+            <button type="button" class="btn btn-primary">
+                <i class="fa-solid fa-trash-can"></i> Ver inhabitar de los Talleres
+            </button>
+            </a>
+        <?php
+        }
+
         if ($_SERVER["REQUEST_URI"] !== $sacar . "pagina/menusAdm/listaEstd/listaEstudiante.php") {
             if ($_SERVER["REQUEST_URI"] == $sacar . "pagina/menusAdm/menu.php") {
                 echo '<a href="listaEstd/listaEstudiante.php">';
@@ -208,7 +222,7 @@
     </div>
 
     <div class="footer text-center">
-        
+
         <?php
         //echo include_once "vermemoria.php";
         ?>

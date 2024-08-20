@@ -34,7 +34,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         ?>
         <link rel="stylesheet" href="css/diseno.css?v=<? echo $version; ?>">
         <style>
+            input[type=radio] {
+                width: 100%;
+            }
 
+            th{
+                font-size: 12px;
+            }
         </style>
     </head>
 
@@ -184,6 +190,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 </button>
                             </a>";
                         ?>
+                        <button type='submit' id='guardarTodos' class='btn btn-success'>
+                            Guardar Todos
+                        </button>
                     </div>
                 <?php
                 } else {

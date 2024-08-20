@@ -283,6 +283,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         Volver
                     </button>
                 </a>
+
+                <br>
+                ---
             </div>
         </div>
 
