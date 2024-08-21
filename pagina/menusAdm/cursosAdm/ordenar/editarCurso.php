@@ -1,4 +1,4 @@
-<form id="formCurso" name="formCurso" onsubmit="return crearCurso()" method="post" action="../subirSql/actualizarSqlCurso.php?bucarId=<?php echo $buscarId; ?>">
+<form id="formCurso" name="formCurso" onsubmit="return crearCurso()" method="post" action="cursosAdm/subirSql/actualizarSqlCurso.php?bucarId=<?php echo $buscarId; ?>">
     <table>
         <thead>
             <tr>
