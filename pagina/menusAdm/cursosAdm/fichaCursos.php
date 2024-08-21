@@ -193,14 +193,11 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             <th>
                                 Lista de Talleres activos
                             </th>
-                            <th>
-                                Inhabilitar Taller
-                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        $revisarCurso = "SELECT * FROM cursos WHERE habilitar=true";
+                        $revisarCurso = "SELECT * FROM cursos WHERE habilitar=true ORDER BY nombreCurso ASC";
                         $resultados = mysqli_query($conexion, $revisarCurso);
                         $sumTotal = 0;
                         $totalesClases = 0;
