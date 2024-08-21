@@ -2,7 +2,7 @@
 include_once "../../../ajuste/config.php";
 session_start();
 if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
-    header("location: ../../inicio.php");
+    header("location: ../../../../inicio.html");
 } else {
     $use = $_SESSION["usuario"];
     $_SESSION["usuario"] = $use;
@@ -267,7 +267,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         <tr>
                             <th>
                                 <div id="tablaDatos" style="display: none;">
-                                    <form id="formCurso" name="formCurso" onsubmit="return crearCurso()" method="post" action="subirSql/actualizarSqlCursoNew.php?bucarId=<?php echo $buscarId; ?>">
+                                    <form id="formCurso" name="formCurso" onsubmit="return crearCurso()" method="post" action="actualizarSqlCursoNew.php?bucarId=<?php echo $buscarId; ?>">
                                         <table>
                                             <thead>
                                                 <tr>
