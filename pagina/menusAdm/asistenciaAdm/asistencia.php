@@ -173,8 +173,6 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             <div class="animate__animated animate__backInLeft">
                 <?php
                 if (!empty($_GET['verCurso']) || !empty($_GET['buscarPartc'])) {
-                
-                   echo '<form id="formAsist" name="formAsist" onsubmit="return asistencia()" method="get" action="subirSQL/guardarTodosAsist.php?verTaller=' . $sacarCurso . '&verMes=' . $sacarMes . '&verAno=' . $sacarAno . '">';
                         include_once "ordenar/tablaDia.php";
                         ?>
                         <br>
@@ -196,7 +194,6 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 Guardar Todos (Pronto...)
                             </button>
                         </div>
-                    </form>
                 <?php
                 } else {
                 ?>
