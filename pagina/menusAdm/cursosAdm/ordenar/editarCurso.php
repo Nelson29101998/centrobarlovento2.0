@@ -17,14 +17,6 @@
                                                                                                                                                     echo "value='" . $verNombreTaller . "'";
                                                                                                                                                     ?> required>
                 </th>
-                <th>
-                    <label for="codigoCurso" class="text-white">
-                        <i class="fa-solid fa-key"></i> Código:
-                    </label>
-                    <input type="text" class="form-control" name="codigoCurso" id="codigoCurso" maxlength="50" placeholder="Ingresa su código" <?php
-                                                                                                                                                echo "value='" . $verCode . "'";
-                                                                                                                                                ?>>
-                </th>
             </tr>
             <tr class="form-group">
                 <th>

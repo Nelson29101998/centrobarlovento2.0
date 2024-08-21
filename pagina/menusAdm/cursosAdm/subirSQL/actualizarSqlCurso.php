@@ -14,14 +14,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         //* Datos personales
         $buscarIdent = $_GET['bucarId'];
         $nomCurso = $_POST['nomCurso'];
-        $codeCurso = $_POST['codigoCurso'];
         $fechaCurso = date("Y-m-d", strtotime($_POST["fechaCurso"]));
         $horaDesde = date("H:i", strtotime($_POST['horaDesde']));
         $horaHasta = date("H:i", strtotime($_POST['horaHasta']));
         $profesorCurso = $_POST['profesorCurso'];
 
         $actualizarSqlCursos = "UPDATE cursos set 
-        nombreCurso='".$nomCurso."', codigo='".$codeCurso."', fecha='".$fechaCurso."',
+        nombreCurso='".$nomCurso."', fecha='".$fechaCurso."',
         horarioDesde='".$horaDesde."', horarioHasta='".$horaHasta."', profesor='".$profesorCurso."' WHERE id='".$buscarIdent."'";
 ?>
 

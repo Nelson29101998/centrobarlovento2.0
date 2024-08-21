@@ -135,7 +135,6 @@
                             if (($rowTiempo[$numString] != 1) || ($rowTiempo[$numString] != 0)) {
                                 $_SESSION[$numerosDias] = "vacio";
                             }
-                            //! Ese esta okey, pero no puede sacar radio de la "X"
                             echo "
                             </div>
                                 </th>
@@ -158,7 +157,7 @@
                                                 return;
                                             }
                                             radioUno.data('waschecked', true);
-                                            return;  
+                                            return;
                                         }
                                         
                                         if(verValueDos == '0') {
@@ -170,7 +169,6 @@
                                             radioDos.data('waschecked', true);
                                             return;
                                         }
-
                                     }
                                 </script>
                                 ";
