@@ -9,14 +9,6 @@
                 <th style="border: 1px solid black;">Fecha</th>
             <?php
             }
-            ?>
-
-            <th class='text-center' style="border: 1px solid black;">Dias:</th>
-            <?php
-            $diaHoy = date("d");
-            for ($i = 1; $i <= 31; $i++) {
-                echo "<th class='text-center' style='border: 1px solid black;'>" . $i . "</th>";
-            }
 
             $month = date("n"); //Reemplazable por número del 1 a 12
             $year = date("Y"); //Reemplazable por un año valido
@@ -94,7 +86,7 @@
                         }
 
                         echo "<th class='text-center'>
-                        <p id='asTop'>Anota:</p>
+                        <p id='asTop'>Días:</p>
                         <p id='asTop'><i class='fa-solid fa-check'></i></p>
                         <p id='inasTop'><i class='fa-solid fa-xmark'></i></p>
                         <!-- <p id='nadaTop'><i class='fa-solid fa-genderless'></i></p> -->
@@ -106,27 +98,23 @@
                             $numString = strval($i);
                             echo "<th>
                                 <div class='text-center'>
-                                <p>";
-                            if (isset($rowTiempo[$numString])) {
-                                echo $rowTiempo[$numString];
-                            } else {
-                                echo "/";
-                            }
+                                <p>" . $i;
+
                             $nomComp = $rowTiempo['id'];
                             echo "</p>
                             <p>";
                             if ($rowTiempo[$numString] == 0 || $rowTiempo[$numString] == null) {
-                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp . "Uno' value='1'>";
+                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . "' id='dias" . $i . $nomComp . "Uno' value='1'>";
                             } else if ($rowTiempo[$numString] == 1) {
-                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp . "Uno' value='1' checked>";
+                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . "' id='dias" . $i . $nomComp . "Uno' value='1' checked>";
                                 $numAsistencia = $numAsistencia + 1;
                             }
                             echo "</p>
                             <p>";
                             if ($rowTiempo[$numString] == 1 || $rowTiempo[$numString] == null) {
-                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp. "Dos' value='0'>";
+                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . "' id='dias" . $i . $nomComp . "Dos' value='0'>";
                             } else if ($rowTiempo[$numString] == 0) {
-                                echo "<input onclick='quitarUnoRadio" . $i.$nomComp . "()' type='radio' name='dias" . $i . "' id='dias" . $i.$nomComp. "Dos' value='0' checked>";
+                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . "' id='dias" . $i . $nomComp . "Dos' value='0' checked>";
                                 $numInasistencia = $numInasistencia + 1;
                             }
 
@@ -139,15 +127,15 @@
                             </div>
                                 </th>
                                 <script>
-                                    function quitarUnoRadio" . $i.$nomComp . "() {
-                                        var radioUno = $('#dias" . $i.$nomComp. "Uno');
-                                        var verValueUno = $('input[id=\'dias" . $i.$nomComp . "Uno\']:checked').val();
-                                        var verBoolUno = $('input[id=\'dias" . $i.$nomComp . "Uno\']:checked').data('waschecked');
+                                    function quitarUnoRadio" . $i . $nomComp . "() {
+                                        var radioUno = $('#dias" . $i . $nomComp . "Uno');
+                                        var verValueUno = $('input[id=\'dias" . $i . $nomComp . "Uno\']:checked').val();
+                                        var verBoolUno = $('input[id=\'dias" . $i . $nomComp . "Uno\']:checked').data('waschecked');
                                         //console.log(verValueUno + ' ' + verBoolUno);
                                         
-                                        var radioDos = $('#dias" . $i.$nomComp. "Dos');
-                                        var verValueDos = $('input[id=\'dias" . $i.$nomComp . "Dos\']:checked').val();
-                                        var verBoolDos = $('input[id=\'dias" . $i.$nomComp . "Dos\']:checked').data('waschecked');
+                                        var radioDos = $('#dias" . $i . $nomComp . "Dos');
+                                        var verValueDos = $('input[id=\'dias" . $i . $nomComp . "Dos\']:checked').val();
+                                        var verBoolDos = $('input[id=\'dias" . $i . $nomComp . "Dos\']:checked').data('waschecked');
                                         //console.log(verValueDos + ' ' + verBoolDos);
 
                                         if(verValueUno == '1') {
@@ -157,7 +145,7 @@
                                                 return;
                                             }
                                             radioUno.data('waschecked', true);
-                                            return;
+                                            return;  
                                         }
                                         
                                         if(verValueDos == '0') {
@@ -169,6 +157,7 @@
                                             radioDos.data('waschecked', true);
                                             return;
                                         }
+
                                     }
                                 </script>
                                 ";

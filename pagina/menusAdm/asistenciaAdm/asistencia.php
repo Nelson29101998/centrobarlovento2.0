@@ -190,7 +190,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     </button>
                                 </a>";
                             ?>
-                            <button type='submit' id='guardarTodos' class='btn btn-success' disabled>
+                            <button type='submit' name='guardarTodos' id='guardarTodos' class='btn btn-success' disabled>
                                 Guardar Todos (Pronto...)
                             </button>
                         </div>
