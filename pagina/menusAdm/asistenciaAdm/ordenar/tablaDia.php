@@ -77,6 +77,8 @@
                     while ($rowTiempo = mysqli_fetch_array($resultadosTiempo)) {
                         $cajaIdTiempo = $rowTiempo['idTallerTiempo'];
                         $cajaEstdTiempo = $rowTiempo['estudiante'];
+                        $remplazoNom = str_replace(" ", "", $cajaEstdTiempo);
+                        $remplazoNom = strtolower($remplazoNom);
                         $cajaMes = $rowTiempo['mes'];
                         $cajaAno = $rowTiempo['ano'];
 
@@ -104,17 +106,17 @@
                             echo "</p>
                             <p>";
                             if ($rowTiempo[$numString] == 0 || $rowTiempo[$numString] == null) {
-                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . "' id='dias" . $i . $nomComp . "Uno' value='1'>";
+                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1'>";
                             } else if ($rowTiempo[$numString] == 1) {
-                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . "' id='dias" . $i . $nomComp . "Uno' value='1' checked>";
+                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1' checked>";
                                 $numAsistencia = $numAsistencia + 1;
                             }
                             echo "</p>
                             <p>";
                             if ($rowTiempo[$numString] == 1 || $rowTiempo[$numString] == null) {
-                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . "' id='dias" . $i . $nomComp . "Dos' value='0'>";
+                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0'>";
                             } else if ($rowTiempo[$numString] == 0) {
-                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . "' id='dias" . $i . $nomComp . "Dos' value='0' checked>";
+                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0' checked>";
                                 $numInasistencia = $numInasistencia + 1;
                             }
 

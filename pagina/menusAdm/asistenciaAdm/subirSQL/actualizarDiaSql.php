@@ -13,7 +13,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     $cajaIdTiempo = $_GET['cajaIdTiempo'];
 
-    $cajaEstdTiempo = $_GET['cajaEstdTiempo'];
+    $cajaEstd = $_GET['cajaEstdTiempo'];
+
+    $cajaEstd = str_replace(" ", "", $cajaEstd);
+
+    $cajaEstd = strtolower($cajaEstd);
+
+    $cajaEstdSinCambiar = $_GET['cajaEstdTiempo'];
 
     $cajaTaller = $_GET['cajaTaller'];
 
@@ -25,12 +31,6 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     include_once "../ordenar/postDias2.php";
     include_once "../ordenar/postDias3.php";
 
-    
-    //echo $lis2D . "<br>";
-
-
-    //  echo $cajaIdTiempo . "<br>" . $cajaEstdTiempo . "<br>" . $cajaTaller . "<br>" . $cajaMes . "<br>" . $cajaAno . "<br>";
-
     $guardaDiasSQL = ("UPDATE tallertiempo SET
     `1`=" . $lis1D . " , `2`=" . $lis2D . ", `3`=" . $lis3D . ", `4`=" . $lis4D . ", `5`=" . $lis5D . ",
     `6`=" . $lis6D . ", `7`=" . $lis7D . ", `8`=" . $lis8D . ", `9`=" . $lis9D . ", `10`=" . $lis10D . ",
@@ -39,7 +39,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     `21`=" . $lis21D . ", `22`=" . $lis22D . ", `23`=" . $lis23D . ", `24`=" . $lis24D . ", `25`=" . $lis25D . ",
     `26`=" . $lis26D . ", `27`=" . $lis27D . ", `28`=" . $lis28D . ", `29`=" . $lis29D . ", `30`=" . $lis30D . ",
     `31`=" . $lis31D . "
-    WHERE `idTallerTiempo`='" . $cajaIdTiempo . "' AND `estudiante`='" . $cajaEstdTiempo . "' AND `taller`='" . $cajaTaller . "' AND
+    WHERE `idTallerTiempo`='" . $cajaIdTiempo . "' AND `estudiante`='" . $cajaEstdSinCambiar . "' AND `taller`='" . $cajaTaller . "' AND
     `mes`='" . $cajaMes . "' AND `ano`='" . $cajaAno . "'");
 ?>
     <!DOCTYPE html>

@@ -1,100 +1,80 @@
 <?php
-if (isset($_POST['dias11'])) {
-    if ($_POST['dias11'] == 1 || $_POST['dias11'] == 0) {
-        $lis11D = "'" . $_POST['dias11'] . "'";
+if (isset($_POST['dias11' . $cajaEstd])) {
+    if ($_POST['dias11' . $cajaEstd] == 1 || $_POST['dias11' . $cajaEstd] == 0) {
+        $lis11D = "'" . $_POST['dias11' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias11'])) {
-    if ($_SESSION['dias11'] == "vacio") {
+} else {
         $lis11D = "NULL";
-    }
 }
 
-if (isset($_POST['dias12'])) {
-    if ($_POST['dias12'] == 1 || $_POST['dias12'] == 0) {
-        $lis12D = "'" . $_POST['dias12'] . "'";
+if (isset($_POST['dias12' . $cajaEstd])) {
+    if ($_POST['dias12' . $cajaEstd] == 1 || $_POST['dias12' . $cajaEstd] == 0) {
+        $lis12D = "'" . $_POST['dias12' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias12'])) {
-    if ($_SESSION['dias12'] == "vacio") {
+} else {
         $lis12D = "NULL";
-    }
 }
 
-if (isset($_POST['dias13'])) {
-    if ($_POST['dias13'] == 1 || $_POST['dias13'] == 0) {
-        $lis13D = "'" . $_POST['dias13'] . "'";
+if (isset($_POST['dias13' . $cajaEstd])) {
+    if ($_POST['dias13' . $cajaEstd] == 1 || $_POST['dias13' . $cajaEstd] == 0) {
+        $lis13D = "'" . $_POST['dias13' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias13'])) {
-    if ($_SESSION['dias13'] == "vacio") {
+} else  {
         $lis13D = "NULL";
-    }
 }
 
-if (isset($_POST['dias14'])) {
-    if ($_POST['dias14'] == 1 || $_POST['dias14'] == 0) {
-        $lis14D = "'" . $_POST['dias14'] . "'";
+if (isset($_POST['dias14' . $cajaEstd])) {
+    if ($_POST['dias14' . $cajaEstd] == 1 || $_POST['dias14' . $cajaEstd] == 0) {
+        $lis14D = "'" . $_POST['dias14' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias14'])) {
-    if ($_SESSION['dias14'] == "vacio") {
+} else  {
         $lis14D = "NULL";
-    }
 }
 
-if (isset($_POST['dias15'])) {
-    if ($_POST['dias15'] == 1 || $_POST['dias15'] == 0) {
-        $lis15D = "'" . $_POST['dias15'] . "'";
+if (isset($_POST['dias15' . $cajaEstd])) {
+    if ($_POST['dias15' . $cajaEstd] == 1 || $_POST['dias15' . $cajaEstd] == 0) {
+        $lis15D = "'" . $_POST['dias15' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias15'])) {
-    if ($_SESSION['dias15'] == "vacio") {
+} else  {
         $lis15D = "NULL";
-    }
 }
 
-if (isset($_POST['dias16'])) {
-    if ($_POST['dias16'] == 1 || $_POST['dias16'] == 0) {
-        $lis16D = "'" . $_POST['dias16'] . "'";
+if (isset($_POST['dias16' . $cajaEstd])) {
+    if ($_POST['dias16' . $cajaEstd] == 1 || $_POST['dias16' . $cajaEstd] == 0) {
+        $lis16D = "'" . $_POST['dias16' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias16'])) {
-    if ($_SESSION['dias16'] == "vacio") {
+} else  {
         $lis16D = "NULL";
-    }
 }
 
-if (isset($_POST['dias17'])) {
-    if ($_POST['dias17'] == 1 || $_POST['dias17'] == 0) {
-        $lis17D = "'" . $_POST['dias17'] . "'";
+if (isset($_POST['dias17' . $cajaEstd])) {
+    if ($_POST['dias17' . $cajaEstd] == 1 || $_POST['dias17' . $cajaEstd] == 0) {
+        $lis17D = "'" . $_POST['dias17' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias17'])) {
-    if ($_SESSION['dias17'] == "vacio") {
+} else {
         $lis17D = "NULL";
-    }
 }
 
-if (isset($_POST['dias18'])) {
-    if ($_POST['dias18'] == 1 || $_POST['dias18'] == 0) {
-        $lis18D = "'" . $_POST['dias18'] . "'";
+if (isset($_POST['dias18' . $cajaEstd])) {
+    if ($_POST['dias18' . $cajaEstd] == 1 || $_POST['dias18' . $cajaEstd] == 0) {
+        $lis18D = "'" . $_POST['dias18' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias18'])) {
-    if ($_SESSION['dias18'] == "vacio") {
+} else {
         $lis18D = "NULL";
-    }
 }
 
-if (isset($_POST['dias19'])) {
-    if ($_POST['dias19'] == 1 || $_POST['dias19'] == 0) {
-        $lis19D = "'" . $_POST['dias19'] . "'";
+if (isset($_POST['dias19' . $cajaEstd])) {
+    if ($_POST['dias19' . $cajaEstd] == 1 || $_POST['dias19' . $cajaEstd] == 0) {
+        $lis19D = "'" . $_POST['dias19' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias19'])) {
-    if ($_SESSION['dias19'] == "vacio") {
+} else  {
         $lis19D = "NULL";
-    }
 }
 
-if (isset($_POST['dias20'])) {
-    if ($_POST['dias20'] == 1 || $_POST['dias20'] == 0) {
-        $lis20D = "'" . $_POST['dias20'] . "'";
+if (isset($_POST['dias20' . $cajaEstd])) {
+    if ($_POST['dias20' . $cajaEstd] == 1 || $_POST['dias20' . $cajaEstd] == 0) {
+        $lis20D = "'" . $_POST['dias20' . $cajaEstd] . "'";
     }
-} else if (isset($_SESSION['dias20'])) {
-    if ($_SESSION['dias20'] == "vacio") {
+} else {
         $lis20D = "NULL";
-    }
 }
