@@ -4,7 +4,7 @@ if (isset($_POST['dias11' . $cajaEstd])) {
         $lis11D = "'" . $_POST['dias11' . $cajaEstd] . "'";
     }
 } else {
-        $lis11D = "NULL";
+    $lis11D = "NULL";
 }
 
 if (isset($_POST['dias12' . $cajaEstd])) {
@@ -12,39 +12,39 @@ if (isset($_POST['dias12' . $cajaEstd])) {
         $lis12D = "'" . $_POST['dias12' . $cajaEstd] . "'";
     }
 } else {
-        $lis12D = "NULL";
+    $lis12D = "NULL";
 }
 
 if (isset($_POST['dias13' . $cajaEstd])) {
     if ($_POST['dias13' . $cajaEstd] == 1 || $_POST['dias13' . $cajaEstd] == 0) {
         $lis13D = "'" . $_POST['dias13' . $cajaEstd] . "'";
     }
-} else  {
-        $lis13D = "NULL";
+} else {
+    $lis13D = "NULL";
 }
 
 if (isset($_POST['dias14' . $cajaEstd])) {
     if ($_POST['dias14' . $cajaEstd] == 1 || $_POST['dias14' . $cajaEstd] == 0) {
         $lis14D = "'" . $_POST['dias14' . $cajaEstd] . "'";
     }
-} else  {
-        $lis14D = "NULL";
+} else {
+    $lis14D = "NULL";
 }
 
 if (isset($_POST['dias15' . $cajaEstd])) {
     if ($_POST['dias15' . $cajaEstd] == 1 || $_POST['dias15' . $cajaEstd] == 0) {
         $lis15D = "'" . $_POST['dias15' . $cajaEstd] . "'";
     }
-} else  {
-        $lis15D = "NULL";
+} else {
+    $lis15D = "NULL";
 }
 
 if (isset($_POST['dias16' . $cajaEstd])) {
     if ($_POST['dias16' . $cajaEstd] == 1 || $_POST['dias16' . $cajaEstd] == 0) {
         $lis16D = "'" . $_POST['dias16' . $cajaEstd] . "'";
     }
-} else  {
-        $lis16D = "NULL";
+} else {
+    $lis16D = "NULL";
 }
 
 if (isset($_POST['dias17' . $cajaEstd])) {
@@ -52,7 +52,7 @@ if (isset($_POST['dias17' . $cajaEstd])) {
         $lis17D = "'" . $_POST['dias17' . $cajaEstd] . "'";
     }
 } else {
-        $lis17D = "NULL";
+    $lis17D = "NULL";
 }
 
 if (isset($_POST['dias18' . $cajaEstd])) {
@@ -60,15 +60,15 @@ if (isset($_POST['dias18' . $cajaEstd])) {
         $lis18D = "'" . $_POST['dias18' . $cajaEstd] . "'";
     }
 } else {
-        $lis18D = "NULL";
+    $lis18D = "NULL";
 }
 
 if (isset($_POST['dias19' . $cajaEstd])) {
     if ($_POST['dias19' . $cajaEstd] == 1 || $_POST['dias19' . $cajaEstd] == 0) {
         $lis19D = "'" . $_POST['dias19' . $cajaEstd] . "'";
     }
-} else  {
-        $lis19D = "NULL";
+} else {
+    $lis19D = "NULL";
 }
 
 if (isset($_POST['dias20' . $cajaEstd])) {
@@ -76,5 +76,5 @@ if (isset($_POST['dias20' . $cajaEstd])) {
         $lis20D = "'" . $_POST['dias20' . $cajaEstd] . "'";
     }
 } else {
-        $lis20D = "NULL";
+    $lis20D = "NULL";
 }

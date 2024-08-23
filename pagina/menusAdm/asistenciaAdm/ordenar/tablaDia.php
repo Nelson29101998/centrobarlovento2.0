@@ -106,21 +106,24 @@
                             echo "</p>
                             <p>";
                             if ($rowTiempo[$numString] == 0 || $rowTiempo[$numString] == null) {
-                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1'>";
+                                $usarCheck1 = "";
                             } else if ($rowTiempo[$numString] == 1) {
-                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1' checked>";
+                                $usarCheck1 = "checked";
                                 $numAsistencia = $numAsistencia + 1;
                             }
-                            echo "</p>
+                            
+                            echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1' ".$usarCheck1.">
+                            </p>
                             <p>";
                             if ($rowTiempo[$numString] == 1 || $rowTiempo[$numString] == null) {
-                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0'>";
+                                $usarCheck2 = "";
                             } else if ($rowTiempo[$numString] == 0) {
-                                echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0' checked>";
+                                $usarCheck2 = "checked";
                                 $numInasistencia = $numInasistencia + 1;
                             }
 
-                            echo "</p>";
+                            echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0' " . $usarCheck2 . ">
+                            </p>";
                             $numerosDias = (string) "dias" . $i;
                             if (($rowTiempo[$numString] != 1) || ($rowTiempo[$numString] != 0)) {
                                 $_SESSION[$numerosDias] = "vacio";
