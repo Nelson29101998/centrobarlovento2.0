@@ -47,9 +47,7 @@ function tiempoDatos()
 
 function tiempoAdelanteMes($revMes)
 {
-    if ($revMes == 'Enero') {
-        $mes = 'Febrero';
-    } elseif ($revMes == 'Febrero') {
+    if ($revMes == 'Enero' || $revMes == 'Febrero') {
         $mes = 'Marzo';
     } elseif ($revMes == 'Marzo') {
         $mes = 'Abril';
@@ -81,7 +79,6 @@ function tiempoDatosRevisar($conexion, $nomPartc, $sacarCurso, $sacarMes)
     $datosSQLRevisar = "SELECT * FROM asistencias WHERE estudiante='" . $nomPartc . "' AND cursos = '" . $sacarCurso . "'";
 
     $carga = mysqli_query($conexion, $datosSQLRevisar);
-
     while ($row = mysqli_fetch_array($carga)) {
         $mes = $row['mes'];
 
@@ -124,16 +121,21 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     $sacarMes = tiempoDatos();
 
-    $sacarAno = date("Y");
+   
 
     //* Tabla de los cursos
     //! Curso 1
     if ($_POST['sacarCurso1'] != "vacio") {
         $sacarCurso1 = $_POST['sacarCurso1'];
         $sacarMes1 = tiempoDatosRevisar($conexion, $nomPartc, $sacarCurso1, $sacarMes);
+        if ($sacarMes1 == 'Enero'){
+            $sacarAno1 = date("Y") + 1;
+        }else{
+            $sacarAno1 = date("Y");
+        }
         //idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano
         $sqlCurso1 = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
-        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso1 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes1 . "', '" . $sacarAno . "')";
+        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso1 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes1 . "', '" . $sacarAno1 . "')";
     } else {
         $sqlCurso1 = "";
     }
@@ -142,8 +144,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     if ($_POST['sacarCurso2'] != "vacio") {
         $sacarCurso2 = $_POST['sacarCurso2'];
         $sacarMes2 = tiempoDatosRevisar($conexion, $nomPartc, $sacarCurso2, $sacarMes);
+        if ($sacarMes2 == 'Enero'){
+            $sacarAno2 = date("Y") + 1;
+        }else{
+            $sacarAno2 = date("Y");
+        }
         $sqlCurso2 = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
-        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso2 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes2 . "', '" . $sacarAno . "')";
+        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso2 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes2 . "', '" . $sacarAno2 . "')";
     } else {
         $sqlCurso2 = "";
     }
@@ -152,8 +159,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     if ($_POST['sacarCurso3'] != "vacio") {
         $sacarCurso3 = $_POST['sacarCurso3'];
         $sacarMes3 = tiempoDatosRevisar($conexion, $nomPartc, $sacarCurso3, $sacarMes);
+        if ($sacarMes3 == 'Enero'){
+            $sacarAno3 = date("Y") + 1;
+        }else{
+            $sacarAno3 = date("Y");
+        }
         $sqlCurso3 = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
-        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso3 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes3 . "', '" . $sacarAno . "')";
+        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso3 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes3 . "', '" . $sacarAno3 . "')";
     } else {
         $sqlCurso3 = "";
     }
@@ -162,8 +174,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     if ($_POST['sacarCurso4'] != "vacio") {
         $sacarCurso4 = $_POST['sacarCurso4'];
         $sacarMes4 = tiempoDatosRevisar($conexion, $nomPartc, $sacarCurso4, $sacarMes);
+        if ($sacarMes4 == 'Enero'){
+            $sacarAno4 = date("Y") + 1;
+        }else{
+            $sacarAno4 = date("Y");
+        }
         $sqlCurso4 = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
-        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso4 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes4 . "', '" . $sacarAno . "')";
+        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso4 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes4 . "', '" . $sacarAno4 . "')";
     } else {
         $sqlCurso4 = "";
     }
@@ -172,8 +189,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     if ($_POST['sacarCurso5'] != "vacio") {
         $sacarCurso5 = $_POST['sacarCurso5'];
         $sacarMes5 = tiempoDatosRevisar($conexion, $nomPartc, $sacarCurso5, $sacarMes);
+        if ($sacarMes5 == 'Enero'){
+            $sacarAno5 = date("Y") + 1;
+        }else{
+            $sacarAno5 = date("Y");
+        }
         $sqlCurso5 = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
-        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso5 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes5 . "', '" . $sacarAno . "')";
+        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso5 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes5 . "', '" . $sacarAno5 . "')";
     } else {
         $sqlCurso5 = "";
     }
@@ -182,8 +204,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     if ($_POST['sacarCurso6'] != "vacio") {
         $sacarCurso6 = $_POST['sacarCurso6'];
         $sacarMes6 = tiempoDatosRevisar($conexion, $nomPartc, $sacarCurso6, $sacarMes);
+        if ($sacarMes6 == 'Enero'){
+            $sacarAno6 = date("Y") + 1;
+        }else{
+            $sacarAno6 = date("Y");
+        }
         $sqlCurso6 = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
-        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso6 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes6 . "', '" . $sacarAno . "')";
+        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso6 . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes6 . "', '" . $sacarAno6 . "')";
     } else {
         $sqlCurso6 = "";
     }
@@ -233,14 +260,14 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
         if (!empty($sqlCurso1)) {
             $sqlCurso1Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
-                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso1 . "', '" . $sacarMes1 . "', '" . $sacarAno . "')";
+                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso1 . "', '" . $sacarMes1 . "', '" . $sacarAno1 . "')";
             if ($conexion->query($sqlCurso1) === TRUE) {
                 if ($conexion->query($sqlCurso1Tiempo) === TRUE) {
                     $anotar = "Curso 1 esta ok";
                     if (!empty($sqlCurso2)) {
                         if ($conexion->query($sqlCurso2) === TRUE) {
                             $sqlCurso2Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
-                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso2 . "', '" . $sacarMes2 . "', '" . $sacarAno . "')";
+                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso2 . "', '" . $sacarMes2 . "', '" . $sacarAno2 . "')";
                             if ($conexion->query($sqlCurso2Tiempo) === TRUE) {
                                 $anotar = $anotar . ", Curso 2 esta ok";
                             }
@@ -249,7 +276,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     if (!empty($sqlCurso3)) {
                         if ($conexion->query($sqlCurso3) === TRUE) {
                             $sqlCurso3Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
-                                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso3 . "', '" . $sacarMes3 . "', '" . $sacarAno . "')";
+                                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso3 . "', '" . $sacarMes3 . "', '" . $sacarAno3 . "')";
                             if ($conexion->query($sqlCurso3Tiempo) === TRUE) {
                                 $anotar = $anotar . ", Curso 3 esta ok";
                             }
@@ -258,7 +285,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     if (!empty($sqlCurso4)) {
                         if ($conexion->query($sqlCurso4) === TRUE) {
                             $sqlCurso4Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
-                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso4 . "', '" . $sacarMes4 . "', '" . $sacarAno . "')";
+                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso4 . "', '" . $sacarMes4 . "', '" . $sacarAno4 . "')";
                             if ($conexion->query($sqlCurso4Tiempo) === TRUE) {
                                 $anotar = $anotar . ", Curso 4 esta ok";
                             }
@@ -267,7 +294,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     if (!empty($sqlCurso5)) {
                         if ($conexion->query($sqlCurso5) === TRUE) {
                             $sqlCurso5Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
-                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso5 . "', '" . $sacarMes5 . "', '" . $sacarAno . "')";
+                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso5 . "', '" . $sacarMes5 . "', '" . $sacarAno5 . "')";
                             if ($conexion->query($sqlCurso5Tiempo) === TRUE) {
                                 $anotar = $anotar . ", Curso 5 esta ok";
                             }
@@ -276,7 +303,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     if (!empty($sqlCurso6)) {
                         if ($conexion->query($sqlCurso6) === TRUE) {
                             $sqlCurso6Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
-                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso6 . "', '" . $sacarMes6 . "', '" . $sacarAno . "')";
+                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso6 . "', '" . $sacarMes6 . "', '" . $sacarAno6 . "')";
                             if ($conexion->query($sqlCurso6Tiempo) === TRUE) {
                                 $anotar = $anotar . ", Curso 6 esta ok";
                             }
