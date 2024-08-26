@@ -121,10 +121,10 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
 
                             echo "</p>
                             <p>
-                                <input onclick='quitarUnoRadio" . $i . $nomComp . "()' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1' " . $usarCheck1 . ">
+                                <input onclick='quitarUnoRadio" . $i . $nomComp . "(\"dias" . $i . $nomComp . "Uno\")' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1' " . $usarCheck1 . ">
                             </p>
                             <p>
-                                <input onclick='quitarUnoRadio" . $i . $nomComp . "()' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0' " . $usarCheck2 . ">
+                                <input onclick='quitarUnoRadio" . $i . $nomComp . "(\"dias" . $i . $nomComp . "Dos\")' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0' " . $usarCheck2 . ">
                             </p>";
                             $numerosDias = (string) "dias" . $i;
                             if (($rowTiempo[$numString] != 1) || ($rowTiempo[$numString] != 0)) {
@@ -134,37 +134,17 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
                             </div>
                                 </th>
                                 <script>
-                                    function quitarUnoRadio" . $i . $nomComp . "() {
-                                        var radioUno = $('#dias" . $i . $nomComp . "Uno');
-                                        var verValueUno = $('input[id=\'dias" . $i . $nomComp . "Uno\']:checked').val();
-                                        var verBoolUno = $('input[id=\'dias" . $i . $nomComp . "Uno\']:checked').data('waschecked');
-                                        //console.log(verValueUno + ' ' + verBoolUno);
-                                        
-                                        var radioDos = $('#dias" . $i . $nomComp . "Dos');
-                                        var verValueDos = $('input[id=\'dias" . $i . $nomComp . "Dos\']:checked').val();
-                                        var verBoolDos = $('input[id=\'dias" . $i . $nomComp . "Dos\']:checked').data('waschecked');
-                                        //console.log(verValueDos + ' ' + verBoolDos);
-
-                                        if(verValueUno == '1') {
-                                            if(verBoolUno == true) {
-                                                radioUno.prop('checked', false);
-                                                radioUno.data('waschecked', false);
-                                                return;
-                                            }
-                                            radioUno.data('waschecked', true);
-                                            return;  
-                                        }
-                                        
-                                        if(verValueDos == '0') {
-                                            if(verBoolDos == true) {
-                                                radioDos.prop('checked', false);
-                                                radioDos.data('waschecked', false);
-                                                return;
-                                            }
-                                            radioDos.data('waschecked', true);
+                                    var checked = false;
+                                    var checked2 = '';
+                                    //* Funcion para quitar el check de un radio
+                                    function quitarUnoRadio" . $i . $nomComp . "(name) {
+                                        if(checked && checked2 == name) {
+                                            document.getElementById(name).checked = false;
+                                            checked = false;
                                             return;
                                         }
-
+                                        checked = true;
+                                        checked2 = name
                                     }
                                 </script>
                                 ";
