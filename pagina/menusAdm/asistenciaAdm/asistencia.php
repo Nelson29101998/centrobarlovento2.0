@@ -174,27 +174,6 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 <?php
                 if (!empty($_GET['verCurso']) || !empty($_GET['buscarPartc'])) {
                         include_once "ordenar/tablaDia.php";
-                        ?>
-                        <br>
-                        <div style="text-align:center;">
-                            <?php
-                            echo "<a href='exportExcelAsist.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
-                                    <button type='button' class='btn btn-success'>
-                                        <i class='fa-solid fa-file-csv fa-2xl'></i></i>
-                                    </button>
-                                </a>";
-
-                            echo "<a href='pdfTaller.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
-                                    <button type='button' id='pdfExp' class='btn btn-info'>
-                                        <i class='fa-solid fa-file-pdf fa-2xl'></i>
-                                    </button>
-                                </a>";
-                            ?>
-                            <button type='submit' name='guardarTodos' id='guardarTodos' class='btn btn-success' disabled>
-                                Guardar Todos (Pronto...)
-                            </button>
-                        </div>
-                <?php
                 } else {
                 ?>
                     <br>

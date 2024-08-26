@@ -1,3 +1,7 @@
+<?php
+echo "<form id='formDia' name='formDia' onsubmit='return true' method='post'
+action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" . $sacarMes . "&cajaAno=" . $sacarAno . "'>";
+?>
 <table id="tablaBarlovento">
     <thead>
         <tr style="background-color: #F71806;">
@@ -92,10 +96,7 @@
                         <p id='asTop'><i class='fa-solid fa-check'></i></p>
                         <p id='inasTop'><i class='fa-solid fa-xmark'></i></p>
                         <!-- <p id='nadaTop'><i class='fa-solid fa-genderless'></i></p> -->
-                        </th>
-                        <form id='formDia' name='formDia' onsubmit='return true' method='post'
-                        action='subirSQL/actualizarDiaSql.php?cajaIdTiempo=" . $cajaIdTiempo . "&cajaEstdTiempo=" . $cajaEstdTiempo . "&cajaTaller=" . $sacarCurso . "&cajaMes=" . $cajaMes . "&cajaAno=" . $cajaAno . "'>";
-                        //subirSQL/anadirEstd.php
+                        </th>";
                         for ($i = 1; $i <= 31; $i++) {
                             $numString = strval($i);
                             echo "<th>
@@ -103,18 +104,14 @@
                                 <p>" . $i;
 
                             $nomComp = $rowTiempo['id'];
-                            echo "</p>
-                            <p>";
+
                             if ($rowTiempo[$numString] == 0 || $rowTiempo[$numString] == null) {
                                 $usarCheck1 = "";
                             } else if ($rowTiempo[$numString] == 1) {
                                 $usarCheck1 = "checked";
                                 $numAsistencia = $numAsistencia + 1;
                             }
-                            
-                            echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1' ".$usarCheck1.">
-                            </p>
-                            <p>";
+
                             if ($rowTiempo[$numString] == 1 || $rowTiempo[$numString] == null) {
                                 $usarCheck2 = "";
                             } else if ($rowTiempo[$numString] == 0) {
@@ -122,7 +119,12 @@
                                 $numInasistencia = $numInasistencia + 1;
                             }
 
-                            echo "<input onclick='quitarUnoRadio" . $i . $nomComp . "()' form='formDia' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0' " . $usarCheck2 . ">
+                            echo "</p>
+                            <p>
+                                <input onclick='quitarUnoRadio" . $i . $nomComp . "()' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1' " . $usarCheck1 . ">
+                            </p>
+                            <p>
+                                <input onclick='quitarUnoRadio" . $i . $nomComp . "()' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0' " . $usarCheck2 . ">
                             </p>";
                             $numerosDias = (string) "dias" . $i;
                             if (($rowTiempo[$numString] != 1) || ($rowTiempo[$numString] != 0)) {
@@ -169,9 +171,9 @@
                         }
                         echo "<th>
                                     <p>
-                                        <button type='submit' id='guardarIdDia' class='btn btn-success btn-sm'>
+                                        <button type='submit' form='formDia' name='guardar' value='" . $cajaEstdTiempo . "' class='btn btn-success btn-sm'>
                                             <i class='fas fa-floppy-disk fa-xl'></i>
-                                        </button> 
+                                        </button>
                                     </p>";
                         if (!empty($_GET['buscarPartc'])) {
                             echo "<p>
@@ -199,8 +201,7 @@
                                             </button>
                                         </a>
                                     </p>
-                                </th>
-                                </form>";
+                                </th>";
                     }
                 }
                 $totalAsistencias = $numAsistencia + $numInasistencia;
@@ -225,3 +226,25 @@
         ?>
     </tbody>
 </table>
+
+<br>
+
+<div style="text-align:center;">
+    <?php
+    echo "<a href='exportExcelAsist.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
+            <button type='button' class='btn btn-success'>
+                <i class='fa-solid fa-file-csv fa-2xl'></i></i>
+            </button>
+        </a>
+        
+        <a href='pdfTaller.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
+            <button type='button' id='pdfExp' class='btn btn-info'>
+                <i class='fa-solid fa-file-pdf fa-2xl'></i>
+            </button>
+        </a>";
+    ?>
+    <button type='submit' form="formDia" name='guardar' value='guardarTodos' class='btn btn-success'>
+        Guardar Todos
+    </button>
+</div>
+</form>
