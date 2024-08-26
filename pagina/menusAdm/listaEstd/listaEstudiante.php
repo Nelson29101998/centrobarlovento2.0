@@ -111,16 +111,16 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 $urlCursos = $_POST['verCurso'];
                 if ($_POST['verCurso'] === "todas") {
                     //$revisarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias";
-                    $revisarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias ORDER BY estudiante DESC";
+                    $revisarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias ORDER BY estudiante ASC";
                 } else {
-                    $revisarSQLAsist = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias WHERE cursos='" . $_POST['verCurso'] . "' ORDER BY estudiante DESC";
+                    $revisarSQLAsist = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias WHERE cursos='" . $_POST['verCurso'] . "' ORDER BY estudiante ASC";
                     echo "
                         <div class='text-center'>
                             <h4>Curso es: " . $_POST['verCurso'] . "</h4>
                         </div>";
                 }
             } else {
-                $revisarSQL = "SELECT DISTINCT rutPartc, nombrePartc, celularPartc, mailPartc FROM inscripcion";
+                $revisarSQL = "SELECT DISTINCT rutPartc, nombrePartc, celularPartc, mailPartc FROM inscripcion ORDER BY nombrePartc ASC";
                 $urlCursos = '';
             }
             ?>
