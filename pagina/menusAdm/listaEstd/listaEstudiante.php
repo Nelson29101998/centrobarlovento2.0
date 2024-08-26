@@ -111,9 +111,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 $urlCursos = $_POST['verCurso'];
                 if ($_POST['verCurso'] === "todas") {
                     //$revisarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias";
-                    $revisarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias";
+                    $revisarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias ORDER BY estudiante DESC";
                 } else {
-                    $revisarSQLAsist = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias WHERE cursos='" . $_POST['verCurso'] . "'";
+                    $revisarSQLAsist = "SELECT DISTINCT rut, estudiante, telefono, mail, cursos, mes, ano FROM asistencias WHERE cursos='" . $_POST['verCurso'] . "' ORDER BY estudiante DESC";
                     echo "
                         <div class='text-center'>
                             <h4>Curso es: " . $_POST['verCurso'] . "</h4>
