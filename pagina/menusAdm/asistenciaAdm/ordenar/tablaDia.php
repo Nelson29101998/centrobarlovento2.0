@@ -121,10 +121,10 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
 
                             echo "</p>
                             <p>
-                                <input onclick='quitarUnoRadio" . $i . $nomComp . "(\"dias" . $i . $nomComp . "Uno\")' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1' " . $usarCheck1 . ">
+                                <input type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Uno' value='1' " . $usarCheck1 . ">
                             </p>
                             <p>
-                                <input onclick='quitarUnoRadio" . $i . $nomComp . "(\"dias" . $i . $nomComp . "Dos\")' type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0' " . $usarCheck2 . ">
+                                <input  type='radio' name='dias" . $i . $remplazoNom . "' id='dias" . $i . $nomComp . "Dos' value='0' " . $usarCheck2 . ">
                             </p>";
                             $numerosDias = (string) "dias" . $i;
                             if (($rowTiempo[$numString] != 1) || ($rowTiempo[$numString] != 0)) {
@@ -134,17 +134,23 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
                             </div>
                                 </th>
                                 <script>
-                                    var checked = false;
-                                    var checked2 = '';
-                                    //* Funcion para quitar el check de un radio
-                                    function quitarUnoRadio" . $i . $nomComp . "(name) {
-                                        if(checked && checked2 == name) {
-                                            document.getElementById(name).checked = false;
-                                            checked = false;
-                                            return;
-                                        }
-                                        checked = true;
-                                        checked2 = name
+                                    document.querySelectorAll(
+                                        'input[type=radio][name=dias" . $i . $remplazoNom . "]').forEach((elem) => {
+                                        elem.addEventListener('click', allowUncheck);
+                                        // only needed if elem can be pre-checked
+                                        elem.previous = elem.checked;
+                                        });
+
+                                        function allowUncheck(e) {
+                                            if (this.previous) {
+                                                this.checked = false;
+                                            }
+                                            // need to update previous on all elements of this group
+                                            // (either that or store the id of the checked element)
+                                            document.querySelectorAll(
+                                            `input[type=radio][name=dias" . $i . $remplazoNom . "`).forEach((elem) => {
+                                            elem.previous = elem.checked;
+                                        });
                                     }
                                 </script>
                                 ";
