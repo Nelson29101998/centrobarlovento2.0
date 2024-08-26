@@ -398,6 +398,28 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         </th>
                     </tr>
                     <tr>
+                        <th>
+                            <label for="elegirMes" class="text-white">
+                                <i class="fa-regular fa-calendar"></i> Elige un mes:
+                            </label>
+                            <select name="elegirMes" id="elegirMes" class="form-select">
+                                <?php
+                                include_once "selecciones/elegirMes.php";
+                                ?>
+                            </select>
+                        </th>
+                        <th>
+                            <label for="elegirAno" class="text-white">
+                                <i class="fa-regular fa-calendar"></i> Elige un Año:
+                            </label>
+                            <select name="elegirAno" id="elegirAno" class="form-select">
+                                <?php
+                                include_once "selecciones/elegirAno.php";
+                                ?>
+                            </select>
+                        </th>
+                    </tr>
+                    <tr>
                         <th colspan="2">
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">
