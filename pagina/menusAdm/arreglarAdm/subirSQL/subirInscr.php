@@ -321,6 +321,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 }
                             }
                         }
+
                         if (!empty($sqlCurso3)) {
                             $funcionaBool3 = masParct($checkTodo, $date, $conexion, $sacarCurso3, $sacarMes, $sacarAno, $nomPartc);
 
@@ -332,6 +333,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 }
                             }
                         }
+
                         if (!empty($sqlCurso4)) {
                             $funcionaBool4 = masParct($checkTodo, $date, $conexion, $sacarCurso4, $sacarMes, $sacarAno, $nomPartc);
 
@@ -343,6 +345,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 }
                             }
                         }
+
                         if (!empty($sqlCurso5)) {
                             $funcionaBool5 = masParct($checkTodo, $date, $conexion, $sacarCurso5, $sacarMes, $sacarAno, $nomPartc);
 
@@ -354,9 +357,10 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 }
                             }
                         }
+                        
                         if (!empty($sqlCurso6)) {
                             $funcionaBool6 = masParct($checkTodo, $date, $conexion, $sacarCurso6, $sacarMes, $sacarAno, $nomPartc);
-                            
+
                             if ($conexion->query($sqlCurso6) === TRUE && $funcionaBool6) {
                                 $sqlCurso6Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                 VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso6 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
