@@ -113,6 +113,16 @@
         </tr>
         <tr>
             <th>
+                <div class="form-check">
+                    <input class="form-check-input" name="sacarTodoTaller" id="sacarTodoTaller" type="checkbox" value="siTodo">
+                    <label class="form-check-label" for="sacarTodoTaller">
+                        <i class="fas fa-user-group"></i> ¿Quiere ser mismo en el taller para todos los participantes?
+                    </label>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th>
                 <label for="elegirMes" class="text-white">
                     <i class="fa-regular fa-calendar"></i> Elige un mes:
                 </label>

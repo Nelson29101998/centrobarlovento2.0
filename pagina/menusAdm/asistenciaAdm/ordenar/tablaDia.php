@@ -162,15 +162,6 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
                                             <i class='fas fa-floppy-disk fa-xl'></i>
                                         </button>
                                     </p>";
-                        if (!empty($_GET['buscarPartc'])) {
-                            echo "<p>
-                                        <a href='subirSQL/anadirMes.php?cajaIdTiempo=" . $cajaIdTiempo . "&cajaEstdTiempo=" . $cajaEstdTiempo . "&cajaTaller=" . $sacarCurso . "&cajaMes=" . $cajaMes . "&cajaAno=" . $cajaAno . "'>
-                                            <button type='button' id='anadirMes' class='btn btn-info'>
-                                                <i class='fa-solid fa-calendar-plus fa-xl'></i>
-                                            </button> 
-                                        </a>                                        
-                                    </p>";
-                        }
                         echo "</th>
                                 <th>
                                     <p>

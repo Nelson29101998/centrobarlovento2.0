@@ -24,7 +24,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
         $cajaAno = $_GET['cajaAno'];
         $guardarTodosTiempoTaller = "SELECT * FROM tallertiempo 
-                    WHERE taller='" . $cajaTaller . "' AND mes='" . $cajaMes . "' AND ano='" . $cajaAno . "'";
+                    WHERE taller='" . $cajaTaller . "' AND mes='" . $cajaMes . "' AND ano='" . $cajaAno . "' ORDER BY estudiante ASC";
 
         $resultadosTiempoTodos = mysqli_query($conexion, $guardarTodosTiempoTaller);
         while ($rowTiempo = mysqli_fetch_array($resultadosTiempoTodos)) {

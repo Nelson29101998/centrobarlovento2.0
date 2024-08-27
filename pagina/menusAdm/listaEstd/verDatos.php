@@ -399,6 +399,16 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     </tr>
                     <tr>
                         <th>
+                            <div class="form-check">
+                                <input class="form-check-input" name="sacarTodoTaller" id="sacarTodoTaller" type="checkbox" value="siTodo">
+                                <label class="form-check-label" for="sacarTodoTaller">
+                                <i class="fas fa-user-group"></i> ¿Quiere ser mismo en el taller para todos los participantes?
+                                </label>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
                             <label for="elegirMes" class="text-white">
                                 <i class="fa-regular fa-calendar"></i> Elige un mes:
                             </label>
@@ -426,7 +436,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     <i class="fa-solid fa-floppy-disk"></i> Guardar y Nuevo Taller
                                 </button>
 
-                                <!-- <button type="submit" formaction="subirSQL/subirTallerTodos.php?newTallerNom=<?php //echo $sacarNom; ?>" class="btn btn-primary">
+                                <!-- <button type="submit" formaction="subirSQL/subirTallerTodos.php?newTallerNom=<?php //echo $sacarNom; 
+                                                                                                                    ?>" class="btn btn-primary">
                                     <i class="fa-solid fa-floppy-disk"></i> Guardar todos los participante
                                 </button> -->
 

@@ -121,7 +121,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     $sacarMes = $_GET['verMes'];
                     $sacarAno = $_GET['verAno'];
                     //$revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "'";
-                    $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "'";
+                    $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "' ORDER BY estudiante ASC";
                 } else if (!empty($_GET['buscarPartc'])) {
                     $revisarSQL = "SELECT * FROM asistencias WHERE estudiante= '" . $_GET['buscarPartc'] . "'
                     ORDER BY FIELD(DATE_FORMAT(`mes`, '%M'),
