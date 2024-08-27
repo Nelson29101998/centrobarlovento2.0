@@ -423,8 +423,12 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         <th colspan="2">
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">
-                                    <i class="fa-solid fa-floppy-disk"></i> Guardar y Nuevo Talleres
+                                    <i class="fa-solid fa-floppy-disk"></i> Guardar y Nuevo Taller
                                 </button>
+
+                                <!-- <button type="submit" formaction="subirSQL/subirTallerTodos.php?newTallerNom=<?php //echo $sacarNom; ?>" class="btn btn-primary">
+                                    <i class="fa-solid fa-floppy-disk"></i> Guardar todos los participante
+                                </button> -->
 
                                 <button type="reset" class="btn btn-success">
                                     <i class="fas fa-recycle"></i> Limpiar

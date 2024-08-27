@@ -15,6 +15,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     //* Tabla de Participante
     $nomPartc = $_POST["nombreParticipante"];
+    $remplazoNom = str_replace(" ", "", $nomPartc);
+
     $edadPartc = $_POST["edadPartc"];
     $nacePartc = date("Y-m-d", strtotime($_POST["nacePartc"]));
     $rutPartc = $_POST["rutPartc"];
@@ -23,7 +25,6 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $dirPartc = $_POST["direccionPartc"];
     $vivePartc = $_POST["vivePartc"];
 
-    $tiempoRut = $date->format('H:i:s') . $rutPartc;
 
     //* Tabla de Médicos
     $diagnostico = $_POST["diagn"];
@@ -45,7 +46,11 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $mailUnoPhone = $_POST["mailUnoPhone"];
     $mailDosPhone = $_POST["mailDosPhone"];
 
-    $tiempoRut = $date->format('H:i:s') . $rutPartc;
+    if ($rutPartc != "") {
+        $tiempoRut = $date->format('H:i:s') . $rutPartc;
+    } else {
+        $tiempoRut = $date->format('H:i:s') . $remplazoNom;
+    }
 
     if ($_POST["elegirMes"] == "vacio") {
         $month = date("n"); //Reemplazable por número del 1 a 12

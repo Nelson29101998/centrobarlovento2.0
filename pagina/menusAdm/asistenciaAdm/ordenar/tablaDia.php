@@ -134,20 +134,21 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
                             </div>
                                 </th>
                                 <script>
+                                    //* Funcion para habilitar y deshabilitar de Radio
                                     document.querySelectorAll(
                                         'input[type=radio][name=dias" . $i . $remplazoNom . "]').forEach((elem) => {
-                                        elem.addEventListener('click', allowUncheck);
-                                        // only needed if elem can be pre-checked
-                                        elem.previous = elem.checked;
+                                            elem.addEventListener('click', allowUncheck);
+                                            // only needed if elem can be pre-checked
+                                            elem.previous = elem.checked;
                                         });
 
-                                        function allowUncheck(e) {
-                                            if (this.previous) {
-                                                this.checked = false;
-                                            }
-                                            // need to update previous on all elements of this group
-                                            // (either that or store the id of the checked element)
-                                            document.querySelectorAll(
+                                    function allowUncheck(e) {
+                                        if (this.previous) {
+                                            this.checked = false;
+                                        }
+                                        // need to update previous on all elements of this group
+                                        // (either that or store the id of the checked element)
+                                        document.querySelectorAll(
                                             `input[type=radio][name=dias" . $i . $remplazoNom . "`).forEach((elem) => {
                                             elem.previous = elem.checked;
                                         });
