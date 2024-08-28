@@ -158,22 +158,12 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-magnifying-glass"></i> Buscar
                                 </button>
-
-                                <button type="submit" name="anadirMes" id="anadirMes" value="anadir" class="btn btn-success">
-                                    <i class="fas fa-users"></i> Añadir a los Participante
-                                </button>
                             </th>
                         </tr>
                     </tbody>
                 </table>
                 <br>
                 <?php
-
-                if (isset($_GET['anadirMes'])) {
-                    $mesTodo = $_GET['anadirMes'];
-                } else {
-                    $mesTodo = "";
-                }
 
                 function masParct($date, $conexion, $sacarCurso, $sacarMes, $sacarAno,)
                 {
@@ -233,12 +223,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     $sacarMes = $_GET['verMes'];
                     $sacarAno = $_GET['verAno'];
 
-                    if ($mesTodo == "anadir") {
-                        masParct($date, $conexion, $sacarCurso, $sacarMes, $sacarAno);
-                    }
-
                     //$revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "'";
                     $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "' ORDER BY estudiante ASC";
+                    $resultadosBuscar = mysqli_query($conexion, $revisarSQL);
+
+                    if (mysqli_num_rows($resultadosBuscar) == 0) {
+                        masParct($date, $conexion, $sacarCurso, $sacarMes, $sacarAno);
+                    }
                 } else if (!empty($_GET['buscarPartc'])) {
                     $revisarSQL = "SELECT * FROM asistencias WHERE estudiante= '" . $_GET['buscarPartc'] . "'
                     ORDER BY FIELD(DATE_FORMAT(`mes`, '%M'),

@@ -137,7 +137,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         $sacarAno = $_POST['elegirAno'];
     }
 
-    if ($_POST['sacarTodoTaller'] == "siTodo" || !empty($_POST['sacarTodoTaller'])) {
+    if ($_POST['sacarTodoTaller'] == "siTodo" && isset($_POST['sacarTodoTaller'])) {
         $checkTodo = $_POST['sacarTodoTaller'];
     } else {
         $checkTodo = "";
