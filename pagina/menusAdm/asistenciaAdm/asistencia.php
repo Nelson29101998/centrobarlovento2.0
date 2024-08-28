@@ -1,4 +1,50 @@
 <?php
+function tiempoDatos()
+{
+    $month = date("n"); //Reemplazable por número del 1 a 12
+    $year = date("Y"); //Reemplazable por un año valido
+    switch (date('n', mktime(0, 0, 0, $month, 1, $year))) {
+        case 1:
+            $sacarMes = 'Enero';
+            break;
+        case 2:
+            $sacarMes = 'Febrero';
+            break;
+        case 3:
+            $sacarMes = 'Marzo';
+            break;
+        case 4:
+            $sacarMes = 'Abril';
+            break;
+        case 5:
+            $sacarMes = 'Mayo';
+            break;
+        case 6:
+            $sacarMes = 'Junio';
+            break;
+        case 7:
+            $sacarMes = 'Julio';
+            break;
+        case 8:
+            $sacarMes = 'Agosto';
+            break;
+        case 9:
+            $sacarMes = 'Septiembre';
+            break;
+        case 10:
+            $sacarMes = 'Octubre';
+            break;
+        case 11:
+            $sacarMes = 'Noviembre';
+            break;
+        case 12:
+            $sacarMes = 'Diciembre';
+            break;
+    };
+
+    return $sacarMes;
+}
+
 include_once "../../../ajuste/config.php";
 session_start();
 if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
@@ -11,6 +57,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $_SESSION["rut"] = $rut;
 
     include_once "../../../conectarSQL/conectar_SQL.php";
+
+    $tiempoDatos = $date = new DateTime(date("H:i:s"));
 ?>
     <!DOCTYPE html>
     <html lang="es">
@@ -110,16 +158,85 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fas fa-magnifying-glass"></i> Buscar
                                 </button>
+
+                                <button type="submit" name="anadirMes" id="anadirMes" value="anadir" class="btn btn-success">
+                                    <i class="fas fa-users"></i> Añadir a los Participante
+                                </button>
                             </th>
                         </tr>
                     </tbody>
                 </table>
                 <br>
                 <?php
+
+                if (isset($_GET['anadirMes'])) {
+                    $mesTodo = $_GET['anadirMes'];
+                } else {
+                    $mesTodo = "";
+                }
+
+                function masParct($date, $conexion, $sacarCurso, $sacarMes, $sacarAno,)
+                {
+                    $sacarMesHoy = tiempoDatos();
+                    $sacarAnoHoy = date("Y");
+
+                    $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
+                        WHERE cursos='" . $sacarCurso . "' AND mes='" . $sacarMesHoy . "' AND ano='" . $sacarAnoHoy . "'";
+
+                    $correcto = true;
+
+                    $resultadosTiempoTodos = mysqli_query($conexion, $guardarTodosTiempoTaller);
+                    while ($rowTiempo = mysqli_fetch_array($resultadosTiempoTodos)) {
+                        // $tiempoRut = $rowTiempo['idTallerTiempo'];
+                        $rutPartc = $rowTiempo['rut'];
+                        $nomPartc = $rowTiempo['estudiante'];
+                        $remplazoNom = str_replace(" ", "", $nomPartc);
+                        $telPartc = $rowTiempo['telefono'];
+                        $correoPartc = $rowTiempo['mail'];
+
+                        // $revisarTaller = $rowTiempo['cursos'];
+                        // $revisarMes = $rowTiempo['mes'];
+                        // $revisarAno = $rowTiempo['ano'];
+
+                        if ($rutPartc != "" || $rutPartc != null) {
+                            $tiempoRut = $date->format('H:i:s') . $rutPartc;
+                        } else {
+                            $tiempoRut = $date->format('H:i:s') . $remplazoNom;
+                        }
+
+                        // echo "Nombre: " . $nomPartc . "<br>";
+                        // echo "Rut: " . $rutPartc . "<br>";
+                        // echo "Taller: " . $revisarTaller . "<br>";
+                        // echo "Mes: " . $revisarMes . "<br>";
+                        // echo "Ano: " . $revisarAno . "<br>";
+
+                        $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+                        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+
+                        $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                        VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+
+                        if ($conexion->query($sqlCurso) === TRUE) {
+                            if ($conexion->query($sqlCursoTiempo) === TRUE) {
+                                $correcto = true;
+                            } else {
+                                $correcto = false;
+                            }
+                        } else {
+                            $correcto = false;
+                        }
+                    }
+                }
+
                 if (!empty($_GET['verMes']) && !empty($_GET['verAno']) && !empty($_GET['verCurso'])) {
                     $sacarCurso = $_GET['verCurso'];
                     $sacarMes = $_GET['verMes'];
                     $sacarAno = $_GET['verAno'];
+
+                    if ($mesTodo == "anadir") {
+                        masParct($date, $conexion, $sacarCurso, $sacarMes, $sacarAno);
+                    }
+
                     //$revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "'";
                     $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "' ORDER BY estudiante ASC";
                 } else if (!empty($_GET['buscarPartc'])) {
@@ -173,7 +290,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             <div class="animate__animated animate__backInLeft">
                 <?php
                 if (!empty($_GET['verCurso']) || !empty($_GET['buscarPartc'])) {
-                        include_once "ordenar/tablaDia.php";
+                    include_once "ordenar/tablaDia.php";
                 } else {
                 ?>
                     <br>

@@ -233,7 +233,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 $sacarAnoHoy = date("Y");
 
                 $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
-            WHERE cursos='" . $sacarCurso . "' AND mes='" . $sacarMesHoy . "' AND ano='" . $sacarAnoHoy . "' AND estudiante <> '" . $nomPartc . "'";
+                WHERE cursos='" . $sacarCurso . "' AND mes='" . $sacarMesHoy . "' AND ano='" . $sacarAnoHoy . "' AND estudiante <> '" . $nomPartc . "'";
 
                 $correcto = true;
 
