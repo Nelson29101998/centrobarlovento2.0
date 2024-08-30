@@ -244,14 +244,14 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
                 <br>
 
-                <a href="inhabitar.php">
+                <!-- <a href="inhabitar.php">
                     <button type="button" class="btn btn-primary">
                         <i class="fa-solid fa-eye-low-vision"></i> Ver inhabitar de los Talleres
                     </button>
                 </a>
 
                 <br>
-                ---
+                --- -->
             </div>
         </div>
 
