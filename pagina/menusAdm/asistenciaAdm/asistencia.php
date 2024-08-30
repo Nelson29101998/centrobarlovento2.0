@@ -271,7 +271,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
 
                         $revisarBienSiYaTiene = "SELECT * FROM asistencias 
-                        WHERE estudiante='" . $nomPartc . "' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes. "' AND ano='" . $sacarAnoHoy . "'";
+                        WHERE estudiante='" . $nomPartc . "' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes . "' AND ano='" . $sacarAnoHoy . "'";
 
                         $resultadosRevisar = mysqli_query($conexion, $revisarBienSiYaTiene);
 
@@ -326,12 +326,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "' ORDER BY estudiante ASC";
                     $resultadosBuscar = mysqli_query($conexion, $revisarSQL);
 
-                    if (mysqli_num_rows($resultadosBuscar) == 0) {
-                        masParct($date, $conexion, $sacarCurso, $sacarMes, $sacarAno);
-                    } else {
-                        if(isset($_SESSION["revisarMes"])){
-                            faltaParct($date, $conexion, $sacarCurso, $sacarMes, $_SESSION["revisarMes"], $sacarAno);
-                        }                        
+
+                    if (isset($_SESSION["revisarMes"])) {
+                        faltaParct($date, $conexion, $sacarCurso, $sacarMes, $_SESSION["revisarMes"], $sacarAno);
                     }
                 } else if (!empty($_GET['buscarPartc'])) {
                     $revisarSQL = "SELECT * FROM asistencias WHERE estudiante= '" . $_GET['buscarPartc'] . "'
