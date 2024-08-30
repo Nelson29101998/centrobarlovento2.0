@@ -1,48 +1,23 @@
 <?php
 function tiempoDatos()
 {
-    $month = date("n"); //Reemplazable por número del 1 a 12
+    $month = date("F"); //Reemplazable por número del 1 a 12
     $year = date("Y"); //Reemplazable por un año valido
-    switch (date('n', mktime(0, 0, 0, $month, 1, $year))) {
-        case 1:
-            $sacarMes = 'Enero';
-            break;
-        case 2:
-            $sacarMes = 'Febrero';
-            break;
-        case 3:
-            $sacarMes = 'Marzo';
-            break;
-        case 4:
-            $sacarMes = 'Abril';
-            break;
-        case 5:
-            $sacarMes = 'Mayo';
-            break;
-        case 6:
-            $sacarMes = 'Junio';
-            break;
-        case 7:
-            $sacarMes = 'Julio';
-            break;
-        case 8:
-            $sacarMes = 'Agosto';
-            break;
-        case 9:
-            $sacarMes = 'Septiembre';
-            break;
-        case 10:
-            $sacarMes = 'Octubre';
-            break;
-        case 11:
-            $sacarMes = 'Noviembre';
-            break;
-        case 12:
-            $sacarMes = 'Diciembre';
-            break;
-    };
-
-    return $sacarMes;
+    $sacarMes = array(
+        "January" => "Enero",
+        "February" => "Febrero",
+        "March" => "Marzo",
+        "April" => "Abril",
+        "May" => "Mayo",
+        "June" => "Junio",
+        "July" => "Julio",
+        "August" => "Agosto",
+        "September" => "Septiembre",
+        "October" => "Octubre",
+        "November" => "Noviembre",
+        "December" => "Diciembre"
+    );
+    return $sacarMes[$month];
 }
 
 function tiempoAdelanteMes($revMes)
