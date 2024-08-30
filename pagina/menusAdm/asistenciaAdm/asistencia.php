@@ -165,7 +165,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 <br>
                 <?php
 
-                function masParct($date, $conexion, $sacarCurso, $sacarMes, $sacarAno,)
+                function masParct($date, $conexion, $sacarCurso, $sacarMes, $sacarAno)
                 {
                     $sacarMesHoy = tiempoDatos();
                     $sacarAnoHoy = date("Y");
@@ -184,9 +184,110 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         $telPartc = $rowTiempo['telefono'];
                         $correoPartc = $rowTiempo['mail'];
 
-                        // $revisarTaller = $rowTiempo['cursos'];
-                        // $revisarMes = $rowTiempo['mes'];
-                        // $revisarAno = $rowTiempo['ano'];
+                        if ($rutPartc != "" || $rutPartc != null) {
+                            $tiempoRut = $date->format('H:i:s') . $rutPartc;
+                        } else {
+                            $tiempoRut = $date->format('H:i:s') . $remplazoNom;
+                        }
+
+                        if ($sacarMes == $sacarMesHoy && $sacarAno == $sacarAnoHoy) {
+                            $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+                        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+
+                            $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                        VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+
+                            if ($conexion->query($sqlCurso) === TRUE) {
+                                if ($conexion->query($sqlCursoTiempo) === TRUE) {
+                                    $correcto = true;
+                                } else {
+                                    $correcto = false;
+                                }
+                            } else {
+                                $correcto = false;
+                            }
+                        }
+                    }
+                }
+
+                function faltaParct($date, $conexion, $sacarCurso, $sacarMes, $revisarMes, $sacarAno)
+                {
+                    $sacarMesHoy = date("F");
+                    $sacarAnoHoy = date("Y");
+
+                    $meses = array(
+                        "January" => "Enero",
+                        "February" => "Febrero",
+                        "March" => "Marzo",
+                        "April" => "Abril",
+                        "May" => "Mayo",
+                        "June" => "Junio",
+                        "July" => "Julio",
+                        "August" => "Agosto",
+                        "September" => "Septiembre",
+                        "October" => "Octubre",
+                        "November" => "Noviembre",
+                        "December" => "Diciembre"
+                    );
+
+                    $mesesNum = array(
+                        "Enero" => 1,
+                        "Febrero" => 2,
+                        "Marzo" => 3,
+                        "Abril" => 4,
+                        "Mayo" => 5,
+                        "Junio" => 6,
+                        "Julio" => 7,
+                        "Agosto" => 8,
+                        "Septiembre" => 9,
+                        "Octubre" => 10,
+                        "Noviembre" => 11,
+                        "Diciembre" => 12
+                    );
+
+                    // $mes_actual_es = $meses[$sacarMesHoy];
+                    $sacarNumMes = $mesesNum[$revisarMes];
+                    // echo $sacarNumMes;
+                    $mesAnteriorNum = $sacarNumMes - 1;
+                    $mesAtras = array_search($mesAnteriorNum, $mesesNum);
+
+                    if ($mesAnteriorNum == 0) {
+                        $mesAnteriorNum = 12;
+                    }
+
+                    $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
+                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $sacarAnoHoy . "'";
+
+                    $correcto = true;
+
+                    $resultadosTiempoTodos = mysqli_query($conexion, $guardarTodosTiempoTaller);
+                    while ($rowTiempo = mysqli_fetch_array($resultadosTiempoTodos)) {
+                        // $tiempoRut = $rowTiempo['idTallerTiempo'];
+                        $rutPartc = $rowTiempo['rut'];
+                        $nomPartc = $rowTiempo['estudiante'];
+                        $remplazoNom = str_replace(" ", "", $nomPartc);
+                        $telPartc = $rowTiempo['telefono'];
+                        $correoPartc = $rowTiempo['mail'];
+
+
+                        $revisarBienSiYaTiene = "SELECT * FROM asistencias 
+                        WHERE estudiante='" . $nomPartc . "' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes. "' AND ano='" . $sacarAnoHoy . "'";
+
+                        $resultadosRevisar = mysqli_query($conexion, $revisarBienSiYaTiene);
+
+                        if (mysqli_num_rows($resultadosRevisar) == 1) {
+                            while ($row = mysqli_fetch_array($resultadosRevisar)) {
+                                $nombrePartc = $row['estudiante'];
+                                $cursoPartc = $row['cursos'];
+                                $mesPartc = $row['mes'];
+                                $anoPartc = $row['ano'];
+                            }
+                        } else {
+                            $nombrePartc = "";
+                            $cursoPartc = "";
+                            $mesPartc = "";
+                            $anoPartc = "";
+                        }
 
                         if ($rutPartc != "" || $rutPartc != null) {
                             $tiempoRut = $date->format('H:i:s') . $rutPartc;
@@ -194,26 +295,23 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             $tiempoRut = $date->format('H:i:s') . $remplazoNom;
                         }
 
-                        // echo "Nombre: " . $nomPartc . "<br>";
-                        // echo "Rut: " . $rutPartc . "<br>";
-                        // echo "Taller: " . $revisarTaller . "<br>";
-                        // echo "Mes: " . $revisarMes . "<br>";
-                        // echo "Ano: " . $revisarAno . "<br>";
+                        if ($nombrePartc != $nomPartc) {
+                            $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+                        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "',
+                        '" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
-                        $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
-                        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
-
-                        $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                            $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                         VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
-                        if ($conexion->query($sqlCurso) === TRUE) {
-                            if ($conexion->query($sqlCursoTiempo) === TRUE) {
-                                $correcto = true;
+                            if ($conexion->query($sqlCurso) === TRUE) {
+                                if ($conexion->query($sqlCursoTiempo) === TRUE) {
+                                    $correcto = true;
+                                } else {
+                                    $correcto = false;
+                                }
                             } else {
                                 $correcto = false;
                             }
-                        } else {
-                            $correcto = false;
                         }
                     }
                 }
@@ -221,6 +319,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 if (!empty($_GET['verMes']) && !empty($_GET['verAno']) && !empty($_GET['verCurso'])) {
                     $sacarCurso = $_GET['verCurso'];
                     $sacarMes = $_GET['verMes'];
+                    $_SESSION["revisarMes"] = $sacarMes;
                     $sacarAno = $_GET['verAno'];
 
                     //$revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "'";
@@ -229,6 +328,10 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
                     if (mysqli_num_rows($resultadosBuscar) == 0) {
                         masParct($date, $conexion, $sacarCurso, $sacarMes, $sacarAno);
+                    } else {
+                        if(isset($_SESSION["revisarMes"])){
+                            faltaParct($date, $conexion, $sacarCurso, $sacarMes, $_SESSION["revisarMes"], $sacarAno);
+                        }                        
                     }
                 } else if (!empty($_GET['buscarPartc'])) {
                     $revisarSQL = "SELECT * FROM asistencias WHERE estudiante= '" . $_GET['buscarPartc'] . "'
