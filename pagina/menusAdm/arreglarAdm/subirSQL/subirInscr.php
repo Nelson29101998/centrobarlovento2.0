@@ -61,6 +61,15 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     //* Tabla de Participante
     $nomPartc = $_POST["nombreParticipante"];
+    $revisarSiTiene1 = "SELECT * FROM asistencias where estudiante like '%" . $nomPartc . "%'";
+    $cargaAsist = mysqli_query($conexion, $revisarSiTiene1);
+
+    $revisarSiTiene2 = "SELECT * FROM inscripcion where nombrePartc like '%" . $nomPartc . "%'";
+    $cargaInscr = mysqli_query($conexion, $revisarSiTiene2);
+
+    $revisarSiTiene3 = "SELECT * FROM tallertiempo where estudiante like '%" . $nomPartc . "%'";
+    $cargaHorario = mysqli_query($conexion, $revisarSiTiene3);
+
     $remplazoNom = str_replace(" ", "", $nomPartc);
 
     $edadPartc = $_POST["edadPartc"];
@@ -110,10 +119,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         $sacarAno = $_POST['elegirAno'];
     }
 
-    if ($_POST['sacarTodoTaller'] == "siTodo" || isset($_POST['sacarTodoTaller'])) {
-        $checkTodo = $_POST['sacarTodoTaller'];
-    } else {
-        $checkTodo = "";
+    if (isset($_POST['sacarTodoTaller'])) {
+        //echo "hola";
+        if ($_POST['sacarTodoTaller'] == "siTodo") {
+            $checkTodo = $_POST['sacarTodoTaller'];
+        } else {
+            $checkTodo = "";
+        }
     }
 
     //* Tabla de los cursos
@@ -204,6 +216,11 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         <title>Subiendo de inscripción</title>
         <link rel="icon" type="image/png" href="../../../../image/icon_Barlovento.png" />
         <style>
+            h1,
+            h5 {
+                font-family: "Comic Sans", "Comic Sans MS", "Chalkboard", "ChalkboardSE-Regular", sans-serif;
+            }
+
             body {
                 background-color: #2689F9;
                 color: white;
@@ -300,79 +317,97 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         $funcionaBool5 = false;
         $funcionaBool6 = false;
 
-        if ($conexion->query($sql) === TRUE) {
-            if (!empty($sqlCurso1)) {
-                $sqlCurso1Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+        if ((mysqli_num_rows($cargaAsist) > 0) && (mysqli_num_rows($cargaInscr) > 0) && (mysqli_num_rows($cargaHorario) > 0)) {
+        ?>
+        <br>
+            <div class="text-center">
+                <h1 class='display-4'>
+                    <?php
+                    echo 'El nombre ('.$nomPartc.') de la "Ficha de participante" que ya existe.';
+                    ?>
+                </h1>
+                <br>
+                <a href='javascript:history.back()'>
+                    <button type='button' class='btn btn-primary'>
+                        <i class='fa-solid fa-reply'></i> Volver
+                    </button>
+                </a>
+            </div>
+        <?php
+        } else {
+            if ($conexion->query($sql) === TRUE) {
+                if (!empty($sqlCurso1)) {
+                    $sqlCurso1Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                 VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso1 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
-                $funcionaBool1 = masParct($checkTodo, $date, $conexion, $sacarCurso1, $sacarMes, $sacarAno, $nomPartc);
+                    $funcionaBool1 = masParct($checkTodo, $date, $conexion, $sacarCurso1, $sacarMes, $sacarAno, $nomPartc);
 
-                if ($conexion->query($sqlCurso1) === TRUE && $funcionaBool1) {
-                    if ($conexion->query($sqlCurso1Tiempo) === TRUE && $funcionaBool1) {
-                        $anotar = "Curso 1 esta ok";
-                        if (!empty($sqlCurso2)) {
-                            $funcionaBool2 = masParct($checkTodo, $date, $conexion, $sacarCurso2, $sacarMes, $sacarAno, $nomPartc);
+                    if ($conexion->query($sqlCurso1) === TRUE && $funcionaBool1) {
+                        if ($conexion->query($sqlCurso1Tiempo) === TRUE && $funcionaBool1) {
+                            $anotar = "Curso 1 esta ok";
+                            if (!empty($sqlCurso2)) {
+                                $funcionaBool2 = masParct($checkTodo, $date, $conexion, $sacarCurso2, $sacarMes, $sacarAno, $nomPartc);
 
-                            if ($conexion->query($sqlCurso2) === TRUE && $funcionaBool2) {
-                                $sqlCurso2Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                if ($conexion->query($sqlCurso2) === TRUE && $funcionaBool2) {
+                                    $sqlCurso2Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                 VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso2 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
-                                if ($conexion->query($sqlCurso2Tiempo) === TRUE && $funcionaBool2) {
-                                    $anotar = $anotar . ", Curso 2 esta ok";
+                                    if ($conexion->query($sqlCurso2Tiempo) === TRUE && $funcionaBool2) {
+                                        $anotar = $anotar . ", Curso 2 esta ok";
+                                    }
                                 }
                             }
-                        }
 
-                        if (!empty($sqlCurso3)) {
-                            $funcionaBool3 = masParct($checkTodo, $date, $conexion, $sacarCurso3, $sacarMes, $sacarAno, $nomPartc);
+                            if (!empty($sqlCurso3)) {
+                                $funcionaBool3 = masParct($checkTodo, $date, $conexion, $sacarCurso3, $sacarMes, $sacarAno, $nomPartc);
 
-                            if ($conexion->query($sqlCurso3) === TRUE && $funcionaBool3) {
-                                $sqlCurso3Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                if ($conexion->query($sqlCurso3) === TRUE && $funcionaBool3) {
+                                    $sqlCurso3Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                 VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso3 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
-                                if ($conexion->query($sqlCurso3Tiempo) === TRUE && $funcionaBool3) {
-                                    $anotar = $anotar . ", Curso 3 esta ok";
+                                    if ($conexion->query($sqlCurso3Tiempo) === TRUE && $funcionaBool3) {
+                                        $anotar = $anotar . ", Curso 3 esta ok";
+                                    }
                                 }
                             }
-                        }
 
-                        if (!empty($sqlCurso4)) {
-                            $funcionaBool4 = masParct($checkTodo, $date, $conexion, $sacarCurso4, $sacarMes, $sacarAno, $nomPartc);
+                            if (!empty($sqlCurso4)) {
+                                $funcionaBool4 = masParct($checkTodo, $date, $conexion, $sacarCurso4, $sacarMes, $sacarAno, $nomPartc);
 
-                            if ($conexion->query($sqlCurso4) === TRUE && $funcionaBool4) {
-                                $sqlCurso4Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                if ($conexion->query($sqlCurso4) === TRUE && $funcionaBool4) {
+                                    $sqlCurso4Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                 VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso4 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
-                                if ($conexion->query($sqlCurso4Tiempo) === TRUE && $funcionaBool4) {
-                                    $anotar = $anotar . ", Curso 4 esta ok";
+                                    if ($conexion->query($sqlCurso4Tiempo) === TRUE && $funcionaBool4) {
+                                        $anotar = $anotar . ", Curso 4 esta ok";
+                                    }
                                 }
                             }
-                        }
 
-                        if (!empty($sqlCurso5)) {
-                            $funcionaBool5 = masParct($checkTodo, $date, $conexion, $sacarCurso5, $sacarMes, $sacarAno, $nomPartc);
+                            if (!empty($sqlCurso5)) {
+                                $funcionaBool5 = masParct($checkTodo, $date, $conexion, $sacarCurso5, $sacarMes, $sacarAno, $nomPartc);
 
-                            if ($conexion->query($sqlCurso5) === TRUE && $funcionaBool5) {
-                                $sqlCurso5Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                if ($conexion->query($sqlCurso5) === TRUE && $funcionaBool5) {
+                                    $sqlCurso5Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                 VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso5 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
-                                if ($conexion->query($sqlCurso5Tiempo) === TRUE && $funcionaBool5) {
-                                    $anotar = $anotar . ", Curso 5 esta ok";
+                                    if ($conexion->query($sqlCurso5Tiempo) === TRUE && $funcionaBool5) {
+                                        $anotar = $anotar . ", Curso 5 esta ok";
+                                    }
                                 }
                             }
-                        }
-                        
-                        if (!empty($sqlCurso6)) {
-                            $funcionaBool6 = masParct($checkTodo, $date, $conexion, $sacarCurso6, $sacarMes, $sacarAno, $nomPartc);
 
-                            if ($conexion->query($sqlCurso6) === TRUE && $funcionaBool6) {
-                                $sqlCurso6Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                            if (!empty($sqlCurso6)) {
+                                $funcionaBool6 = masParct($checkTodo, $date, $conexion, $sacarCurso6, $sacarMes, $sacarAno, $nomPartc);
+
+                                if ($conexion->query($sqlCurso6) === TRUE && $funcionaBool6) {
+                                    $sqlCurso6Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                 VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso6 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
-                                if ($conexion->query($sqlCurso6Tiempo) === TRUE && $funcionaBool6) {
-                                    $anotar = $anotar . ", Curso 6 esta ok";
+                                    if ($conexion->query($sqlCurso6Tiempo) === TRUE && $funcionaBool6) {
+                                        $anotar = $anotar . ", Curso 6 esta ok";
+                                    }
                                 }
                             }
                         }
                     }
                 }
-            }
-            echo "<br>
+                echo "<br>
     <center>
     <img src='../../../../image/barloventosOk.jpg' class='img-fluid'>
     <h1 class='display-4'>Has guardo su exito. Muchas gracias por preferirnos.</h1>
@@ -382,8 +417,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     </button>
     </a>
     </center>";
-        } else {
-            echo "<br>
+            } else {
+                echo "<br>
     <center>
     <img src='../../../../image/barloventoMal.jpg' class='img-fluid'>
     <h1 class='display-4'>No pudo subir. Algo problema.</h1>
@@ -394,21 +429,21 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     </a>
     </center>
     <br>";
-            echo "Error: " . $sql . $conexion->error;
-        }
+                echo "Error: " . $sql . $conexion->error;
+            }
 
-        $conexion->close();
+            $conexion->close();
         ?>
-        <script>
-            console.log("<?php
-                            echo $anotar;
-                            ?>");
-        </script>
+            <script>
+                console.log("<?php
+                                echo $anotar;
+                                ?>");
+            </script>
     </body>
 
     </html>
 
 <?php
-
-}
+        }
+    }
 ?>
