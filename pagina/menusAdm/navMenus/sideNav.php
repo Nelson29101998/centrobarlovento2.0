@@ -259,14 +259,11 @@
         <?php
         }
 
-        ?>
-
-        <?php
-        // if ($_SERVER["REQUEST_URI"] == $sacar . "pagina/menusAdm/menu.php") {
-        //     echo '<img src="../../image/logo_barlovento.png" class="img-fluid" alt="logo_CentroBarlovento">';
-        // } else if ($_SERVER["REQUEST_URI"] !== $sacar . "pagina/menusAdm/menu.php") {
-        //     echo '<img src="../../../image/logo_barlovento.png" class="img-fluid" alt="logo_CentroBarlovento">';
-        // }
+        if ($_SERVER["REQUEST_URI"] == $sacar . "pagina/menusAdm/menu.php") {
+            echo '<img src="../../image/logo_barlovento.png" class="img-fluid" alt="logo_CentroBarlovento">';
+        } else if ($_SERVER["REQUEST_URI"] !== $sacar . "pagina/menusAdm/menu.php") {
+            echo '<img src="../../../image/logo_barlovento.png" class="img-fluid" alt="logo_CentroBarlovento">';
+        }
         ?>
         <span>© 2018 - <?php echo date("Y"); ?></span>
         <span><?php echo $verServer; ?></span>
