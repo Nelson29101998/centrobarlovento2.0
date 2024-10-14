@@ -224,7 +224,7 @@
     <div class="footer text-center">
 
         <?php
-        if ($_SESSION["usuario"] == "tinBarlovento") {
+        if ($_SESSION["usuario"] === "tinBarlovento") {
             $mbytes = number_format($tamano / (1024 * 1024), 2);
             $totalPorct = 0;
             $totalPorct = (100 * $mbytes) / $tamanoMax;
