@@ -224,7 +224,9 @@
     <div class="footer text-center">
 
         <?php
-        //echo include_once "vermemoria.php";
+        if ($_SESSION["usuario"] == "tinBarlovento") {
+            echo include_once "vermemoria.php";
+        }
         ?>
 
         <?php
