@@ -13,11 +13,11 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     $borrarAsist = $_GET['borrarEstudiante'];
 
-    $sqlAsistencia = "DELETE FROM asistencias WHERE estudiante = '" . $borrarAsist . "'";
+    $sqlAsistencia = "DELETE FROM asistencias WHERE estudiante like '%" . $borrarAsist . "%'";
 
-    $sqlInscripcion = "DELETE FROM inscripcion WHERE nombrePartc = '" . $borrarAsist . "'";
+    $sqlInscripcion = "DELETE FROM inscripcion WHERE nombrePartc like '%" . $borrarAsist . "%'";
 
-    $sqlHorario = "DELETE FROM tallertiempo WHERE estudiante = '" . $borrarAsist . "'";
+    $sqlHorario = "DELETE FROM tallertiempo WHERE estudiante like '%" . $borrarAsist . "%'";
 ?>
 
     <!DOCTYPE html>
@@ -61,12 +61,23 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     <body>
         <?php
+        $hazBorrar1 = false;
+        $hazBorrar2 = false;
+        $hazBorrar3 = false;
         if ($conexion->query($sqlAsistencia) === TRUE) {
-            if ($conexion->query($sqlInscripcion) === TRUE) {
-                if ($conexion->query($sqlHorario) === TRUE) {
-                    header("Location: ../listaEstudiante.php");
-                }
-            }
+            $hazBorrar1 = true;
+        }
+
+        if ($conexion->query($sqlInscripcion) === TRUE) {
+            $hazBorrar2 = true;
+        }
+
+        if ($conexion->query($sqlHorario) === TRUE) {
+            $hazBorrar3 = true;
+        }
+
+        if ($hazBorrar1 && $hazBorrar2 && $hazBorrar3) {
+            header("Location: ../listaEstudiante.php");
         } else {
             echo "<br>
     <center>

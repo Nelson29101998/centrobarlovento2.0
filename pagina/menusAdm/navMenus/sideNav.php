@@ -228,7 +228,6 @@
             $mbytes = number_format($tamano / (1024 * 1024), 2);
             $totalPorct = 0;
             $totalPorct = (100 * $mbytes) / $tamanoMax;
-
         ?>
             <div class="container-fluid">
                 Espacio de la base de datos
