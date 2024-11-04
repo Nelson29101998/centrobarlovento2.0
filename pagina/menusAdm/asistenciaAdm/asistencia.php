@@ -201,7 +201,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
 
                         $revisarBienSiYaTiene = "SELECT * FROM asistencias 
-                        WHERE estudiante='" . $nomPartc . "' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes . "' AND ano='" . $sacarAnoHoy . "'";
+                        WHERE estudiante like '%" . $nomPartc . "%' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes . "' AND ano='" . $sacarAnoHoy . "'";
 
                         $resultadosRevisar = mysqli_query($conexion, $revisarBienSiYaTiene);
 

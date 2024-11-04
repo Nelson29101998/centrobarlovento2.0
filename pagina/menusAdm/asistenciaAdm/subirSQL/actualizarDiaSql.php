@@ -47,7 +47,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             `21`=" . $lis21D . ", `22`=" . $lis22D . ", `23`=" . $lis23D . ", `24`=" . $lis24D . ", `25`=" . $lis25D . ",
             `26`=" . $lis26D . ", `27`=" . $lis27D . ", `28`=" . $lis28D . ", `29`=" . $lis29D . ", `30`=" . $lis30D . ",
             `31`=" . $lis31D . "
-            WHERE `idTallerTiempo`='" . $cajaIdTiempo . "' AND `estudiante`='" . $cajaEstdSinCambiar . "' AND `taller`='" . $cajaTaller . "' AND
+            WHERE `idTallerTiempo`='" . $cajaIdTiempo . "' AND `estudiante` LIKE '%" . $cajaEstdSinCambiar . "%' AND `taller`='" . $cajaTaller . "' AND
             `mes`='" . $cajaMes . "' AND `ano`='" . $cajaAno . "'");
 
             if ($conexion->query($guardaTodosSQL) === TRUE) {
@@ -66,7 +66,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         $cajaAno = $_GET['cajaAno'];
 
         $guardarTodosTiempoTaller = "SELECT * FROM tallertiempo 
-                    WHERE estudiante ='" . $cajaEstd . "' AND taller='" . $cajaTaller . "' AND mes='" . $cajaMes . "' AND ano='" . $cajaAno . "'";
+                    WHERE estudiante LIKE '%" . $cajaEstd . "%' AND taller='" . $cajaTaller . "' AND mes='" . $cajaMes . "' AND ano='" . $cajaAno . "'";
 
         $resultadosTiempo = mysqli_query($conexion, $guardarTodosTiempoTaller);
 
@@ -95,7 +95,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         `21`=" . $lis21D . ", `22`=" . $lis22D . ", `23`=" . $lis23D . ", `24`=" . $lis24D . ", `25`=" . $lis25D . ",
         `26`=" . $lis26D . ", `27`=" . $lis27D . ", `28`=" . $lis28D . ", `29`=" . $lis29D . ", `30`=" . $lis30D . ",
         `31`=" . $lis31D . "
-        WHERE `idTallerTiempo`='" . $cajaIdTiempo . "' AND `estudiante`='" . $cajaEstdSinCambiar . "' AND `taller`='" . $cajaTaller . "' AND
+        WHERE `idTallerTiempo`='" . $cajaIdTiempo . "' AND `estudiante` LIKE '%" . $cajaEstdSinCambiar . "%' AND `taller`='" . $cajaTaller . "' AND
         `mes`='" . $cajaMes . "' AND `ano`='" . $cajaAno . "'");
     }
 ?>

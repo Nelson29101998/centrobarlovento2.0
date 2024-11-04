@@ -75,7 +75,7 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
                                     " . $sacarEstudiante . "
                                     </th>";
                 $buscarTiempoTaller = "SELECT * FROM tallertiempo 
-                    WHERE idTallerTiempo='" . $idTiempo . "' AND estudiante='" . $sacarEstudiante . "' AND taller='" . $sacarCurso . "'";
+                    WHERE idTallerTiempo='" . $idTiempo . "' AND estudiante LIKE '%" . $sacarEstudiante . "%' AND taller='" . $sacarCurso . "'";
                 $resultadosTiempo = mysqli_query($conexion, $buscarTiempoTaller);
                 if (mysqli_num_rows($resultadosTiempo) > 0) {
                     while ($rowTiempo = mysqli_fetch_array($resultadosTiempo)) {
