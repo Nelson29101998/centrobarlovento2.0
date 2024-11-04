@@ -9,18 +9,16 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $rut = $_SESSION["rut"];
     $_SESSION["rut"] = $rut;
 
-    if (!empty($_GET["verEstudiante"])) {
-        $cargaAsist = str_replace("%20", " ", $_GET["verEstudiante"]);
+    
+        $cargaAsist = $_GET["verEstudiante"];
         // echo "hola", $cargaAsist;
-    } else {
-        $cargaAsist = 0;
-    }
+   
 
     include_once "../../../conectarSQL/conectar_SQL.php";
-    $datosSQL = "SELECT * FROM inscripcion WHERE nombrePartc='" . $cargaAsist . "'";
-    $datosSQL2 = "SELECT * FROM inscripcion WHERE nombrePartc='" . $cargaAsist . "'";
+    $datosSQL = "SELECT * FROM inscripcion WHERE nombrePartc like '%" . $cargaAsist . "%'";
+    $datosSQL2 = "SELECT * FROM inscripcion WHERE nombrePartc like'%" . $cargaAsist . "%'";
 
-    $revisarSQL = "SELECT * FROM asistencias WHERE estudiante='" . $cargaAsist . "'";
+    $revisarSQL = "SELECT * FROM asistencias WHERE estudiante like '%" . $cargaAsist . "%'";
     $resultados = mysqli_query($conexion, $revisarSQL);
 ?>
 
