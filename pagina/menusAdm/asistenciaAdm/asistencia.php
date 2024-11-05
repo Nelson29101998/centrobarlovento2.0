@@ -227,7 +227,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             $tiempoRut = $date->format('H:i:s') . $remplazoNom;
                         }
 
-                        if ($nombrePartc != $nomPartc) {
+                        if ($nombrePartc != $nomPartc && $nextMes != "") {
                             $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
                         VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "',
                         '" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
