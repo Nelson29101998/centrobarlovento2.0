@@ -198,6 +198,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         $remplazoNom = str_replace(" ", "", $nomPartc);
                         $telPartc = $rowTiempo['telefono'];
                         $correoPartc = $rowTiempo['mail'];
+                        $revisarNextMes = $rowTiempo['nextMes'];
 
 
                         $revisarBienSiYaTiene = "SELECT * FROM asistencias 
@@ -221,11 +222,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             // $anoPartc = "";
                         }
 
-                        if ($nextMes == "No") {
-                            $resultadosNext = true;
-                        } elseif ($nextMes == "") {
-                            $resultadosNext = false;
-                        }
+
 
                         if ($rutPartc != "" || $rutPartc != null) {
                             $tiempoRut = $date->format('H:i:s') . $rutPartc;
@@ -233,24 +230,22 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             $tiempoRut = $date->format('H:i:s') . $remplazoNom;
                         }
 
-                        if ($nombrePartc != $nomPartc) {
-                            if ($resultadosNext == false) {
-                                $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
-                                VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "',
-                                '" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                        if ($nombrePartc != $nomPartc && $nextMes == $revisarNextMes) {
+                            $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+                            VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "',
+                            '" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
-                                $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
-                                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                            $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                            VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
-                                if ($conexion->query($sqlCurso) === TRUE) {
-                                    if ($conexion->query($sqlCursoTiempo) === TRUE) {
-                                        $correcto = true;
-                                    } else {
-                                        $correcto = false;
-                                    }
+                            if ($conexion->query($sqlCurso) === TRUE) {
+                                if ($conexion->query($sqlCursoTiempo) === TRUE) {
+                                    $correcto = true;
                                 } else {
                                     $correcto = false;
                                 }
+                            } else {
+                                $correcto = false;
                             }
                         }
                     }
