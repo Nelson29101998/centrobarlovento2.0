@@ -16,6 +16,38 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $borrarNom=  $_GET['borrarNom'];
     $borrarTaller= $_GET['borrarTaller'];
 
+    $revisarMes = $_GET['borrarMes'];
+    $revisarAno = $_GET['borrarAno'];
+
+    $mesesNum = array(
+        "Enero" => 1,
+        "Febrero" => 2,
+        "Marzo" => 3,
+        "Abril" => 4,
+        "Mayo" => 5,
+        "Junio" => 6,
+        "Julio" => 7,
+        "Agosto" => 8,
+        "Septiembre" => 9,
+        "Octubre" => 10,
+        "Noviembre" => 11,
+        "Diciembre" => 12
+    );
+
+    // $mes_actual_es = $meses[$sacarMesHoy];
+    $sacarNumMes = $mesesNum[$revisarMes];
+    // echo $sacarNumMes;
+    $mesAnteriorNum = $sacarNumMes - 1;
+    $mesAtras = array_search($mesAnteriorNum, $mesesNum);
+
+    if ($mesAnteriorNum == 0) {
+        $mesAnteriorNum = 12;
+    }
+
+    $dice = "No";
+
+    $actualizarSql = "UPDATE asistencias SET nextMes = '" . $dice . "' WHERE estudiante LIKE '%" . $borrarNom . "%' AND cursos='" . $borrarTaller . "' AND mes = '" . $mesAtras . "' AND ano = '" . $revisarAno . "'";
+
     $sql = "DELETE FROM asistencias WHERE id = '" . $borrarId . "'";
 
     $sqlBorrarTiempo = "DELETE FROM tallertiempo 
@@ -63,7 +95,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     <body>
         <?php
-        if (($conexion->query($sql) === TRUE) && ($conexion->query($sqlBorrarTiempo) === TRUE)) {
+        if (($conexion->query($sql) === TRUE) && ($conexion->query($sqlBorrarTiempo) === TRUE) && ($conexion->query($actualizarSql) === TRUE)) {
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         } else {
             echo "<br>

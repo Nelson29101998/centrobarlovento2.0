@@ -271,18 +271,20 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             $sacarTaller = $row['cursos'];
                             $sacarTiempo = $row['idTallerTiempo'];
                             $sacarId = $row['id'];
+                            $mes = $row['mes'];
+                            $ano = $row['ano'];
                             echo "<tr class='form-group'>
                             <th>
                                 " . $sacarTaller . "
                             </th>
                             <th>
-                                " . $row['mes'] . "
+                                " . $mes . "
                             </th>
                             <th>
-                                " . $row['ano'] . "
+                                " . $ano . "
                             </th>";
                             echo "<th>
-                                    <a href='subirSQL/borrarEstdTaller.php?borrarTaller=" . $sacarTaller . "&borrarNom=" . $sacarNom . "&borrarId=" . $sacarId . "&borrarTiempoId=" . $sacarTiempo . "'>
+                                    <a href='subirSQL/borrarEstdTaller.php?borrarTaller=" . $sacarTaller . "&borrarNom=" . $sacarNom . "&borrarId=" . $sacarId . "&borrarTiempoId=" . $sacarTiempo . "&borrarMes=" . $mes . "&borrarAno=" . $ano . "'>
                                         <button type='button' class='btn btn-danger'>
                                             <i class='fas fa-trash-can'></i>
                                         </button>
