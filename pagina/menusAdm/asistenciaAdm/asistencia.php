@@ -208,12 +208,14 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         if (mysqli_num_rows($resultadosRevisar) == 1) {
                             while ($row = mysqli_fetch_array($resultadosRevisar)) {
                                 $nombrePartc = $row['estudiante'];
+                                $nextMes = $row['nextMes'];
                                 $cursoPartc = $row['cursos'];
                                 $mesPartc = $row['mes'];
                                 $anoPartc = $row['ano'];
                             }
                         } else {
                             $nombrePartc = "";
+                            $nextMes = "";
                             $cursoPartc = "";
                             $mesPartc = "";
                             $anoPartc = "";
@@ -225,7 +227,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             $tiempoRut = $date->format('H:i:s') . $remplazoNom;
                         }
 
-                        if ($nombrePartc != $nomPartc) {
+                        if ($nombrePartc != $nomPartc && $nextMes == "No") {
                             $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
                         VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "',
                         '" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
@@ -261,7 +263,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         masParct($date, $conexion, $sacarCurso, $sacarMes, $_SESSION["revisarMes"], $sacarAno);
                     }
                 } else if (!empty($_GET['buscarPartc'])) {
-                    $revisarSQL = "SELECT * FROM asistencias WHERE estudiante= '" . $_GET['buscarPartc'] . "'
+                    $revisarSQL = "SELECT * FROM asistencias WHERE estudiante LIKE '%" . $_GET['buscarPartc'] . "%'
                     ORDER BY FIELD(DATE_FORMAT(`mes`, '%M'),
                     'Enereo',
                     'Febrero',

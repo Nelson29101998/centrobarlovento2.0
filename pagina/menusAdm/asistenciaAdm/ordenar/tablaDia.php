@@ -173,7 +173,7 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
                                     </p>
 
                                     <p>
-                                        <a href='subirSQL/borrarAsist.php?borrarId=" . $row['id'] . "&borrarTiempoId=" . $row['idTallerTiempo'] . "&borrarNom=" . $row['estudiante'] . "&borrarTaller=" . $row['cursos'] . "'>                                   
+                                        <a href='subirSQL/borrarAsist.php?borrarId=" . $row['id'] . "&borrarTiempoId=" . $row['idTallerTiempo'] . "&borrarNom=" . $row['estudiante'] . "&borrarTaller=" . $row['cursos'] . "&borrarMes=" . $cajaMes . "&borrarAno=" . $cajaAno . "'>                                   
                                             <button type='button' id='borrarId' class='btn btn-danger'>
                                                 <i class='fas fa-trash-can fa-2xl'></i>
                                             </button>
