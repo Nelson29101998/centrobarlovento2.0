@@ -209,16 +209,22 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             while ($row = mysqli_fetch_array($resultadosRevisar)) {
                                 $nombrePartc = $row['estudiante'];
                                 $nextMes = $row['nextMes'];
-                                $cursoPartc = $row['cursos'];
-                                $mesPartc = $row['mes'];
-                                $anoPartc = $row['ano'];
+                                // $cursoPartc = $row['cursos'];
+                                // $mesPartc = $row['mes'];
+                                // $anoPartc = $row['ano'];
                             }
                         } else {
                             $nombrePartc = "";
                             $nextMes = "";
-                            $cursoPartc = "";
-                            $mesPartc = "";
-                            $anoPartc = "";
+                            // $cursoPartc = "";
+                            // $mesPartc = "";
+                            // $anoPartc = "";
+                        }
+
+                        if ($nextMes == "No") {
+                            $resultadosNext = true;
+                        } elseif ($nextMes == "") {
+                            $resultadosNext = false;
                         }
 
                         if ($rutPartc != "" || $rutPartc != null) {
@@ -228,21 +234,23 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         }
 
                         if ($nombrePartc != $nomPartc) {
-                            $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
-                        VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "',
-                        '" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                            if ($resultadosNext == false) {
+                                $sqlCurso = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+                                VALUES ('" . $tiempoRut . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso . "','" . $telPartc . "',
+                                '" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
-                            $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
-                        VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                                $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
-                            if ($conexion->query($sqlCurso) === TRUE) {
-                                if ($conexion->query($sqlCursoTiempo) === TRUE) {
-                                    $correcto = true;
+                                if ($conexion->query($sqlCurso) === TRUE) {
+                                    if ($conexion->query($sqlCursoTiempo) === TRUE) {
+                                        $correcto = true;
+                                    } else {
+                                        $correcto = false;
+                                    }
                                 } else {
                                     $correcto = false;
                                 }
-                            } else {
-                                $correcto = false;
                             }
                         }
                     }
