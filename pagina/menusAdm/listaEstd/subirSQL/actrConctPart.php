@@ -24,7 +24,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     $sqlAsistencia = "UPDATE inscripcion SET nomCont1='" . $sacarNom1 . "', nomCont2='" . $sacarNom2 . "',
     parentCont1='" . $sacarParent1 . "', parentCont2='" . $sacarParent2 . "', celCont1='" . $sacarCel1 . "',
-    celCont2='" . $sacarCel2 . "', mailCont1='" . $sacarMail1 . "', mailCont2='" . $sacarMail2 . "' WHERE nombrePartc='" . $idPartc . "'";
+    celCont2='" . $sacarCel2 . "', mailCont1='" . $sacarMail1 . "', mailCont2='" . $sacarMail2 . "' WHERE nombrePartc LIKE '%" . $idPartc . "%'";
 ?>
 
     <!DOCTYPE html>

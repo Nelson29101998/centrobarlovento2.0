@@ -17,7 +17,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $sacarPref = $_POST['cambiarPreferencia'];    
 
     $sqlAsistencia = "UPDATE inscripcion SET alergias='" . $sacarAlergia . "', preferencia='" . $sacarPref . "'
-    WHERE nombrePartc='" . $idPartc . "'";
+    WHERE nombrePartc LIKE '%" . $idPartc . "%'";
 ?>
 
     <!DOCTYPE html>

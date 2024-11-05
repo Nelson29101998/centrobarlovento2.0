@@ -19,7 +19,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $sacarOtro = $_POST['cambiarOtro'];
 
     $sqlAsistencia = "UPDATE inscripcion SET diagnostico='" . $sacarDiagn . "', medicoTratantes='" . $sacarMedic . "',
-    medicaHora='" . $sacarMedicHora . "', otroMedico='" . $sacarOtro . "' WHERE nombrePartc='" . $idPartc . "'";
+    medicaHora='" . $sacarMedicHora . "', otroMedico='" . $sacarOtro . "' WHERE nombrePartc LIKE '%" . $idPartc . "%'";
 ?>
 
     <!DOCTYPE html>

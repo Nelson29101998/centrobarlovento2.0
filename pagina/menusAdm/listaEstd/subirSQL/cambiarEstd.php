@@ -18,13 +18,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $cambiarMail = $_POST['editMail'];
 
     $sqlAsistencia = "UPDATE asistencias SET rut='".$cambiarRut."',estudiante='".$cambiarEstd."',
-    telefono='".$cambiarTel."',mail='".$cambiarMail."' WHERE estudiante='".$editarId."'";
+    telefono='".$cambiarTel."',mail='".$cambiarMail."' WHERE estudiante LIKE '%".$editarId."%'";
 
     $sqlEstudiante = "UPDATE estudiante SET rut='".$cambiarRut."',nombre='".$cambiarEstd."',
-    telefono='".$cambiarTel."',mail='".$cambiarMail."' WHERE nombre='".$editarId."'";
+    telefono='".$cambiarTel."',mail='".$cambiarMail."' WHERE nombre LIKE '%".$editarId."%'";
 
     $sqlInscripcion = "UPDATE inscripcion SET nombrePartc='".$cambiarEstd."',rutPartc='".$cambiarRut."',
-    celularPartc='".$cambiarTel."',mailPartc='".$cambiarMail."' WHERE nombrePartc='".$editarId."'";
+    celularPartc='".$cambiarTel."',mailPartc='".$cambiarMail."' WHERE nombrePartc LIKE '%".$editarId."%'";
 ?>
 
     <!DOCTYPE html>

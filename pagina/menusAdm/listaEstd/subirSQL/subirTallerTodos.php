@@ -76,7 +76,7 @@ function tiempoAdelanteMes($revMes)
 
 function tiempoDatosRevisar($conexion, $nomPartc, $sacarCurso, $sacarMes)
 {
-    $datosSQLRevisar = "SELECT * FROM asistencias WHERE estudiante='" . $nomPartc . "' AND cursos = '" . $sacarCurso . "'";
+    $datosSQLRevisar = "SELECT * FROM asistencias WHERE estudiante LIKE '%" . $nomPartc . "%' AND cursos = '" . $sacarCurso . "'";
 
     $carga = mysqli_query($conexion, $datosSQLRevisar);
     while ($row = mysqli_fetch_array($carga)) {

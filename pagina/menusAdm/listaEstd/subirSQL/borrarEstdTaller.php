@@ -19,7 +19,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     $sql = "DELETE FROM asistencias WHERE id = '" . $borrarId . "'";
 
     $sqlBorrarTiempo = "DELETE FROM tallertiempo 
-    WHERE idTallerTiempo = '" . $borrarTiempoId . "' AND estudiante ='".$borrarNom."' AND taller='".$borrarTaller."'";
+    WHERE idTallerTiempo = '" . $borrarTiempoId . "' AND estudiante LIKE '%".$borrarNom."%' AND taller='".$borrarTaller."'";
 ?>
 
     <!DOCTYPE html>

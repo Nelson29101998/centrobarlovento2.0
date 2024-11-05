@@ -18,7 +18,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     }
 
     include_once "../../../../conectarSQL/conectar_SQL.php";
-    $editarSQL = "SELECT * FROM inscripcion WHERE nombrePartc='" . $cargaId . "'";
+    $editarSQL = "SELECT * FROM inscripcion WHERE nombrePartc LIKE '%" . $cargaId . "%'";
 ?>
     <!DOCTYPE html>
     <html lang="es">

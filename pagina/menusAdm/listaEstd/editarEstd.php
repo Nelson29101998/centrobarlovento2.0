@@ -16,7 +16,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     }
 
     include_once "../../../conectarSQL/conectar_SQL.php";
-    $editarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias WHERE estudiante='" . $cargaId . "'";
+    $editarSQL = "SELECT DISTINCT rut, estudiante, telefono, mail FROM asistencias WHERE estudiante LIKE '%" . $cargaId . "%'";
 ?>
 
     <!DOCTYPE html>
