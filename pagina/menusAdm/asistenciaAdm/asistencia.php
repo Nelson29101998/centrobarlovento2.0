@@ -144,6 +144,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 {
                     $sacarMesHoy = date("F");
                     $sacarAnoHoy = date("Y");
+                    $anoAnteriorNum = $sacarAnoHoy - 1;
 
                     $meses = array(
                         "January" => "Enero",
@@ -177,16 +178,25 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
                     // $mes_actual_es = $meses[$sacarMesHoy];
                     $sacarNumMes = $mesesNum[$revisarMes];
+
                     // echo $sacarNumMes;
                     $mesAnteriorNum = $sacarNumMes - 1;
-                    $mesAtras = array_search($mesAnteriorNum, $mesesNum);
-
                     if ($mesAnteriorNum == 0) {
                         $mesAnteriorNum = 12;
                     }
 
-                    $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
+                    $mesAtras = array_search($mesAnteriorNum, $mesesNum);
+                    $mesAhora = array_search($sacarNumMes, $mesesNum);
+                    //  echo "Ver: ", $mesAtras, " ", $anoAnteriorNum, "<br>";
+
+                    if ($mesAhora == "Enero") {
+                        // echo "ok";
+                        $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
+                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $anoAnteriorNum . "'";
+                    } else {
+                        $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
                     WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $sacarAnoHoy . "'";
+                    }
 
                     $correcto = true;
 
@@ -238,12 +248,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                             VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
-                            if ($conexion->query($sqlCurso) === TRUE) {
-                                if ($conexion->query($sqlCursoTiempo) === TRUE) {
-                                    $correcto = true;
-                                } else {
-                                    $correcto = false;
-                                }
+                            if (($conexion->query($sqlCurso) === TRUE) && ($conexion->query($sqlCursoTiempo) === TRUE)) {
+                                $correcto = true;
                             } else {
                                 $correcto = false;
                             }
@@ -260,7 +266,6 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     //$revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "'";
                     $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "' ORDER BY estudiante ASC";
                     $resultadosBuscar = mysqli_query($conexion, $revisarSQL);
-
 
                     if (isset($_SESSION["revisarMes"])) {
                         masParct($date, $conexion, $sacarCurso, $sacarMes, $_SESSION["revisarMes"], $sacarAno);
