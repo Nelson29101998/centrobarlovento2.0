@@ -179,7 +179,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     // $mes_actual_es = $meses[$sacarMesHoy];
                     $sacarNumMes = $mesesNum[$revisarMes];
 
-                    // echo $sacarNumMes;
+                    //echo $sacarNumMes;
                     $mesAnteriorNum = $sacarNumMes - 1;
                     if ($mesAnteriorNum == 0) {
                         $mesAnteriorNum = 12;
@@ -187,16 +187,19 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
                     $mesAtras = array_search($mesAnteriorNum, $mesesNum);
                     $mesAhora = array_search($sacarNumMes, $mesesNum);
-                     // echo "Ver: ", $mesAtras, " ", $anoAnteriorNum, "<br>";
+                    // echo "Ver: ", $mesAtras, " ", $anoAnteriorNum, "<br>";
 
-                     if ($mesAhora == "Enero") {
-                        
-                     }else{
 
-                     }
+                    if ($sacarMes == "Enero") {
+                        $mes = $mesAtras;
+                        $ano = $sacarAnoHoy - 1;
+                    } else {
+                        $mes = $mesAtras;
+                        $ano = $sacarAnoHoy;
+                    }
 
-                     $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
-                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $sacarAnoHoy . "'";
+                    $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
+                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mes . "' AND ano='" . $ano . "'";
 
                     $correcto = true;
 
