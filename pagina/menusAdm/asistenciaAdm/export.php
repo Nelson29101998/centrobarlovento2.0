@@ -24,7 +24,7 @@ $filename = "Asistencia" . date('Y-m-d') . ".xls";
 $excelData[] = array('Nombre', 'Mes', 'Ano');
 
 for ($i = 1; $i <= 31; $i++) {
-    array_push($excelData[0], "Dia " .$i);
+    array_push($excelData[0], "Dia " . $i);
 }
 
 $query = $conexion->query($buscarTaller);
@@ -37,20 +37,20 @@ if ($query->num_rows > 0) {
         );
 
         for ($i = 1; $i <= 31; $i++) {
-            if($row[$i] == 1){
+            if ($row[$i] == 1) {
                 $lineData[] = "Asistencia";
-            }else if($row[$i] == 0 && $row[$i] != null){
+            } else if ($row[$i] == 0 && $row[$i] != null) {
                 $lineData[] = "Inasistencia";
-            }elseif($row[$i] == null){
+            } elseif ($row[$i] == null) {
                 $lineData[] = "-";
             }
         }
 
-        $excelData[] = $lineData; 
+        $excelData[] = $lineData;
     }
 }
 
-$xlsx = CodexWorld\PhpXlsxGenerator::fromArray( $excelData ); 
-$xlsx->downloadAs($fileName); 
- 
-exit; 
+$xlsx = CodexWorld\PhpXlsxGenerator::fromArray($excelData);
+$xlsx->downloadAs($fileName);
+
+exit;
