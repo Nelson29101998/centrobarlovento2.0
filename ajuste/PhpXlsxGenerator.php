@@ -794,7 +794,7 @@ class PhpXlsxGenerator
                                     $v = strip_tags($v);
                                 }
                             } // tags
-                            $vl = mb_strlen($v);
+                            $vl = strlen($v);
                             if ($N) {
                                 $cv = ltrim($v, '+');
                             } elseif ($v === '0' || preg_match('/^[-+]?[1-9]\d{0,14}$/', $v)) { // Integer as General
