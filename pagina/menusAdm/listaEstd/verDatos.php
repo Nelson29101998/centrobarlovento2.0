@@ -422,7 +422,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             <label for="elegirAno" class="text-white">
                                 <i class="fa-regular fa-calendar"></i> Elige un Año:
                             </label>
-                            <select name="elegirAno" id="elegirAno" class="form-select">
+                            <select name="elegirAno" id="elegirAno" class="form-select" required>
                                 <?php
                                 include_once "selecciones/elegirAno.php";
                                 ?>
