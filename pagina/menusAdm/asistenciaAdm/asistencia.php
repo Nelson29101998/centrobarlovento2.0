@@ -187,15 +187,16 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
                     $mesAtras = array_search($mesAnteriorNum, $mesesNum);
                     $mesAhora = array_search($sacarNumMes, $mesesNum);
-                    //  echo "Ver: ", $mesAtras, " ", $anoAnteriorNum, "<br>";
+                      echo "Ver: ", $mesAtras, " ", $anoAnteriorNum, "<br>";
 
                     if ($mesAhora == "Enero") {
                         // echo "ok";
                         $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
                     WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $anoAnteriorNum . "'";
                     } else {
+                        echo "Ver: ", $mesAtras, " ", $sacarAnoHoy, "<br>";
                         $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
-                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $sacarAnoHoy . "'";
+                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $sacarAno . "'";
                     }
 
                     $correcto = true;
@@ -210,10 +211,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         $correoPartc = $rowTiempo['mail'];
                         $revisarNextMes = $rowTiempo['nextMes'];
 
-
                         $revisarBienSiYaTiene = "SELECT * FROM asistencias 
                         WHERE estudiante like '%" . $nomPartc . "%' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes . "' AND ano='" . $sacarAnoHoy . "'";
-
+                        
                         $resultadosRevisar = mysqli_query($conexion, $revisarBienSiYaTiene);
 
                         if (mysqli_num_rows($resultadosRevisar) == 1) {
