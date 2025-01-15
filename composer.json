@@ -1,1 +1,10 @@
-{}
+{
+    "require": {
+      "php": "^7.4 || ^8.0",
+      "ext-mbstring": "*",
+      "ext-ctype": "*",
+      "ext-gd": "*",
+      "ext-json": "*"
+    }
+  }
+  
