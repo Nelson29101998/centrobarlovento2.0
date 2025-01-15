@@ -3,22 +3,26 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 include_once "../../../conectarSQL/conectar_SQL.php";
+
 require_once '../../../ajuste/PhpXlsxGenerator.php';
 
 $taller = $_GET['verTaller'];
+
 $sacarMes = $_GET['verMes'];
+
 $sacarAno = $_GET['verAno'];
 
 $buscarTaller = "SELECT * FROM tallertiempo 
                     WHERE taller='" . $taller . "' AND mes='" . $sacarMes . "' AND ano='" . $sacarAno . "'";
 
-function filterData(&$str) {
+function filterData(&$str)
+{
     $str = preg_replace("/\t/", "\\t", $str);
     $str = preg_replace("/\r?\n/", "\\n", $str);
     if (strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
 }
 
-$filename = "Asistencia_" . date('Y-m-d') . ".xls";
+$filename = "Asistencia" . date('Y-m-d') . ".xls";
 
 $excelData[] = array('Nombre', 'Mes', 'Ano');
 
@@ -50,6 +54,6 @@ if ($query->num_rows > 0) {
 }
 
 $xlsx = CodexWorld\PhpXlsxGenerator::fromArray($excelData);
-$xlsx->downloadAs($filename);
+$xlsx->downloadAs($fileName);
 
 exit;
