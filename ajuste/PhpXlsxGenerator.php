@@ -555,7 +555,10 @@ class PhpXlsxGenerator
         $dirSignature = "\x50\x4b\x01\x02"; // central dir header signature
 
         $e = [];
-        $e['uncsize'] = mb_strlen($data, '8bit');
+        //$e['uncsize'] = mb_strlen($data, '8bit');
+
+        $e['uncsize'] = strlen($data);
+
         // if data to compress is too small, just store it
         if ($e['uncsize'] < 256) {
             $e['comsize'] = $e['uncsize'];
