@@ -1,56 +1,48 @@
 <?php
+require '../../../vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 include_once "../../../conectarSQL/conectar_SQL.php";
 
-require_once '../../../ajuste/PhpXlsxGenerator.php';
-
 $taller = $_GET['verTaller'];
-
 $sacarMes = $_GET['verMes'];
-
 $sacarAno = $_GET['verAno'];
 
 $buscarTaller = "SELECT * FROM tallertiempo 
-                    WHERE taller='" . $taller . "' AND mes='" . $sacarMes . "' AND ano='" . $sacarAno . "'";
+                 WHERE taller='" . $taller . "' AND mes='" . $sacarMes . "' AND ano='" . $sacarAno . "'";
 
-function filterData(&$str)
-{
-    $str = preg_replace("/\t/", "\\t", $str);
-    $str = preg_replace("/\r?\n/", "\\n", $str);
-    if (strstr($str, '"')) $str = '"' . str_replace('"', '""', $str) . '"';
-}
+$resultado = mysqli_query($conexion, $buscarTaller) or die(mysqli_error($conexion));
 
-$filename = "Asistencia" . date('Y-m-d') . ".xls";
+// Crear una nueva hoja de cálculo
+$spreadsheet = new Spreadsheet();
+$sheet = $spreadsheet->getActiveSheet();
 
-$excelData[] = array('Nombre', 'Mes', 'Ano');
+// Escribir los encabezados
+$sheet->setCellValue('A1', 'Nombre');
+$sheet->setCellValue('B1', 'Mes');
+$sheet->setCellValue('C1', 'Año');
 
-for ($i = 1; $i <= 31; $i++) {
-    array_push($excelData[0], "Dia " .$i);
-}
 
-$query = $conexion->query($buscarTaller);
-if ($query->num_rows > 0) {
-    while ($row = $query->fetch_assoc()) {
-        $lineData = array(
-            $row['estudiante'],
-            $row['mes'],
-            $row['ano']
-        );
-
-        for ($i = 1; $i <= 31; $i++) {
-            if($row[$i] == 1){
-                $lineData[] = "Asistencia";
-            }else if($row[$i] == 0 && $row[$i] != null){
-                $lineData[] = "Inasistencia";
-            }elseif($row[$i] == null){
-                $lineData[] = "-";
-            }
-        }
-
-        $excelData[] = $lineData; 
+// Escribir los datos
+$rowNumber = 2;
+if (mysqli_num_rows($resultado) > 0) {
+    while ($row = mysqli_fetch_array($resultado)) {
+        $sheet->setCellValue('A' . $rowNumber, $row['estudiante']);
+        $sheet->setCellValue('B' . $rowNumber, $row['mes']);
+        $sheet->setCellValue('C' . $rowNumber, $row['ano']);
+        
+        $rowNumber++;
     }
 }
 
-$xlsx = CodexWorld\PhpXlsxGenerator::fromArray( $excelData ); 
-$xlsx->downloadAs($fileName); 
- 
-exit; 
+// Guardar el archivo Excel
+$writer = new Xlsx($spreadsheet);
+$filename = 'Asistencia_' . $taller . '_' . $sacarMes . '_' . $sacarAno . '.xlsx';
+$writer->save($filename);
+
+// Cerrar la conexión a la base de datos
+mysqli_close($conexion);
+
+// Redirigir al archivo Excel para descarga
+header('Location: ' . $filename);
