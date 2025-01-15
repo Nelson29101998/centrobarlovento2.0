@@ -568,7 +568,7 @@ class PhpXlsxGenerator
         } else { // otherwise, compress it
             $zdata = gzcompress($data);
             $zdata = substr(substr($zdata, 0, -4), 2); // fix crc bug (thanks to Eric Mueller)
-            $e['comsize'] = mb_strlen($zdata, '8bit');
+            $e['comsize'] = strlen($zdata);
             $e['vneeded'] = 10;
             $e['cmethod'] = 8;
         }
@@ -596,7 +596,7 @@ class PhpXlsxGenerator
         fwrite($fh, pack('V', $e['crc_32']));  // crc-32
         fwrite($fh, pack('I', $e['comsize'])); // compressed_size
         fwrite($fh, pack('I', $e['uncsize'])); // uncompressed_size
-        fwrite($fh, pack('s', mb_strlen($cfilename, '8bit')));   // file_name_length
+        fwrite($fh, pack('s', strlen($cfilename)));   // file_name_length
         fwrite($fh, pack('s', 0));  // extra_field_length
         fwrite($fh, $cfilename);    // file_name
         // ignoring extra_field
@@ -616,9 +616,9 @@ class PhpXlsxGenerator
         $cdrec .= pack('V', $e['crc_32']);                      // crc32
         $cdrec .= pack('V', $e['comsize']);                     // compressed filesize
         $cdrec .= pack('V', $e['uncsize']);                     // uncompressed filesize
-        $cdrec .= pack('v', mb_strlen($cfilename, '8bit'));     // file name length
+        $cdrec .= pack('v', strlen($cfilename));     // file name length
         $cdrec .= pack('v', 0);                                 // extra field length
-        $cdrec .= pack('v', mb_strlen($e['comments'], '8bit')); // file comment length
+        $cdrec .= pack('v', strlen($e['comments'])); // file comment length
         $cdrec .= pack('v', 0);                                 // disk number start
         $cdrec .= pack('v', 0);                                 // internal file attributes
         $cdrec .= pack('V', $e['external_attributes']);         // internal file attributes
