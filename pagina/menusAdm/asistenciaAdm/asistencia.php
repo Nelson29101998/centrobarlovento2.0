@@ -193,9 +193,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
 
                     if ($sacarMes == "Enero") {
-                        echo "correo";
+                        //echo "correo";
                         $sacarAno = $sacarAno - 1;
-                        echo $sacarAno;
+                        //echo $sacarAno;
                     }
 
                     $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
