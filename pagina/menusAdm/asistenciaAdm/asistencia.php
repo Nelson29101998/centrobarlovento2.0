@@ -144,7 +144,6 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 {
                     $sacarMesHoy = date("F");
                     $sacarAnoHoy = date("Y");
-                    $anoAnteriorNum = $sacarAnoHoy - 1;
 
                     $meses = array(
                         "January" => "Enero",
@@ -178,28 +177,16 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
                     // $mes_actual_es = $meses[$sacarMesHoy];
                     $sacarNumMes = $mesesNum[$revisarMes];
-
-                    //echo $sacarNumMes;
+                    // echo $sacarNumMes;
                     $mesAnteriorNum = $sacarNumMes - 1;
+                    $mesAtras = array_search($mesAnteriorNum, $mesesNum);
+
                     if ($mesAnteriorNum == 0) {
                         $mesAnteriorNum = 12;
                     }
 
-                    $mesAtras = array_search($mesAnteriorNum, $mesesNum);
-                    $mesAhora = array_search($sacarNumMes, $mesesNum);
-                    // echo "Ver: ", $mesAtras, " ", $anoAnteriorNum, "<br>";
-
-
-                    if ($sacarMes == "Enero") {
-                        $mes = $mesAtras;
-                        $ano = $sacarAnoHoy - 1;
-                    } else {
-                        $mes = $mesAtras;
-                        $ano = $sacarAnoHoy;
-                    }
-
                     $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
-                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mes . "' AND ano='" . $ano . "'";
+                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $sacarAnoHoy . "'";
 
                     $correcto = true;
 
@@ -213,8 +200,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         $correoPartc = $rowTiempo['mail'];
                         $revisarNextMes = $rowTiempo['nextMes'];
 
+
                         $revisarBienSiYaTiene = "SELECT * FROM asistencias 
-                        WHERE estudiante like '%" . $nomPartc . "%' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes . "' AND ano='" . $sacarAno . "'";
+                        WHERE estudiante like '%" . $nomPartc . "%' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes . "' AND ano='" . $sacarAnoHoy . "'";
 
                         $resultadosRevisar = mysqli_query($conexion, $revisarBienSiYaTiene);
 
@@ -250,8 +238,12 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                             $sqlCursoTiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                             VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
-                            if (($conexion->query($sqlCurso) === TRUE) && ($conexion->query($sqlCursoTiempo) === TRUE)) {
-                                $correcto = true;
+                            if ($conexion->query($sqlCurso) === TRUE) {
+                                if ($conexion->query($sqlCursoTiempo) === TRUE) {
+                                    $correcto = true;
+                                } else {
+                                    $correcto = false;
+                                }
                             } else {
                                 $correcto = false;
                             }
@@ -268,6 +260,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     //$revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "'";
                     $revisarSQL = "SELECT * FROM asistencias WHERE cursos = '" . $_GET['verCurso'] . "' AND mes = '" . $_GET['verMes'] . "' AND ano = '" . $_GET['verAno'] . "' ORDER BY estudiante ASC";
                     $resultadosBuscar = mysqli_query($conexion, $revisarSQL);
+
 
                     if (isset($_SESSION["revisarMes"])) {
                         masParct($date, $conexion, $sacarCurso, $sacarMes, $_SESSION["revisarMes"], $sacarAno);
