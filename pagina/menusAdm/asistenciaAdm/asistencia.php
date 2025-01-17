@@ -64,6 +64,12 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             th {
                 font-size: 12px;
             }
+
+            .fixed-table {
+                position: relative;
+                margin-top: auto;
+                top: -120px;
+            }
         </style>
     </head>
 
@@ -185,8 +191,15 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                         $mesAnteriorNum = 12;
                     }
 
+
+                    if ($sacarMes == "Enero") {
+                        echo "correo";
+                        $sacarAno = $sacarAno - 1;
+                        echo $sacarAno;
+                    }
+
                     $guardarTodosTiempoTaller = "SELECT * FROM asistencias 
-                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $sacarAnoHoy . "'";
+                    WHERE cursos='" . $sacarCurso . "' AND mes='" . $mesAtras . "' AND ano='" . $sacarAno . "'";
 
                     $correcto = true;
 
@@ -202,7 +215,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
 
                         $revisarBienSiYaTiene = "SELECT * FROM asistencias 
-                        WHERE estudiante like '%" . $nomPartc . "%' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes . "' AND ano='" . $sacarAnoHoy . "'";
+                        WHERE estudiante like '%" . $nomPartc . "%' AND cursos='" . $sacarCurso . "' AND mes='" . $revisarMes . "' AND ano='" . $sacarAno . "'";
 
                         $resultadosRevisar = mysqli_query($conexion, $revisarBienSiYaTiene);
 
@@ -314,20 +327,22 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 </table>
             </form>
             <div class="animate__animated animate__backInLeft">
-                <?php
-                if (!empty($_GET['verCurso']) || !empty($_GET['buscarPartc'])) {
-                    include_once "ordenar/tablaDia.php";
-                } else {
-                ?>
-                    <br>
-                    <div style="text-align:center;">
-                        <h4>
-                            Se requiere elegir de taller, Mes, Año o Buscar el Participante de asistencia.
-                        </h4>
-                    </div>
-                <?php
-                }
-                ?>
+                <div class="fixed-table">
+                    <?php
+                    if (!empty($_GET['verCurso']) || !empty($_GET['buscarPartc'])) {
+                        include_once "ordenar/tablaDia.php";
+                    } else {
+                    ?>
+                </div>
+                <br>
+                <div style="text-align:center;">
+                    <h4>
+                        Se requiere elegir de taller, Mes, Año o Buscar el Participante de asistencia.
+                    </h4>
+                </div>
+            <?php
+                    }
+            ?>
             </div>
         </div>
         <br>
