@@ -218,6 +218,7 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
                             Guardar Todos
                         </button>
                     </div>
+                    <br>
                 </th>
             </tr>
         <?php
