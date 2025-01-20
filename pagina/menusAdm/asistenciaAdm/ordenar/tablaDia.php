@@ -197,8 +197,9 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
             <?php
             }
             ?>
-            <tr style='background-color: #F71806;'>
+            <tr>
                 <th colspan="35">
+                    <br>
                     <div style="text-align:center;">
                         <?php
                         echo "<a href='exportExcelAsist.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
