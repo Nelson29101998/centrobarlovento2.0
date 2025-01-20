@@ -2,7 +2,8 @@
 echo "<form id='formDia' name='formDia' onsubmit='return true' method='post'
 action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" . $sacarMes . "&cajaAno=" . $sacarAno . "'>";
 ?>
-<table id="tablaBarlovento">
+
+<table id="tablaBarlovento" class="fixed-table">
     <thead>
         <tr style="background-color: #F71806;">
             <th style="border: 1px solid black;">Participante</th>
@@ -191,8 +192,34 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
                     </tr>
                     <br>";
                 ?>
-        <?php
+
+
+            <?php
             }
+            ?>
+            <tr style='background-color: #F71806;'>
+                <th colspan="35">
+                    <div style="text-align:center;">
+                        <?php
+                        echo "<a href='exportExcelAsist.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
+                                <button type='button' class='btn btn-success'>
+                                    <i class='fa-solid fa-file-csv fa-2xl'></i></i>
+                                </button>
+                            </a>
+        
+                            <a href='pdfTaller.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
+                                <button type='button' id='pdfExp' class='btn btn-info'>
+                                    <i class='fa-solid fa-file-pdf fa-2xl'></i>
+                                </button>
+                            </a>";
+                        ?>
+                        <button type='submit' form="formDia" name='guardar' value='guardarTodos' class='btn btn-success'>
+                            Guardar Todos
+                        </button>
+                    </div>
+                </th>
+            </tr>
+        <?php
         } else {
             echo "<tr style='background-color: #F71806;'>
                             <th class='text-center' colspan='36'>
@@ -203,26 +230,7 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
         mysqli_free_result($resultados);
         ?>
     </tbody>
+    <br>
 </table>
 
-<br>
-
-<div style="text-align:center;">
-    <?php
-    echo "<a href='exportExcelAsist.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
-            <button type='button' class='btn btn-success'>
-                <i class='fa-solid fa-file-csv fa-2xl'></i></i>
-            </button>
-        </a>
-        
-        <a href='pdfTaller.php?verTaller=" . $sacarCurso . "&verMes=" . $sacarMes . "&verAno=" . $sacarAno . "' target='_blank'>
-            <button type='button' id='pdfExp' class='btn btn-info'>
-                <i class='fa-solid fa-file-pdf fa-2xl'></i>
-            </button>
-        </a>";
-    ?>
-    <button type='submit' form="formDia" name='guardar' value='guardarTodos' class='btn btn-success'>
-        Guardar Todos
-    </button>
-</div>
 </form>

@@ -66,9 +66,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             }
 
             .fixed-table {
-                position: relative;
-                margin-top: auto;
-                top: -120px;
+                position: absolute;
+                /* o fixed */
+                top: 0;
+                left: 0;
+                right: 0;
+                /* Si solo quieres moverlo horizontalmente, puedes omitir `left` y `right`. */
+               /* border: 3px rgb(0, 0, 0) solid; */
             }
         </style>
     </head>
@@ -327,22 +331,20 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 </table>
             </form>
             <div class="animate__animated animate__backInLeft">
-                <div class="fixed-table">
-                    <?php
-                    if (!empty($_GET['verCurso']) || !empty($_GET['buscarPartc'])) {
-                        include_once "ordenar/tablaDia.php";
-                    } else {
-                    ?>
-                </div>
-                <br>
-                <div style="text-align:center;">
-                    <h4>
-                        Se requiere elegir de taller, Mes, Año o Buscar el Participante de asistencia.
-                    </h4>
-                </div>
-            <?php
-                    }
-            ?>
+                <?php
+                if (!empty($_GET['verCurso']) || !empty($_GET['buscarPartc'])) {
+                    include_once "ordenar/tablaDia.php";
+                } else {
+                ?>
+                    <br>
+                    <div style="text-align:center;">
+                        <h4>
+                            Se requiere elegir de taller, Mes, Año o Buscar el Participante de asistencia.
+                        </h4>
+                    </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
         <br>
