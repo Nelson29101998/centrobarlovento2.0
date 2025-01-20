@@ -223,10 +223,10 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
         <?php
         } else {
             echo "<tr style='background-color: #F71806;'>
-                            <th class='text-center' colspan='36'>
+                        <th class='text-center' colspan='36'>
                             <i class='fas fa-folder-open '></i> No hay lista de estudiande
-                            </th>
-                            </tr>";
+                        </th>
+                    </tr>";
         }
         mysqli_free_result($resultados);
         ?>
