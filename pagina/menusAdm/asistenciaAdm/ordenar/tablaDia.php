@@ -186,7 +186,7 @@ action='subirSQL/actualizarDiaSql.php?cajaTaller=" . $sacarCurso . "&cajaMes=" .
                 $totalAsistencias = $numAsistencia + $numInasistencia;
                 echo "</tr>
                     <tr style='background-color: #F71806;' class='despues'>
-                        <th class='text-center' colspan='38'>                    
+                        <th class='text-center' colspan='38'>
                             Asistencia: " . $numAsistencia . " / Inasistencia: " . $numInasistencia . " / Total: " . $totalAsistencias . "                    
                         </th>
                     </tr>
