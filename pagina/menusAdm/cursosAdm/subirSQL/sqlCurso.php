@@ -35,7 +35,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         $subirCurso = "INSERT INTO cursos (nombreCurso, codigo, fecha, horarioDesde, horarioHasta, profesor, habilitar) VALUE
         ('" . $nomCurso . "', '" . $codeCurso . "', '" . $fechaCurso . "', '" . $horaDesde . "', '" . $horaHasta . "', '" . $profesorCurso . "', '" . $habilitarCurso . "')";
     }
-    
+
 
     if ($_GET['cualquier'] == "borrar") {
         if (!empty($_GET['borrarId'])) {
@@ -85,7 +85,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     <body>
         <?php
-        if($tieneCurso == true){
+        if ($tieneCurso == true) {
             echo "<br>
     <center>
         <img src='../../../../image/barloventoMal.jpg' class='img-fluid'>
@@ -97,9 +97,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         </a>
     </center>
     <br>";
-        }else{
-        if ($conexion->query($subirCurso) === TRUE) {
-            echo "<br>
+        } else {
+            if ($conexion->query($subirCurso) === TRUE) {
+                echo "<br>
             <center>
                 <img src='../../../../image/barloventosOk.jpg' class='img-fluid'>
                 <h1 class='display-4'>
@@ -111,8 +111,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     </button>
                 </a>
             </center>";
-        } else {
-            echo "<br>
+            } else {
+                echo "<br>
     <center>
         <img src='../../../../image/barloventoMal.jpg' class='img-fluid'>
         <h1 class='display-4'>No pudo subir. Algo problema.</h1>
@@ -123,9 +123,9 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         </a>
     </center>
     <br>";
-            echo "Error: " . $subirCurso . $conexion->error;
+                echo "Error: " . $subirCurso . $conexion->error;
+            }
         }
-    }
         $conexion->close();
         ?>
     </body>
