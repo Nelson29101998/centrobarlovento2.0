@@ -73,7 +73,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 <h1 class='display-4'>
                     Has cambiado de habitar su exito. Muchas gracias por preferirnos.
                 </h1>
-                <a href='javascript:history.back()'>
+                <a href='javascript:window.location=document.referrer'>
                     <button type='button' class='btn btn-primary'>
                         <i class='fa-solid fa-reply'></i> Volver
                     </button>
@@ -84,7 +84,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
     <center>
     <img src='../../../../image/barloventoMal.jpg' class='img-fluid'>
     <h1 class='display-4'>No pudo subir. Algo problema.</h1>
-    <a href='javascript:history.back()'>
+    <a href='javascript:window.location=document.referrer'>
     <button type='button' class='btn btn-primary'>
     <i class='fa-solid fa-reply'></i> Volver
     </button>

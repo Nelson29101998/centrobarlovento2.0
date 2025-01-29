@@ -20,10 +20,21 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         $profesorCurso = $_POST['profesorCurso'];
         $habilitarCurso = true;
 
+        $revisarTieneCurso = "SELECT * FROM cursos WHERE nombreCurso like '%" . $nomCurso . "%' AND habilitar = 1";
+
+        $resultadoTiene = mysqli_query($conexion, $revisarTieneCurso);
+
+        if (mysqli_num_rows($resultadoTiene) > 0) {
+            //echo "ok";
+            $tieneCurso = true;
+        } else {
+            //echo "no";
+            $tieneCurso = false;
+        }
+
         $subirCurso = "INSERT INTO cursos (nombreCurso, codigo, fecha, horarioDesde, horarioHasta, profesor, habilitar) VALUE
         ('" . $nomCurso . "', '" . $codeCurso . "', '" . $fechaCurso . "', '" . $horaDesde . "', '" . $horaHasta . "', '" . $profesorCurso . "', '" . $habilitarCurso . "')";
     }
-
     
 
     if ($_GET['cualquier'] == "borrar") {
@@ -74,6 +85,19 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
     <body>
         <?php
+        if($tieneCurso == true){
+            echo "<br>
+    <center>
+        <img src='../../../../image/barloventoMal.jpg' class='img-fluid'>
+        <h1 class='display-4'>Ya lo tiene este curso.</h1>
+        <a href='javascript:window.location=document.referrer'>
+            <button type='button' class='btn btn-primary'>
+                <i class='fa-solid fa-reply'></i> Volver
+            </button>
+        </a>
+    </center>
+    <br>";
+        }else{
         if ($conexion->query($subirCurso) === TRUE) {
             echo "<br>
             <center>
@@ -81,7 +105,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                 <h1 class='display-4'>
                     Has guardo su exito. Muchas gracias por preferirnos.
                 </h1>
-                <a href='javascript:history.back()'>
+                <a href='javascript:window.location=document.referrer'>
                     <button type='button' class='btn btn-primary'>
                         <i class='fa-solid fa-reply'></i> Volver
                     </button>
@@ -90,18 +114,18 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         } else {
             echo "<br>
     <center>
-    <img src='../../../../image/barloventoMal.jpg' class='img-fluid'>
-    <h1 class='display-4'>No pudo subir. Algo problema.</h1>
-    <a href='javascript:history.back()'>
-    <button type='button' class='btn btn-primary'>
-    <i class='fa-solid fa-reply'></i> Volver
-    </button>
-    </a>
+        <img src='../../../../image/barloventoMal.jpg' class='img-fluid'>
+        <h1 class='display-4'>No pudo subir. Algo problema.</h1>
+        <a href='javascript:history.back()'>
+            <button type='button' class='btn btn-primary'>
+                <i class='fa-solid fa-reply'></i> Volver
+            </button>
+        </a>
     </center>
     <br>";
             echo "Error: " . $subirCurso . $conexion->error;
         }
-
+    }
         $conexion->close();
         ?>
     </body>
