@@ -185,6 +185,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         $sqlCurso6 = "";
     }
 
+
     $sql = "INSERT INTO inscripcion(nombrePartc, edad, nacePartc, rutPartc, celularPartc, mailPartc,
     direccionPartc, vivePartc, diagnostico, medicoTratantes, medicaHora, otroMedico,  alergias, preferencia,
     nomCont1, nomCont2, parentCont1, parentCont2, celCont1, celCont2, mailCont1, mailCont2) VALUES
@@ -318,15 +319,168 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
         $funcionaBool6 = false;
 
         if ((mysqli_num_rows($cargaAsist) > 0) && (mysqli_num_rows($cargaInscr) > 0) && (mysqli_num_rows($cargaHorario) > 0)) {
+
+
+            while ($row = mysqli_fetch_array($cargaInscr)) {
+                $sacarRutInscr = $row['rutPartc'];
+                $sacarNomInscr = $row['nombrePartc'];
+            }
+
+            if ($sacarRutInscr != "") {
+                $tiempoRut2 = $date->format('H:i:s') . $sacarRutInscr;
+            } else {
+                $tiempoRut2 = $date->format('H:i:s') . $remplazoNom;
+            }
+
+            //* Tabla de los cursos
+            //! Curso 1
+
+            if ($_POST['sacarCurso1'] != "vacio") {
+                $sacarCurso1Inscr = $_POST['sacarCurso1'];
+                //idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano
+                $sqlCurso1Inscr = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+        VALUES ('" . $tiempoRut2 . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso1Inscr . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+            } else {
+                $sqlCurso1Inscr = "";
+            }
+
+            //! Curso 2
+            if ($_POST['sacarCurso2'] != "vacio") {
+                $sacarCurso2Inscr = $_POST['sacarCurso2'];
+                $sqlCurso2Inscr = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+        VALUES ('" . $tiempoRut2 . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso2Inscr . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+            } else {
+                $sqlCurso2Inscr = "";
+            }
+
+            //! Curso 3
+            if ($_POST['sacarCurso3'] != "vacio") {
+                $sacarCurso3Inscr = $_POST['sacarCurso3'];
+                $sqlCurso3Inscr = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+        VALUES ('" . $tiempoRut2 . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso3Inscr . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+            } else {
+                $sqlCurso3Inscr = "";
+            }
+
+            //! Curso 4
+            if ($_POST['sacarCurso4'] != "vacio") {
+                $sacarCurso4Inscr = $_POST['sacarCurso4'];
+                $sqlCurso4Inscr = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+        VALUES ('" . $tiempoRut2 . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso4Inscr . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+            } else {
+                $sqlCurso4Inscr = "";
+            }
+
+            //! Curso 5
+            if ($_POST['sacarCurso5'] != "vacio") {
+                $sacarCurso5Inscr = $_POST['sacarCurso5'];
+                $sqlCurso5Inscr = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+        VALUES ('" . $tiempoRut2 . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso5Inscr . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+            } else {
+                $sqlCurso5Inscr = "";
+            }
+
+            //! Curso 6
+            if ($_POST['sacarCurso6'] != "vacio") {
+                $sacarCurso6Inscr = $_POST['sacarCurso6'];
+                $sqlCurso6Inscr = "INSERT INTO asistencias(idTallerTiempo, rut, estudiante, cursos, telefono, mail, mes, ano) 
+        VALUES ('" . $tiempoRut2 . "', '" . $rutPartc . "','" . $nomPartc . "','" . $sacarCurso6Inscr . "','" . $telPartc . "','" . $correoPartc . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+            } else {
+                $sqlCurso6Inscr = "";
+            }
+
         ?>
-        <br>
+            <br>
             <div class="text-center">
                 <h1 class='display-4'>
                     <?php
-                    echo 'El nombre ('.$nomPartc.') de la "Ficha de participante" que ya existe.';
+                    echo 'El nombre (' . $sacarNomInscr . ') de la "Ficha de participante" que ya existe.';
                     ?>
                 </h1>
                 <br>
+
+                <?php
+                if (!empty($sqlCurso1Inscr)) {
+                    $sqlCurso1Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                    VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso1Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+
+                    $funcionaBool1 = masParct($checkTodo, $date, $conexion, $sacarCurso1Inscr, $sacarMes, $sacarAno, $sacarNomInscr);
+
+                    if ($conexion->query($sqlCurso1Inscr) === TRUE && $funcionaBool1) {
+                        if ($conexion->query($sqlCurso1Tiempo) === TRUE && $funcionaBool1) {
+                            $anotar1 = "Curso 1 esta ok";
+                            if (!empty($sqlCurso2Inscr)) {
+                                $funcionaBool2 = masParct($checkTodo, $date, $conexion, $sacarCurso2Inscr, $sacarMes, $sacarAno, $sacarNomInscr);
+
+                                if ($conexion->query($sqlCurso2Inscr) === TRUE && $funcionaBool2) {
+                                    $sqlCurso2Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                    VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso2Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                                    if ($conexion->query($sqlCurso2Tiempo) === TRUE && $funcionaBool2) {
+                                        $anotar1 = $anotar1 . ", Curso 2 esta ok";
+                                    }
+                                }
+                            }
+
+                            if (!empty($sqlCurso3Inscr)) {
+                                $funcionaBool3 = masParct($checkTodo, $date, $conexion, $sacarCurso3Inscr, $sacarMes, $sacarAno, $sacarNomInscr);
+
+                                if ($conexion->query($sqlCurso3Inscr) === TRUE && $funcionaBool3) {
+                                    $sqlCurso3Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                    VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso3Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                                    if ($conexion->query($sqlCurso3Tiempo) === TRUE && $funcionaBool3) {
+                                        $anotar1 = $anotar1 . ", Curso 3 esta ok";
+                                    }
+                                }
+                            }
+
+                            if (!empty($sqlCurso4Inscr)) {
+                                $funcionaBool4 = masParct($checkTodo, $date, $conexion, $sacarCurso4Inscr, $sacarMes, $sacarAno, $sacarNomInscr);
+
+                                if ($conexion->query($sqlCurso4Inscr) === TRUE && $funcionaBool4) {
+                                    $sqlCurso4Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                    VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso4Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                                    if ($conexion->query($sqlCurso4Tiempo) === TRUE && $funcionaBool4) {
+                                        $anotar1 = $anotar1 . ", Curso 4 esta ok";
+                                    }
+                                }
+                            }
+
+                            if (!empty($sqlCurso5Inscr)) {
+                                $funcionaBool5 = masParct($checkTodo, $date, $conexion, $sacarCurso5Inscr, $sacarMes, $sacarAno, $sacarNomInscr);
+
+                                if ($conexion->query($sqlCurso5Inscr) === TRUE && $funcionaBool5) {
+                                    $sqlCurso5Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                    VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso5Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                                    if ($conexion->query($sqlCurso5Tiempo) === TRUE && $funcionaBool5) {
+                                        $anotar1 = $anotar1 . ", Curso 5 esta ok";
+                                    }
+                                }
+                            }
+
+                            if (!empty($sqlCurso6Inscr)) {
+                                $funcionaBool6 = masParct($checkTodo, $date, $conexion, $sacarCurso6Inscr, $sacarMes, $sacarAno, $sacarNomInscr);
+
+                                if ($conexion->query($sqlCurso6Inscr) === TRUE && $funcionaBool6) {
+                                    $sqlCurso6Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
+                                    VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso6Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                                    if ($conexion->query($sqlCurso6Tiempo) === TRUE && $funcionaBool6) {
+                                        $anotar1 = $anotar1 . ", Curso 6 esta ok";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                ?>
+                    <br>
+                    <h1 class='display-4'>
+                        <?php
+                        echo 'Pero los nombre (' . $anotar1 . ') ya ha guardado.';
+                        ?>
+                    </h1>
+                <?php
+                }
+                ?>
+
                 <a href='javascript:history.back()'>
                     <button type='button' class='btn btn-primary'>
                         <i class='fa-solid fa-reply'></i> Volver
@@ -338,7 +492,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             if ($conexion->query($sql) === TRUE) {
                 if (!empty($sqlCurso1)) {
                     $sqlCurso1Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
-                VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso1 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
+                        VALUES ('"  . $tiempoRut . "', '"  . $nomPartc . "', '" . $sacarCurso1 . "', '" . $sacarMes . "', '" . $sacarAno . "')";
 
                     $funcionaBool1 = masParct($checkTodo, $date, $conexion, $sacarCurso1, $sacarMes, $sacarAno, $nomPartc);
 
