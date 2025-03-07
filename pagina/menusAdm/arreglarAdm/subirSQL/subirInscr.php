@@ -393,9 +393,8 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
             <br>
             <div class="text-center">
                 <h1 class='display-4'>
-                    <?php
-                    echo 'El nombre (' . $sacarNomInscr . ') de la "Ficha de participante" que ya existe.';
-                    ?>
+                    <img src='../../../../image/barloventosOk.jpg' class='img-fluid'>
+                    <h1 class='display-4'>Has guardo su exito. Muchas gracias por preferirnos.</h1>
                 </h1>
                 <br>
 
@@ -408,7 +407,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
 
                     if ($conexion->query($sqlCurso1Inscr) === TRUE && $funcionaBool1) {
                         if ($conexion->query($sqlCurso1Tiempo) === TRUE && $funcionaBool1) {
-                            $anotar1 = "Curso 1 esta ok";
+                            $anotar1 = "Curso 1: " . $sacarCurso1Inscr;
                             if (!empty($sqlCurso2Inscr)) {
                                 $funcionaBool2 = masParct($checkTodo, $date, $conexion, $sacarCurso2Inscr, $sacarMes, $sacarAno, $sacarNomInscr);
 
@@ -416,7 +415,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     $sqlCurso2Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                     VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso2Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
                                     if ($conexion->query($sqlCurso2Tiempo) === TRUE && $funcionaBool2) {
-                                        $anotar1 = $anotar1 . ", Curso 2 esta ok";
+                                        $anotar1 = $anotar1 . ", Curso 2: " . $sacarCurso2Inscr;
                                     }
                                 }
                             }
@@ -428,7 +427,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     $sqlCurso3Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                     VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso3Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
                                     if ($conexion->query($sqlCurso3Tiempo) === TRUE && $funcionaBool3) {
-                                        $anotar1 = $anotar1 . ", Curso 3 esta ok";
+                                        $anotar1 = $anotar1 . ", Curso 3: " . $sacarCurso3Inscr;
                                     }
                                 }
                             }
@@ -440,7 +439,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     $sqlCurso4Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                     VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso4Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
                                     if ($conexion->query($sqlCurso4Tiempo) === TRUE && $funcionaBool4) {
-                                        $anotar1 = $anotar1 . ", Curso 4 esta ok";
+                                        $anotar1 = $anotar1 . ", Curso 4: " . $sacarCurso4Inscr;
                                     }
                                 }
                             }
@@ -452,7 +451,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     $sqlCurso5Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                     VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso5Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
                                     if ($conexion->query($sqlCurso5Tiempo) === TRUE && $funcionaBool5) {
-                                        $anotar1 = $anotar1 . ", Curso 5 esta ok";
+                                        $anotar1 = $anotar1 . ", Curso 5: " . $sacarCurso5Inscr;
                                     }
                                 }
                             }
@@ -464,7 +463,7 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                                     $sqlCurso6Tiempo = "INSERT INTO tallertiempo(idTallerTiempo, estudiante, taller, mes, ano)
                                     VALUES ('"  . $tiempoRut2 . "', '"  . $sacarNomInscr . "', '" . $sacarCurso6Inscr . "', '" . $sacarMes . "', '" . $sacarAno . "')";
                                     if ($conexion->query($sqlCurso6Tiempo) === TRUE && $funcionaBool6) {
-                                        $anotar1 = $anotar1 . ", Curso 6 esta ok";
+                                        $anotar1 = $anotar1 . ", Curso 6: " . $sacarCurso6Inscr;
                                     }
                                 }
                             }
@@ -472,11 +471,13 @@ if (!isset($_SESSION["usuario"]) && !isset($_SESSION["rut"])) {
                     }
                 ?>
                     <br>
-                    <h1 class='display-4'>
-                        <?php
-                        echo 'Pero los nombre (' . $anotar1 . ') ya ha guardado.';
-                        ?>
-                    </h1>
+                    <div class="container">
+                        <div class="alert alert-warning" role="alert">
+                            <?php
+                            echo 'Pero los cursos (' . $anotar1 . ') ya ha guardado.';
+                            ?>
+                        </div>
+                    </div>
                 <?php
                 }
                 ?>
